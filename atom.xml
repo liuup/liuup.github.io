@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://liuup.github.io/</id>
     <title>UP</title>
-    <updated>2020-01-09T12:11:01.211Z</updated>
+    <updated>2020-01-09T12:13:38.861Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://liuup.github.io/"/>
     <link rel="self" href="https://liuup.github.io/atom.xml"/>
@@ -23,7 +23,7 @@ cout &lt;&lt; std::thread::hardware_concurrency() &lt;&lt; endl;
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[c++ int类型转string]]></title>
+        <title type="html"><![CDATA[C++ int类型转string]]></title>
         <id>https://liuup.github.io/post/c-int-lei-xing-zhuan-string</id>
         <link href="https://liuup.github.io/post/c-int-lei-xing-zhuan-string">
         </link>
