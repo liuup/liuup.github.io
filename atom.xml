@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://liuup.github.io/</id>
     <title>UP</title>
-    <updated>2020-01-09T11:02:56.781Z</updated>
+    <updated>2020-01-09T11:09:32.198Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://liuup.github.io/"/>
     <link rel="self" href="https://liuup.github.io/atom.xml"/>
@@ -10,6 +10,41 @@
     <logo>https://liuup.github.io/images/avatar.png</logo>
     <icon>https://liuup.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, UP</rights>
+    <entry>
+        <title type="html"><![CDATA[冒泡排序代码演示]]></title>
+        <id>https://liuup.github.io/post/mou-pao-pai-xu-dai-ma-yan-shi</id>
+        <link href="https://liuup.github.io/post/mou-pao-pai-xu-dai-ma-yan-shi">
+        </link>
+        <updated>2020-01-09T11:07:34.000Z</updated>
+        <summary type="html"><![CDATA[<p>C语言冒泡排序算法...</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>C语言冒泡排序算法...</p>
+<!-- more -->
+<pre><code>int scores[N];		//定义整型数组，用于存放学生成绩
+//注意没有学号18
+int studentNum[N] = { 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,19,20,21,22,23,24,25,26,27,28,29 };	//学生学号尾号
+int i, j;	//循环变量
+
+
+for (i = 0; i &lt; N - 1; i++)
+{
+	for (j = 0; j &lt; N - i - 1; j++)
+	{
+		if (scores[j] &lt; scores[j + 1])
+		{
+			temp = scores[j + 1];
+			scores[j + 1] = scores[j];
+			scores[j] = temp;   
+
+			temp = studentNum[j + 1];
+			studentNum[j + 1] = studentNum[j];
+			studentNum[j] = temp;
+		}
+	}
+}
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Mardown测试文章]]></title>
         <id>https://liuup.github.io/post/mardown-ce-shi-wen-zhang</id>

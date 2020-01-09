@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>UP</title>
+<title>冒泡排序代码演示 | UP</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -18,8 +18,12 @@
 
 
 
-    <meta name="description" content="UP&#39;s Blog">
-    
+    <meta name="description" content="C语言冒泡排序算法...
+
+int scores[N];		//定义整型数组，用于存放学生成绩
+//注意没有学号18
+int studentNum[N] = { 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,..." />
+    <meta name="keywords" content="" />
   </head>
   <body>
     <div id="app" class="main">
@@ -97,70 +101,53 @@
 
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://liuup.github.io/post/mou-pao-pai-xu-dai-ma-yan-shi">
-                  <h2 class="post-title">冒泡排序代码演示</h2>
-                </a>
-                <div class="post-date">
-                  2020-01-09
-                </div>
-                <div class="post-abstract">
-                  <p>C语言冒泡排序算法...</p>
+          <div class="post-detail">
+            <h2 class="post-title">冒泡排序代码演示</h2>
+            <div class="post-date">2020-01-09</div>
+            
+            <div class="post-content" v-pre>
+              <p>C语言冒泡排序算法...</p>
+<!-- more -->
+<pre><code>int scores[N];		//定义整型数组，用于存放学生成绩
+//注意没有学号18
+int studentNum[N] = { 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,19,20,21,22,23,24,25,26,27,28,29 };	//学生学号尾号
+int i, j;	//循环变量
 
-                </div>
-              </div>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
+
+for (i = 0; i &lt; N - 1; i++)
+{
+	for (j = 0; j &lt; N - i - 1; j++)
+	{
+		if (scores[j] &lt; scores[j + 1])
+		{
+			temp = scores[j + 1];
+			scores[j + 1] = scores[j];
+			scores[j] = temp;   
+
+			temp = studentNum[j + 1];
+			studentNum[j + 1] = studentNum[j];
+			studentNum[j] = temp;
+		}
+	}
+}
+</code></pre>
+
+            </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
                 <a href="https://liuup.github.io/post/mardown-ce-shi-wen-zhang">
-                  <h2 class="post-title">Mardown测试文章</h2>
+                  <h3 class="post-title">
+                    Mardown测试文章
+                  </h3>
                 </a>
-                <div class="post-date">
-                  2020-01-09
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
               </div>
-              
-                <a class="right" href="https://liuup.github.io/post/mardown-ce-shi-wen-zhang">
-                  <div class="feature-container" style="background-image: url('https://cn.bing.com/th?id=OIP.yh6LRHy_BrM0JJWV0DpLgQHaEj&amp;pid=Api&amp;rs=1')">
-                  </div>
-                </a>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://liuup.github.io/post/hello-gridea">
-                  <h2 class="post-title">Hello Gridea</h2>
-                </a>
-                <div class="post-date">
-                  2018-12-12
-                </div>
-                <div class="post-abstract">
-                  <p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
-✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
+            
 
-                </div>
-              </div>
-              
-                <a class="right" href="https://liuup.github.io/post/hello-gridea">
-                  <div class="feature-container" style="background-image: url('https://liuup.github.io//post-images/hello-gridea.jpg')">
-                  </div>
-                </a>
-              
-            </article>
-          
+            
 
-          <div class="pagination-container">
-  
-  
-</div>
+          </div>
 
         </div>
       </div>
