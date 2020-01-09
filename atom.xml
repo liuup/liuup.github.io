@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://liuup.github.io/</id>
     <title>UP</title>
-    <updated>2020-01-09T12:19:53.578Z</updated>
+    <updated>2020-01-09T12:35:56.497Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://liuup.github.io/"/>
     <link rel="self" href="https://liuup.github.io/atom.xml"/>
@@ -11,561 +11,286 @@
     <icon>https://liuup.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, UP</rights>
     <entry>
-        <title type="html"><![CDATA[NVIDIA Jetson TX2 Notes ]]></title>
-        <id>https://liuup.github.io/post/nvidia-jetson-tx2-notes</id>
-        <link href="https://liuup.github.io/post/nvidia-jetson-tx2-notes">
+        <title type="html"><![CDATA[6. QDialog]]></title>
+        <id>https://liuup.github.io/post/6-qdialog</id>
+        <link href="https://liuup.github.io/post/6-qdialog">
         </link>
-        <updated>2020-01-09T12:18:55.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="nvidia-jetson-tx2-notes">NVIDIA Jetson TX2 Notes</h1>
-<p>NVIDIA Jetson TX2 不论在各个方面对于一个新手来说都是一个天坑，而且坑是一个接着一个，我在此记录一些我在配置TX2时遇到的问题，并提出可靠的解决方案。</p>
-<p>host：</p>
-<blockquote>
-<p>System:Ubuntu 18.04 Lts<br>
-Processor:Intel® Core™ i5-8300H CPU @ 2.30GHz × 8<br>
-Graphics:GeForce GTX 1050 Ti/PCIe/SSE2</p>
-</blockquote>
-<p>Jetson TX2:</p>
-<blockquote>
-<p>System:Ubuntu 18.04 Lts<br>
-Processor:ARMv8 Processor rev 3(v8l) × 4<br>
-Graphics:NVIDIA Tegra X2(nvgpu)/integrated</p>
-</blockquote>
-<p>自己主机和TX2配置相差很大，但是刚开始自己并没有意识到这个问题，在更新sources.list时和安装vscode时才意识到这个问题。</p>
-<p>TX2的Ubuntu18.04Lts系统是NVIDIA魔改版，用的unity桌面，在界面上会有些不一样。</p>
-<h2 id="1乱七八糟的资料与百科">1.乱七八糟的资料与百科</h2>
-<p>1.Google镜像站，免翻墙在中国用google的最佳食用方式，Ubuntu改个hosts就行</p>
-<blockquote>
-<p><a href="gg.chn.moe">Google镜像站</a></p>
-</blockquote>
-<p>2.Jetson TX2 的全英百科，感觉还算全</p>
-<blockquote>
-<p><a href="https://elinux.org/Jetson_TX2">Jetson TX2 on elinux</a></p>
-</blockquote>
-<p>3.NVIDIA Jetson TX2 Official</p>
-<blockquote>
-<p><a href="https://www.nvidia.cn/autonomous-machines/embedded-systems/jetson-tx2/">NVDIA Jetson TX2</a></p>
-</blockquote>
-<p>4.TX2接口一览<br>
-<img src="https://img.oschina.net/itags/05081aeb1454f7b6d66dc355ea4f53b54059bde2.png" alt="TX2各种接口" loading="lazy"></p>
-<h2 id="2关于刷机">2.关于刷机</h2>
-<p>自己的host主机已经安装了NVIDIA SDKManger,将TX2进入恢复模式(同时长按POWER和RECOVERY键两秒后,按一下RESET键,再松开RECOVERY键),在host Terminal上输入<code>lsusb</code>,如果显示出<code>NVIDIA Corp</code>就证明基本连接成功.</p>
-<h3 id="21-可能遇到的问题">2.1 可能遇到的问题</h3>
-<h4 id="211-step-4-flash时提示没连接上">2.1.1 STEP 4 flash时提示没连接上</h4>
-<p>将进入RECOVERY模式的TX2从host上拔下,直接在host上点刷机(当然,这肯定刷不进去),出来个提示框,第一个模式会让输入TX2的账号和密码,第二个模式是全自动.此时再将TX2连入host,点继续就能成功刷机</p>
-<h4 id="212-刷机过程中提示时间过长超出预期">2.1.2 刷机过程中提示时间过长,超出预期</h4>
-<p><s>点继续就行了</s><br>
-<strong>更换数据线,请尽量使用官方数据线,使用质量可靠的数据线能够显著增加数据传输速度</strong></p>
-<blockquote>
-<ol>
-<li><a href="https://devtalk.nvidia.com/default/topic/1062832/jetson-agx-xavier/flash-jetson-os-fails-on-jetson-agx-xavier-stuck-at-99-8-/1">NVIDIA上的关于flash卡99.8%的讨论</a></li>
-<li>值得注意的是,<strong>数据线</strong>和<strong>充电线</strong>并不太一样</li>
-</ol>
-</blockquote>
-<h4 id="213-更换数据线后仍提示检测不到tx2">2.1.3 更换数据线后仍提示检测不到TX2</h4>
-<p>将TX2彻底关机,将数据线从host上拔出,将电源线拔出,重新连接数据线和电源线,再次进入恢复模式,重新连接数据线和电源线,再次在host上SDKManger中检测</p>
-<h2 id="3关于配置">3.关于配置</h2>
-<p>1.这个地方不注意连sudo apt-get update<br>
-都更新不了，为了降低功耗，TX2的CPU架构是arm64(aarch64)，可以通过以下代码查看CPU架构</p>
-<pre><code>~$uname -a
-或者
-~$dpkg --print-architecture
-</code></pre>
-<p>2.由于CPU架构的不同，在后面更新sources.list时要做出一些改变</p>
-<h2 id="4sources">4.Sources</h2>
-<p>为了加快各个软件的更新下载速度,需要将更新源换成国内<br>
-arm ubuntu开发板的apt库和普通ubuntu的库是不一样的，arm用的是ubuntu-ports库。</p>
-<p>先获取root权限，再执行</p>
-<pre><code>~$gedit /etc/apt/sources.list
-</code></pre>
-<p>修改source，在此给出Ubuntu 18.04 Lts USTC的源，值得注意的是，arm64的源和普通PC的不一样，要将ubuntu改成ubuntu-ports才能更新</p>
-<pre><code>deb http://mirrors.ustc.edu.cn/ubuntu-ports/ bionic-updates main restricted universe multiverse 
-deb-src http://mirrors.ustc.edu.cn/ubuntu-ports/ bionic-updates main restricted universe multiverse 
-deb http://mirrors.ustc.edu.cn/ubuntu-ports/ bionic-security main restricted universe multiverse 
-deb-src http://mirrors.ustc.edu.cn/ubuntu-ports/ bionic-security main restricted universe multiverse 
-deb http://mirrors.ustc.edu.cn/ubuntu-ports/ bionic-backports main restricted universe multiverse 
-deb-src http://mirrors.ustc.edu.cn/ubuntu-ports/ bionic-backports main restricted universe multiverse 
-deb http://mirrors.ustc.edu.cn/ubuntu-ports/ bionic main universe restricted 
-deb-src http://mirrors.ustc.edu.cn/ubuntu-ports/ bionic main universe restricted
-</code></pre>
-<p>更新源</p>
-<pre><code>~$sudo apt-get update
-</code></pre>
-<p>更新之后可能会报GPG Error，我列出Error如下</p>
-<pre><code>~$GPG error: https://packagecloud.io/headmelted/codebuilds/debian stretch InRelease: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 0CC3FD642696BFC8
-</code></pre>
-<p>解决方案：这里要将公钥改成上面给出的公钥</p>
-<pre><code>~$apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0CC3FD642696BFC8
-</code></pre>
-<p>如果出现下列结果，说明Error已经消失了</p>
-<pre><code>~$Executing: /tmp/apt-key-gpghome.ZnhRCRjnAd/gpg.1.sh --recv-keys --keyserver keyserver.ubuntu.com 0CC3FD642696BFC8
-～$gpg: key 8D9940AE59B46979: public key &quot;https://packagecloud.io/headmelted/code-oss (https://packagecloud.io/docs#gpg_signing) &lt;support@packagecloud.io&gt;&quot; imported
-~$gpg: Total number processed: 1
-~$gpg:               imported: 1
+        <updated>2020-01-09T12:35:28.000Z</updated>
+        <content type="html"><![CDATA[<p>对话框</p>
+<pre><code>// 点击新建按钮,弹出一个对话框
+connect(ui-&gt;actionNew, &amp;QAction::triggered, this, [=](){
+    // 对话框 分离
+    // 模态对话框(不可以对其他窗口进行操作)
+    // 非模态对话框(可以对其他窗口进行操作)
 
-</code></pre>
-<p>然后再更新一下源和软件，这就意味着可以正常从库下载软件了</p>
-<pre><code>~$sudo apt-get update
-~$sudo apt-get upgrade
-</code></pre>
-<h2 id="5vscode">5.VSCODE</h2>
-<p>紧接着就安装宇宙最强IDE：vscode</p>
-<p>我看了好久的Microsoft官方文档，发现官方根本就不支持在linux arm64上面运行，在google上搜索，看到nvidia论坛里也有人问怎么安装vscode。继续以关键词arm64 vscode搜索，发现有人发了如何在树莓派上安装vscode的教程</p>
-<p>直接在终端运行，便可以安装vscode</p>
-<pre><code>~$sudo apt-get install code-oss
-</code></pre>
-<p>再安装中文包及各种插件，但是会发现<strong>c++插件不支持arm64</strong><br>
-插件会提示</p>
-<pre><code>Architecture arm64 is not supported;
+    // 模态
+    QDialog newWin(this);
+    newWin.resize(200, 100);
+    newWin.exec();
+    cout &lt;&lt; &quot;模态弹出&quot; &lt;&lt; endl;
 
-&gt;&gt; 来源:C/C++(拓展)
-</code></pre>
-<p>但是能在vscode里用cmake编译，所以个人认为vscode在tx2上并不太好用,推荐安装qt</p>
-<h2 id="6opencv">6.OpenCV</h2>
-<p>刷机后，TX2自带的是3.3.1，将其刷成3.4.5<br>
-刚开始用的16.04Lts arm64源，一直导致好多包安装不了，按照我上面写的换成18.04的源就行</p>
-<p>Refenrences：</p>
-<blockquote>
-<p>1.<a href="https://www.jianshu.com/p/f646448da265">环境配置-Ubuntu 16.04安装opencv3.4.3 - 简书</a><br>
-2.<a href="https://blog.csdn.net/hjxu2016/article/details/82390434">ubuntu下安装opencv3.4.2 - CSDN</a><br>
-3.<a href="https://github.com/opencv/opencv">opencv - github</a><br>
-4.<a href="https://github.com/opencv/opencv_contrib">opencv_toncrib - github</a></p>
-</blockquote>
-<p>可能出现的问题:</p>
-<ol>
-<li>提示<code>boostdesc_bgm.i</code>缺少</li>
-</ol>
-<blockquote>
-<p>1.1 <a href="https://blog.csdn.net/u011736771/article/details/85960300">编译OpenCV以及openc_contrib提示缺少boostdesc_bgm.i文件出错的解决 - CSDN</a><br>
-1.2 <a href="https://github.com/opencv/opencv_contrib/issues/1301">atal error: boostdesc_bgm.i: No such file or directory  - Github</a></p>
-</blockquote>
-<ol start="2">
-<li>提示各种文件路径不对的</li>
-</ol>
-<blockquote>
-<p>直接进入提示错误的文件修改opencv的源代码</p>
-</blockquote>
-<p>在终端使用命令检验是否安装到位</p>
-<pre><code>~$pkg-config --modversion opencv
-~$3.4.5
-</code></pre>
-<p><strong>使用g++编译的方法：</strong></p>
-<pre><code>~$g++ main.cpp -o main.out `pkg-config opencv --cflags --libs`
-</code></pre>
-<h2 id="7调用摄像头">7.调用摄像头</h2>
-<h3 id="71调用板载摄像头">7.1调用板载摄像头</h3>
-<p>终端运行</p>
-<pre><code>nvgstcapture-1.0 --cus-prev-res=1920*1080
-</code></pre>
-<p><s>但是我还没搞懂怎么通过opencv来调用板载摄像头</s></p>
-<p>分辨率可调：</p>
-<blockquote>
-<p>640 * 480<br>
-1280 * 720<br>
-1920 * 1080<br>
-2104 * 1560<br>
-2592 * 1944<br>
-2616 * 1472<br>
-3840 * 2160<br>
-3896 * 2192<br>
-4208 * 3120<br>
-5632 * 3168<br>
-5632 * 4224</p>
-</blockquote>
-<p>使用q + 回车退出摄像头</p>
-<h3 id="72调用usb摄像头">7.2调用usb摄像头</h3>
-<p>如果想使用usb接口的摄像头，需要将VideoCapture中数值改为1，因为板载摄像头默认是0</p>
-<pre><code>VideoCapture capture(1);
-</code></pre>
-<h2 id="8qt-creator">8.qt creator</h2>
-<blockquote>
-<p>因为vscode在tx2上不太好用，所以需要换个IDE，幸好qt的配置并不难</p>
-</blockquote>
-<p>直接终端运行</p>
-<pre><code>~$sudo apt-get install qt5-default qtcreator -y
-</code></pre>
-<p>Reference：</p>
-<blockquote>
-<p><a href="https://blog.csdn.net/jiangchao3392/article/details/73822655">NVIDIA Jetson TX2 安装qt - CSDN</a></p>
-</blockquote>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[2.连续存储数组的算法演示]]></title>
-        <id>https://liuup.github.io/post/2lian-xu-cun-chu-shu-zu-de-suan-fa-yan-shi</id>
-        <link href="https://liuup.github.io/post/2lian-xu-cun-chu-shu-zu-de-suan-fa-yan-shi">
-        </link>
-        <updated>2020-01-09T12:16:46.000Z</updated>
-        <content type="html"><![CDATA[<pre><code>#include &lt;stdio.h&gt;
-#include &lt;stdlib.h&gt;
-#include &lt;malloc.h&gt;
+    // 非模态对话框
+    QDialog * newWin2 = new QDialog(this);
+    newWin2-&gt;resize(200, 150);
+    newWin2-&gt;show();
+    // 为了防止内存泄漏,需要移除对象
+    newWin2-&gt;setAttribute(Qt::WA_DeleteOnClose);    // 55号属性
 
-struct Arr
-{
-	int *pBase;	// 存储的是数组第一个元素的地址
-	int len;	// 数组所能容纳的最大元素的地址
-	int cnt;	// 当前数组有效元素的个数
-};
-
-void init_arr(struct Arr * pArr, int length);	
-bool append_arr(struct Arr * pArr, int val);
-bool insert_arr(struct Arr * pArr, int pos, int val);	// pos的值从1开始
-bool delete_arr(struct Arr * pArr, int pos);
-int get();
-bool is_empty(struct Arr * pArr);
-bool is_full(struct Arr * pArr);
-void sort_arr(struct Arr * pArr);
-void show_arr(struct Arr * pArr);
-void inversion_arr();
-
-
-int main()
-{
-	struct Arr arr;
-	init_arr(&amp;arr, 9);
-	append_arr(&amp;arr, 1);
-	append_arr(&amp;arr, 2);
-	append_arr(&amp;arr, 9);
-	append_arr(&amp;arr, 4);
-	append_arr(&amp;arr, 5);
-	append_arr(&amp;arr, 6);
-	//append_arr(&amp;arr, 7);
-	//append_arr(&amp;arr, 8);
-	//insert_arr(&amp;arr, 0, 88);
-
-	//delete_arr(&amp;arr, 2);
-	sort_arr(&amp;arr);
-	show_arr(&amp;arr);
-
-
-
-
-	printf(&quot;\n\n\n\n&quot;);
-	return 0;
-}
-
-
-// @brief 数组初始化
-// @param 结构体的地址
-// @param 数组的长度
-void init_arr(struct Arr * pArr, int length)
-{
-	pArr-&gt;pBase = (int *)malloc(sizeof(int) * length);
-	if(pArr-&gt;pBase == NULL)
-	{
-		printf(&quot;动态内存分配失败\n&quot;);
-		exit(-1);	// 终止整个程序
-	}
-	
-	printf(&quot;动态内存分配成功!\n&quot;);
-	pArr-&gt;len = length;
-	pArr-&gt;cnt = 0;
-
-	return ;
-}
-
-
-// @brief 判度是否已满
-//
-//
-bool is_full(struct Arr * pArr)
-{
-	return pArr-&gt;cnt == pArr-&gt;len ? true : false;
-}
-
-// @brief 追加元素
-//
-//
-bool append_arr(struct Arr * pArr, int val)
-{
-	// 数组为满的判断
-	if(is_full(pArr))
-	{
-		printf(&quot;数组已满!\n&quot;);
-		exit(-1);
-	}
-
-	// 不满时追加 
-	pArr-&gt;pBase[pArr-&gt;cnt] = val;
-	(pArr-&gt;cnt)++;
-	return true;
-}
-
-
-// @brief 插入元素
-//
-//
-bool insert_arr(struct Arr * pArr, int pos, int val)
-{
-	// 判断下标合法性
-	if(pos &lt; 0)
-	{
-		printf(&quot;插入元素的下标非法!\n&quot;);
-		exit(-1);
-	}
-
-	// 先对元素进行移动,后面的元素先移动
-	(pArr-&gt;cnt)++;
-	for(int i = pArr-&gt;cnt - 1; i &gt;= pos; i--)
-	{
-		pArr-&gt;pBase[i] = pArr-&gt;pBase[i - 1];
-	}
-	// 元素赋值
-	pArr-&gt;pBase[pos] = val;
-
-	return true;
-}
-
-
-// @brief 删除特定位置的数值
-//
-//
-bool delete_arr(struct Arr * pArr, int pos)
-{
-	if(pos &lt; 0)
-	{
-		printf(&quot;删除的元素下标有误!\n&quot;);
-		exit(-1);
-	}
-
-	for(int i = pos; i &lt; pArr-&gt;cnt; i++)
-	{
-		pArr-&gt;pBase[i] = pArr-&gt;pBase[i + 1];
-	}
-	(pArr-&gt;cnt)--;
-
-	return true;
-}
-
-
-
-
-// @brief 判断数组是否为空
-//
-//
-bool is_empty(struct Arr * pArr)
-{
-	return pArr-&gt;cnt == 0 ? true : false;	// 使用三元运算符
-}
-
-
-// @brief 对数组排序
-//
-//
-void sort_arr(struct Arr * pArr)
-{
-	int temp;
-	for(int i = 0; i &lt; pArr-&gt;cnt - 1; i++)
-	{
-		for(int j = 0; j &lt; pArr-&gt;cnt - i - 1; j++)
-		{
-			if(pArr-&gt;pBase[j] &gt; pArr-&gt;pBase[j + 1])
-			{
-				temp = pArr-&gt;pBase[j];
-				pArr-&gt;pBase[j] = pArr-&gt;pBase[j + 1];
-				pArr-&gt;pBase[j + 1] = temp;
-			}
-		}
-	}
-}
-
-
-
-
-// @brief 输出数组的元素
-//
-//
-void show_arr(struct Arr * pArr)
-{
-	if(is_empty(pArr) == true)
-	{
-		printf(&quot;数组为空!\n&quot;);
-		exit(-1);
-	}
-
-	for(int i = 0; i &lt; pArr-&gt;cnt; i++)
-	{
-		printf(&quot;%d &quot;, pArr-&gt;pBase[i]);
-	}
-}
-
-
-
-
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[1.malloc()函数动态分配内存概述]]></title>
-        <id>https://liuup.github.io/post/1mallochan-shu-dong-tai-fen-pei-nei-cun-gai-shu</id>
-        <link href="https://liuup.github.io/post/1mallochan-shu-dong-tai-fen-pei-nei-cun-gai-shu">
-        </link>
-        <updated>2020-01-09T12:16:08.000Z</updated>
-        <content type="html"><![CDATA[<p>malloc()默认返回值是void *</p>
-<h2 id="创建并释放">创建并释放</h2>
-<pre><code>#include &lt;stdio.h&gt;
-#include &lt;stdlib.h&gt;
-#include &lt;malloc.h&gt;
-
-int main()
-{
-	// molloc()动态内存
-
-	int len;
-	printf(&quot;please input the len:&quot;);
-	scanf(&quot;%d&quot;, &amp;len);
-
-	int *pArr = (int *)malloc(sizeof(int) * len);	// pArr是地址
-
-	*pArr = 10;	// 类似于pArr[0] = 10
-	pArr[1] = 2;
-	pArr[2] = 3;
-
-	printf(&quot;%d\n&quot;, *(pArr++));	// pArr[0]
-	printf(&quot;%d\n&quot;, *(pArr++));
-	printf(&quot;%d\n&quot;, *(pArr++));
     
-    free(pArr); // 把pArr代表的动态分配的内存释放
-    
-    
-	return 0;
+    cout &lt;&lt; &quot;非模态对话框&quot; &lt;&lt; endl;
+
+
+
+});
+
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[5. Add resources]]></title>
+        <id>https://liuup.github.io/post/5-add-resources</id>
+        <link href="https://liuup.github.io/post/5-add-resources">
+        </link>
+        <updated>2020-01-09T12:35:02.000Z</updated>
+        <content type="html"><![CDATA[<pre><code>// 资源文件
+
+// 将文件拷贝到项目下
+
+// 右键文件,添加新文件,QT resources file
+
+// Open in editer 
+
+// 通过ui可以找到所有的控件
+ui-&gt;actionNew-&gt;setIcon(QIcon(&quot;:/icons/edit.png&quot;));
+ui-&gt;actionExit-&gt;setIcon(QIcon(&quot;:/icons/edit.png&quot;));
+
+
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[4. Status]]></title>
+        <id>https://liuup.github.io/post/4-status</id>
+        <link href="https://liuup.github.io/post/4-status">
+        </link>
+        <updated>2020-01-09T12:34:00.000Z</updated>
+        <content type="html"><![CDATA[<pre><code>#include &lt;QStatusBar&gt;
+#include &lt;Qlabel&gt;
+
+// 状态栏,最多一个
+QStatusBar * stBar = statusBar();
+setStatusBar(stBar);
+QLabel * label = new QLabel(&quot;提示信息&quot;, this);
+stBar-&gt;addWidget(label);
+
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[3.Menu]]></title>
+        <id>https://liuup.github.io/post/3menu</id>
+        <link href="https://liuup.github.io/post/3menu">
+        </link>
+        <updated>2020-01-09T12:33:36.000Z</updated>
+        <content type="html"><![CDATA[<pre><code>#include &lt;QMenu&gt;
+
+QMenuBar * bar = menuBar();
+setMenuBar(bar);
+// 创建菜单
+QMenu * fileMenu = bar-&gt;addMenu(&quot;File&quot;);
+QMenu * editMenu = bar-&gt;addMenu(&quot;Edit&quot;);
+QMenu * helpMenu = bar-&gt;addMenu(&quot;Help&quot;);
+
+// 创建菜单项
+fileMenu-&gt;addAction(&quot;New file&quot;);
+fileMenu-&gt;addAction(&quot;NULL&quot;);
+fileMenu-&gt;addSeparator();
+QAction *file_exit = fileMenu-&gt;addAction(&quot;Exit&quot;);
+connect(file_exit, &amp;QAction::triggered, this, &amp;MainWindow::close);
+
+QAction *help_about = helpMenu-&gt;addAction(&quot;About&quot;);
+connect(help_about, &amp;QAction::triggered, this, &amp;MainWindow::HelpAboutFunc);
+
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[2. 信号与槽]]></title>
+        <id>https://liuup.github.io/post/2-xin-hao-yu-cao</id>
+        <link href="https://liuup.github.io/post/2-xin-hao-yu-cao">
+        </link>
+        <updated>2020-01-09T12:33:01.000Z</updated>
+        <content type="html"><![CDATA[<p>将老师和学生创建到对象树上面</p>
+<pre><code>// 创建老师和学生对象
+    this-&gt;teacher = new Teacher(this);
+    this-&gt;student = new Student(this);
+</code></pre>
+<p>连接函数：connect()<br>
+params:<br>
+param1: 信号的发送者<br>
+param2: 发送的信号<br>
+param3: 信号的接受者<br>
+param4: 处理的槽函数</p>
+<p>松散耦合<br>
+实现点击按钮关闭窗口的案例</p>
+<pre><code>connect(btn2, &amp;QPushButton::clicked, this, &amp;MainWindow::close);
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[1. Button的创建]]></title>
+        <id>https://liuup.github.io/post/1-button-de-chuang-jian</id>
+        <link href="https://liuup.github.io/post/1-button-de-chuang-jian">
+        </link>
+        <updated>2020-01-09T12:32:31.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="1-button的创建">1. Button的创建</h1>
+<pre><code>#include &lt;QPushButton&gt;  // 引入头文件
+
+// 第一种方式
+
+// 创建一个按钮
+QPushButton * btn = new QPushButton;
+btn-&gt;show();    // 以顶层方式弹出窗口控件，也就是游离于主窗口之外
+// 让btn对象依赖在MainWindow窗口中
+btn-&gt;setParent(this);
+
+// 显示文本
+btn-&gt;setText(&quot;set&quot;);
+
+
+// 第二种方式
+
+// 创建第二个按钮，按照控件的大小创建窗口
+QPushButton * btn2 = new QPushButton(&quot;the first&quot;, this);
+// 移动btn2按钮
+btn2-&gt;move(50, 0);
+
+// 重置主窗口大小
+resize(400, 300);
+
+// 设置固定的主窗口大小
+setFixedSize(400, 300);
+
+
+//设置主窗口标题
+setWindowTitle(&quot;第一个窗口&quot;);
+
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[CMakeLists_md]]></title>
+        <id>https://liuup.github.io/post/cmakelists_md</id>
+        <link href="https://liuup.github.io/post/cmakelists_md">
+        </link>
+        <updated>2020-01-09T12:31:23.000Z</updated>
+        <content type="html"><![CDATA[<pre><code>cmake_minimum_required(VERSION 2.8)
+PROJECT(main)
+find_package(OpenCV 3.4.5)
+set(CMAKE_C_FLAGS &quot;${CMAKE_C_FLAGS} -std=c++11 -march=native&quot;)
+set(CMAKE_CXX_FLAGS &quot;${CMAKE_CXX_FLAGS} -std=c++11 -march=native&quot;)
+include_directories(${OpenCV_INCLUDE_DIRS})
+ADD_EXECUTABLE(main /home/liuup/Desktop/cpp_test/main.cpp
+                    
+)
+target_link_libraries(main ${OpenCV_LIBS})
+find_package(Threads)
+target_link_libraries(main ${CMAKE_THREAD_LIBS_INIT})
+find_package(X11 REQUIRED)
+include_directories(${X11_INLUCDE_DIR})
+target_link_libraries(main ${X11_LIBRARIES})
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[qt opencv .pro配置]]></title>
+        <id>https://liuup.github.io/post/qt-opencv-pro-pei-zhi</id>
+        <link href="https://liuup.github.io/post/qt-opencv-pro-pei-zhi">
+        </link>
+        <updated>2020-01-09T12:30:42.000Z</updated>
+        <content type="html"><![CDATA[<p>在.pro文件中加入以下代码：</p>
+<pre><code>INCLUDEPATH += /usr/local/include
+INCLUDEPATH += /usr/local/include/opencv
+INCLUDEPATH += /usr/local/include/opencv2
+INCLUDEPATH += /usr/local/include/opencv2/core
+INCLUDEPATH += /usr/local/include/opencv2/highgui
+INCLUDEPATH += /usr/local/include/opencv2/imgproc
+INCLUDEPATH += /usr/local/include/opencv2/flann
+INCLUDEPATH += /usr/local/include/opencv2/photo
+INCLUDEPATH += /usr/local/include/opencv2/video
+INCLUDEPATH += /usr/local/include/opencv2/features2d
+INCLUDEPATH += /usr/local/include/opencv2/objdetect
+INCLUDEPATH += /usr/local/include/opencv2/calib3d
+INCLUDEPATH += /usr/local/include/opencv2/ml
+INCLUDEPATH += /usr/local/include/opencv2/contrib
+LIBS += `pkg-config opencv --cflags --libs`
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[tasks.json]]></title>
+        <id>https://liuup.github.io/post/tasksjson</id>
+        <link href="https://liuup.github.io/post/tasksjson">
+        </link>
+        <updated>2020-01-09T12:30:01.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="tasksjson">tasks.json</h1>
+<pre><code>{
+// 有关 tasks.json 格式的文档，请参见
+    // https://go.microsoft.com/fwlink/?LinkId=733558
+    &quot;version&quot;: &quot;2.0.0&quot;,
+    &quot;tasks&quot;: [
+        {
+            &quot;type&quot;: &quot;shell&quot;,
+            &quot;label&quot;: &quot;cpp build active file&quot;,
+            &quot;command&quot;: &quot;/usr/bin/cpp&quot;,
+            &quot;args&quot;: [
+                &quot;-g&quot;,
+                &quot;${file}&quot;,
+                &quot;-o&quot;,
+                &quot;${fileDirname}/${fileBasenameNoExtension}&quot;
+            ],
+            &quot;options&quot;: {
+                &quot;cwd&quot;: &quot;/usr/bin&quot;
+            },
+            &quot;problemMatcher&quot;: [
+                &quot;$gcc&quot;
+            ],
+            &quot;group&quot;: &quot;build&quot;
+        },
+        {
+            &quot;type&quot;: &quot;shell&quot;,
+            &quot;label&quot;: &quot;g++ build active file&quot;,
+            &quot;command&quot;: &quot;/usr/bin/g++&quot;,
+            &quot;args&quot;: [
+                &quot;-g&quot;,
+                &quot;${file}&quot;,
+                &quot;-o&quot;,
+                &quot;${fileDirname}/${fileBasenameNoExtension}&quot;
+            ],
+            &quot;options&quot;: {
+                &quot;cwd&quot;: &quot;/usr/bin&quot;
+            },
+            &quot;problemMatcher&quot;: [
+                &quot;$gcc&quot;
+            ],
+            &quot;group&quot;: &quot;build&quot;
+        }
+    ]
 }
 </code></pre>
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[C++  获取CPU最大线程]]></title>
-        <id>https://liuup.github.io/post/c-huo-qu-cpu-zui-da-xian-cheng</id>
-        <link href="https://liuup.github.io/post/c-huo-qu-cpu-zui-da-xian-cheng">
+        <title type="html"><![CDATA[settings.json]]></title>
+        <id>https://liuup.github.io/post/settingsjson</id>
+        <link href="https://liuup.github.io/post/settingsjson">
         </link>
-        <updated>2020-01-09T12:10:45.000Z</updated>
-        <content type="html"><![CDATA[<pre><code>#include &lt;thread&gt;
-
-cout &lt;&lt; std::thread::hardware_concurrency() &lt;&lt; endl;
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[C++ int类型转string]]></title>
-        <id>https://liuup.github.io/post/c-int-lei-xing-zhuan-string</id>
-        <link href="https://liuup.github.io/post/c-int-lei-xing-zhuan-string">
-        </link>
-        <updated>2020-01-09T11:57:56.000Z</updated>
-        <content type="html"><![CDATA[<p>好像c++和c的强制类型转换不太一样，在此记录一下</p>
-<pre><code>#include &lt;string.h&gt;
-
-string to_string (int val);
-string to_string (long val);
-string to_string (long long val);
-string to_string (unsigned val);
-string to_string (unsigned long val);
-string to_string (unsigned long long val);
-string to_string (float val);
-string to_string (double val);
-string to_string (long double val);
-</code></pre>
-<p>Reference</p>
-<blockquote>
-<p><a href="https://www.cnblogs.com/johngu/p/7878029.html">C++数值类型与string的相互转换</a></p>
-</blockquote>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[static_cast and unit explanation]]></title>
-        <id>https://liuup.github.io/post/static_cast-and-unit-explanation</id>
-        <link href="https://liuup.github.io/post/static_cast-and-unit-explanation">
-        </link>
-        <updated>2020-01-09T11:57:04.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="static_cast">static_cast</h2>
-<p>一种强制类型转换</p>
-<h2 id="uint">uint</h2>
-<p>定义在types.h中，表示无符号整型</p>
-<pre><code>typedef unsigned int uint;
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[冒泡排序代码演示]]></title>
-        <id>https://liuup.github.io/post/mou-pao-pai-xu-dai-ma-yan-shi</id>
-        <link href="https://liuup.github.io/post/mou-pao-pai-xu-dai-ma-yan-shi">
-        </link>
-        <updated>2020-01-09T11:07:34.000Z</updated>
-        <summary type="html"><![CDATA[<p>C语言冒泡排序算法...</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>C语言冒泡排序算法...</p>
-<!-- more -->
-<pre><code>int scores[N];		//定义整型数组，用于存放学生成绩
-//注意没有学号18
-int studentNum[N] = { 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,19,20,21,22,23,24,25,26,27,28,29 };	//学生学号尾号
-int i, j;	//循环变量
-
-
-for (i = 0; i &lt; N - 1; i++)
-{
-	for (j = 0; j &lt; N - i - 1; j++)
-	{
-		if (scores[j] &lt; scores[j + 1])
-		{
-			temp = scores[j + 1];
-			scores[j + 1] = scores[j];
-			scores[j] = temp;   
-
-			temp = studentNum[j + 1];
-			studentNum[j + 1] = studentNum[j];
-			studentNum[j] = temp;
-		}
-	}
+        <updated>2020-01-09T12:29:37.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="settingsjson">settings.json</h1>
+<pre><code>{
+    &quot;cmake.configureOnOpen&quot;: true
 }
 </code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Mardown测试文章]]></title>
-        <id>https://liuup.github.io/post/mardown-ce-shi-wen-zhang</id>
-        <link href="https://liuup.github.io/post/mardown-ce-shi-wen-zhang">
-        </link>
-        <updated>2020-01-09T10:20:22.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="一级标题">一级标题</h1>
-<h2 id="二级标题">二级标题</h2>
-<h3 id="三级标题">三级标题</h3>
-<h4 id="四级标题">四级标题</h4>
-<h5 id="五级标题">五级标题</h5>
-<blockquote>
-<p>引用</p>
-</blockquote>
-<pre><code>代码块
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Hello Gridea]]></title>
-        <id>https://liuup.github.io/post/hello-gridea</id>
-        <link href="https://liuup.github.io/post/hello-gridea">
-        </link>
-        <updated>2018-12-11T16:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
-✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
-✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
-<!-- more -->
-<p><a href="https://github.com/getgridea/gridea">Github</a><br>
-<a href="https://gridea.dev/">Gridea 主页</a><br>
-<a href="http://fehey.com/">示例网站</a></p>
-<h2 id="特性">特性👇</h2>
-<p>📝  你可以使用最酷的 <strong>Markdown</strong> 语法，进行快速创作</p>
-<p>🌉  你可以给文章配上精美的封面图和在文章任意位置插入图片</p>
-<p>🏷️  你可以对文章进行标签分组</p>
-<p>📋  你可以自定义菜单，甚至可以创建外部链接菜单</p>
-<p>💻  你可以在 <strong>Windows</strong>，<strong>MacOS</strong> 或 <strong>Linux</strong> 设备上使用此客户端</p>
-<p>🌎  你可以使用 <strong>𝖦𝗂𝗍𝗁𝗎𝖻 𝖯𝖺𝗀𝖾𝗌</strong> 或 <strong>Coding Pages</strong> 向世界展示，未来将支持更多平台</p>
-<p>💬  你可以进行简单的配置，接入 <a href="https://github.com/gitalk/gitalk">Gitalk</a> 或 <a href="https://github.com/SukkaW/DisqusJS">DisqusJS</a> 评论系统</p>
-<p>🇬🇧  你可以使用<strong>中文简体</strong>或<strong>英语</strong></p>
-<p>🌁  你可以任意使用应用内默认主题或任意第三方主题，强大的主题自定义能力</p>
-<p>🖥  你可以自定义源文件夹，利用 OneDrive、百度网盘、iCloud、Dropbox 等进行多设备同步</p>
-<p>🌱 当然 <strong>Gridea</strong> 还很年轻，有很多不足，但请相信，它会不停向前 🏃</p>
-<p>未来，它一定会成为你离不开的伙伴</p>
-<p>尽情发挥你的才华吧！</p>
-<p>😘 Enjoy~</p>
 ]]></content>
     </entry>
 </feed>

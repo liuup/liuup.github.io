@@ -146,7 +146,7 @@
                 <article class="post-wrap">
                     <header class="post-header">
                         <h1 class="post-title">
-                            NVIDIA Jetson TX2 Notes 
+                            YOLOv3-tiny实现装甲板识别
                         </h1>
                         <!--en-->
                         <div class="post-meta en">
@@ -161,7 +161,9 @@
                             <span class="post-category">
                                 Category:
                                 
-                                <a href="https://liuup.github.io/tag/CgN_fZBlG">TX2</a>
+                                <a href="https://liuup.github.io/tag/PoSVTjgFI">深度学习乱七八糟</a>
+                                
+                                <a href="https://liuup.github.io/tag/ftlC-0f95">Yolov3</a>
                                 
                             </span>
                             
@@ -179,183 +181,277 @@
                             <span class="post-category">
                                 &#x5206;&#x7C7B;:
                                 
-                                <a href="https://liuup.github.io/tag/CgN_fZBlG">TX2</a>
+                                <a href="https://liuup.github.io/tag/PoSVTjgFI">深度学习乱七八糟</a>
+                                
+                                <a href="https://liuup.github.io/tag/ftlC-0f95">Yolov3</a>
                                 
                             </span>
                             
                         </div>
                     </header>
                     <div class="post-content">
-                        <h1 id="nvidia-jetson-tx2-notes">NVIDIA Jetson TX2 Notes</h1>
-<p>NVIDIA Jetson TX2 不论在各个方面对于一个新手来说都是一个天坑，而且坑是一个接着一个，我在此记录一些我在配置TX2时遇到的问题，并提出可靠的解决方案。</p>
-<p>host：</p>
-<blockquote>
-<p>System:Ubuntu 18.04 Lts<br>
-Processor:Intel® Core™ i5-8300H CPU @ 2.30GHz × 8<br>
-Graphics:GeForce GTX 1050 Ti/PCIe/SSE2</p>
-</blockquote>
-<p>Jetson TX2:</p>
-<blockquote>
-<p>System:Ubuntu 18.04 Lts<br>
-Processor:ARMv8 Processor rev 3(v8l) × 4<br>
-Graphics:NVIDIA Tegra X2(nvgpu)/integrated</p>
-</blockquote>
-<p>自己主机和TX2配置相差很大，但是刚开始自己并没有意识到这个问题，在更新sources.list时和安装vscode时才意识到这个问题。</p>
-<p>TX2的Ubuntu18.04Lts系统是NVIDIA魔改版，用的unity桌面，在界面上会有些不一样。</p>
-<h2 id="1乱七八糟的资料与百科">1.乱七八糟的资料与百科</h2>
-<p>1.Google镜像站，免翻墙在中国用google的最佳食用方式，Ubuntu改个hosts就行</p>
-<blockquote>
-<p><a href="gg.chn.moe">Google镜像站</a></p>
-</blockquote>
-<p>2.Jetson TX2 的全英百科，感觉还算全</p>
-<blockquote>
-<p><a href="https://elinux.org/Jetson_TX2">Jetson TX2 on elinux</a></p>
-</blockquote>
-<p>3.NVIDIA Jetson TX2 Official</p>
-<blockquote>
-<p><a href="https://www.nvidia.cn/autonomous-machines/embedded-systems/jetson-tx2/">NVDIA Jetson TX2</a></p>
-</blockquote>
-<p>4.TX2接口一览<br>
-<img src="https://img.oschina.net/itags/05081aeb1454f7b6d66dc355ea4f53b54059bde2.png" alt="TX2各种接口" loading="lazy"></p>
-<h2 id="2关于刷机">2.关于刷机</h2>
-<p>自己的host主机已经安装了NVIDIA SDKManger,将TX2进入恢复模式(同时长按POWER和RECOVERY键两秒后,按一下RESET键,再松开RECOVERY键),在host Terminal上输入<code>lsusb</code>,如果显示出<code>NVIDIA Corp</code>就证明基本连接成功.</p>
-<h3 id="21-可能遇到的问题">2.1 可能遇到的问题</h3>
-<h4 id="211-step-4-flash时提示没连接上">2.1.1 STEP 4 flash时提示没连接上</h4>
-<p>将进入RECOVERY模式的TX2从host上拔下,直接在host上点刷机(当然,这肯定刷不进去),出来个提示框,第一个模式会让输入TX2的账号和密码,第二个模式是全自动.此时再将TX2连入host,点继续就能成功刷机</p>
-<h4 id="212-刷机过程中提示时间过长超出预期">2.1.2 刷机过程中提示时间过长,超出预期</h4>
-<p><s>点继续就行了</s><br>
-<strong>更换数据线,请尽量使用官方数据线,使用质量可靠的数据线能够显著增加数据传输速度</strong></p>
-<blockquote>
+                        <h2 id="流程">流程</h2>
 <ol>
-<li><a href="https://devtalk.nvidia.com/default/topic/1062832/jetson-agx-xavier/flash-jetson-os-fails-on-jetson-agx-xavier-stuck-at-99-8-/1">NVIDIA上的关于flash卡99.8%的讨论</a></li>
-<li>值得注意的是,<strong>数据线</strong>和<strong>充电线</strong>并不太一样</li>
+<li>准备照片,分为训练集和验证集</li>
+<li>使用labelImg工具,将目标圈出来,贴好标签,生成XML文件</li>
+<li>使用<code>createID.py</code>生成训练集和验证集的图片名称列表<code>trainImageId.txt</code>和<code>valitatedImageId.txt</code></li>
+<li>使用trans.py生成训练集和验证集的完整路径列表并完成标签XML文件到txt文件的转换</li>
+<li>修改配置文件,开始训练</li>
 </ol>
-</blockquote>
-<h4 id="213-更换数据线后仍提示检测不到tx2">2.1.3 更换数据线后仍提示检测不到TX2</h4>
-<p>将TX2彻底关机,将数据线从host上拔出,将电源线拔出,重新连接数据线和电源线,再次进入恢复模式,重新连接数据线和电源线,再次在host上SDKManger中检测</p>
-<h2 id="3关于配置">3.关于配置</h2>
-<p>1.这个地方不注意连sudo apt-get update<br>
-都更新不了，为了降低功耗，TX2的CPU架构是arm64(aarch64)，可以通过以下代码查看CPU架构</p>
-<pre><code>~$uname -a
-或者
-~$dpkg --print-architecture
-</code></pre>
-<p>2.由于CPU架构的不同，在后面更新sources.list时要做出一些改变</p>
-<h2 id="4sources">4.Sources</h2>
-<p>为了加快各个软件的更新下载速度,需要将更新源换成国内<br>
-arm ubuntu开发板的apt库和普通ubuntu的库是不一样的，arm用的是ubuntu-ports库。</p>
-<p>先获取root权限，再执行</p>
-<pre><code>~$gedit /etc/apt/sources.list
-</code></pre>
-<p>修改source，在此给出Ubuntu 18.04 Lts USTC的源，值得注意的是，arm64的源和普通PC的不一样，要将ubuntu改成ubuntu-ports才能更新</p>
-<pre><code>deb http://mirrors.ustc.edu.cn/ubuntu-ports/ bionic-updates main restricted universe multiverse 
-deb-src http://mirrors.ustc.edu.cn/ubuntu-ports/ bionic-updates main restricted universe multiverse 
-deb http://mirrors.ustc.edu.cn/ubuntu-ports/ bionic-security main restricted universe multiverse 
-deb-src http://mirrors.ustc.edu.cn/ubuntu-ports/ bionic-security main restricted universe multiverse 
-deb http://mirrors.ustc.edu.cn/ubuntu-ports/ bionic-backports main restricted universe multiverse 
-deb-src http://mirrors.ustc.edu.cn/ubuntu-ports/ bionic-backports main restricted universe multiverse 
-deb http://mirrors.ustc.edu.cn/ubuntu-ports/ bionic main universe restricted 
-deb-src http://mirrors.ustc.edu.cn/ubuntu-ports/ bionic main universe restricted
-</code></pre>
-<p>更新源</p>
-<pre><code>~$sudo apt-get update
-</code></pre>
-<p>更新之后可能会报GPG Error，我列出Error如下</p>
-<pre><code>~$GPG error: https://packagecloud.io/headmelted/codebuilds/debian stretch InRelease: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 0CC3FD642696BFC8
-</code></pre>
-<p>解决方案：这里要将公钥改成上面给出的公钥</p>
-<pre><code>~$apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0CC3FD642696BFC8
-</code></pre>
-<p>如果出现下列结果，说明Error已经消失了</p>
-<pre><code>~$Executing: /tmp/apt-key-gpghome.ZnhRCRjnAd/gpg.1.sh --recv-keys --keyserver keyserver.ubuntu.com 0CC3FD642696BFC8
-～$gpg: key 8D9940AE59B46979: public key &quot;https://packagecloud.io/headmelted/code-oss (https://packagecloud.io/docs#gpg_signing) &lt;support@packagecloud.io&gt;&quot; imported
-~$gpg: Total number processed: 1
-~$gpg:               imported: 1
-
-</code></pre>
-<p>然后再更新一下源和软件，这就意味着可以正常从库下载软件了</p>
-<pre><code>~$sudo apt-get update
-~$sudo apt-get upgrade
-</code></pre>
-<h2 id="5vscode">5.VSCODE</h2>
-<p>紧接着就安装宇宙最强IDE：vscode</p>
-<p>我看了好久的Microsoft官方文档，发现官方根本就不支持在linux arm64上面运行，在google上搜索，看到nvidia论坛里也有人问怎么安装vscode。继续以关键词arm64 vscode搜索，发现有人发了如何在树莓派上安装vscode的教程</p>
-<p>直接在终端运行，便可以安装vscode</p>
-<pre><code>~$sudo apt-get install code-oss
-</code></pre>
-<p>再安装中文包及各种插件，但是会发现<strong>c++插件不支持arm64</strong><br>
-插件会提示</p>
-<pre><code>Architecture arm64 is not supported;
-
-&gt;&gt; 来源:C/C++(拓展)
-</code></pre>
-<p>但是能在vscode里用cmake编译，所以个人认为vscode在tx2上并不太好用,推荐安装qt</p>
-<h2 id="6opencv">6.OpenCV</h2>
-<p>刷机后，TX2自带的是3.3.1，将其刷成3.4.5<br>
-刚开始用的16.04Lts arm64源，一直导致好多包安装不了，按照我上面写的换成18.04的源就行</p>
-<p>Refenrences：</p>
+<h2 id="yolov3的安装">YOLOv3的安装</h2>
+<p>按照官网的教程来就行,必要时可以借助一下翻译</p>
+<p>Reference</p>
 <blockquote>
-<p>1.<a href="https://www.jianshu.com/p/f646448da265">环境配置-Ubuntu 16.04安装opencv3.4.3 - 简书</a><br>
-2.<a href="https://blog.csdn.net/hjxu2016/article/details/82390434">ubuntu下安装opencv3.4.2 - CSDN</a><br>
-3.<a href="https://github.com/opencv/opencv">opencv - github</a><br>
-4.<a href="https://github.com/opencv/opencv_contrib">opencv_toncrib - github</a></p>
+<p><a href="https://pjreddie.com/darknet/">darknet offical</a></p>
 </blockquote>
-<p>可能出现的问题:</p>
+<h2 id="yolov3的测试及注意事项">YOLOv3的测试及注意事项</h2>
 <ol>
-<li>提示<code>boostdesc_bgm.i</code>缺少</li>
+<li>如果想要使用<code>GPU cuDNN opencv</code>需要在编译的时候修改<code>Makefile</code>.改为:</li>
 </ol>
-<blockquote>
-<p>1.1 <a href="https://blog.csdn.net/u011736771/article/details/85960300">编译OpenCV以及openc_contrib提示缺少boostdesc_bgm.i文件出错的解决 - CSDN</a><br>
-1.2 <a href="https://github.com/opencv/opencv_contrib/issues/1301">atal error: boostdesc_bgm.i: No such file or directory  - Github</a></p>
-</blockquote>
+<pre><code>GPU=1
+CUDNN=1
+OPENCV=1
+</code></pre>
 <ol start="2">
-<li>提示各种文件路径不对的</li>
+<li>demo测试代码</li>
 </ol>
 <blockquote>
-<p>直接进入提示错误的文件修改opencv的源代码</p>
+<p>见官网</p>
 </blockquote>
-<p>在终端使用命令检验是否安装到位</p>
-<pre><code>~$pkg-config --modversion opencv
-~$3.4.5
+<h2 id="voc数据集准备">VOC数据集准备</h2>
+<h3 id="一-准备照片">一. 准备照片</h3>
+<p>想要使用YOLOv3实现装甲板识别,首先需要用自己的数据去训练网络,大概也需要几百张吧</p>
+<p><em><strong>步骤:</strong></em> 在<code>darknet</code>文件夹中创建4个文件夹:<code>trainImage</code>,<code>valitateImage</code>, <code>trainImageXML</code>, <code>valitateImageXML</code>,分别存放第二步中的训练集图片,验证集图片,训练集xml标签和验证集xml标签.将照片放入文件夹中,之后准备做标签.</p>
+<p><em><strong>注意:</strong></em> 生成的xml文件中包含文件位置信息,所以一定要准备好图片,放入文件夹后,再进行标注</p>
+<h3 id="二-标注工具labeimg安装">二. 标注工具LabeImg安装</h3>
+<p>没必要按照CSDN的步骤又是降级又是去官网找pip包之类的</p>
+<ol>
+<li>先去<a href="https://github.com/tzutalin/labelImg">labeImg - github</a>下载软件包</li>
+<li>安装py3qt5</li>
+</ol>
+<pre><code>sudo pip install sip
+sudo apt-get install pyqt5-dev-tools
+sudo apt-get install python3-pyqt5
+make qt5py3
 </code></pre>
-<p><strong>使用g++编译的方法：</strong></p>
-<pre><code>~$g++ main.cpp -o main.out `pkg-config opencv --cflags --libs`
+<p>或者按照github官方教程来就行,我试了试,第二步可能会出现找不到文件的错误,不过还是在此列出</p>
+<pre><code>sudo apt-get install pyqt5-dev-tools
+sudo pip3 install -r requirements/requirements-linux-python3.txt
+make qt5py3
+python3 labelImg.py
+python3 labelImg.py [IMAGE_PATH] [PRE-DEFINED CLASS FILE]
 </code></pre>
-<h2 id="7调用摄像头">7.调用摄像头</h2>
-<h3 id="71调用板载摄像头">7.1调用板载摄像头</h3>
-<p>终端运行</p>
-<pre><code>nvgstcapture-1.0 --cus-prev-res=1920*1080
+<ol start="3">
+<li>如果没有错误,就应该能启动打标软件了</li>
+</ol>
+<h3 id="三-对图片做标签将目标圈出来保存成xml文件">三. 对图片做标签,将目标圈出来,保存成xml文件</h3>
+<ol>
+<li>左边打开文件夹位置,在<code>darknet</code>文件夹里面</li>
+<li>左边选择xm保存位置,应该在darknet里面,</li>
+<li>快捷键</li>
+</ol>
+<pre><code>crtl + s 保存
+w 画圈
+a 上一张图片
+d 下一张图片
 </code></pre>
-<p><s>但是我还没搞懂怎么通过opencv来调用板载摄像头</s></p>
-<p>分辨率可调：</p>
+<ol start="4">
+<li>右边可设置自动标签</li>
+</ol>
+<h3 id="四-使用createidpy生成训练集和和验证集的图片名称列表trainimageidtxt和valitateimageidtxt">四. 使用<code>createID.py</code>生成训练集和和验证集的图片名称列表<code>trainImageId.txt</code>和<code>valitateImageId.txt</code></h3>
+<p>在<code>darknet</code>文件夹中新建<code>createID.py</code>,将代码复制进去,之后运行</p>
+<pre><code>cd darknet
+python3 createID.py
+</code></pre>
+<pre><code># -*- coding: utf-8 -*-
+import os;
+import shutil;
+ 
+def listname(path,idtxtpath):
+    filelist = os.listdir(path);  # 该文件夹下所有的文件（包括文件夹）
+    filelist.sort()
+    f = open(idtxtpath, 'w');
+    for files in filelist:  # 遍历所有文件
+        Olddir = os.path.join(path, files);  # 原来的文件路径
+        if os.path.isdir(Olddir):  # 如果是文件夹则跳过
+            continue;
+        f.write(files);
+        f.write('\n');
+    f.close();
+ 
+savepath = os.getcwd()
+imgidtxttrainpath = savepath+&quot;/trainImageId.txt&quot;
+imgidtxtvalpath = savepath + &quot;/validateImageId.txt&quot;
+listname(savepath + &quot;/trainImage&quot;,imgidtxttrainpath)
+listname(savepath + &quot;/validateImage&quot;,imgidtxtvalpath)
+print &quot;trainImageId.txt &amp;&amp; validateImageId.txt have been created!&quot;
+</code></pre>
+<p><em><strong>警告</strong></em> 进行多次训练,需要删除之前生成的txt文件</p>
+<h3 id="五-使用transpy生成训练集和验证集的完整路径列表并完成xml文件到txt文件的转换">五. 使用<code>trans.py</code>生成训练集和验证集的完整路径列表并完成xml文件到txt文件的转换</h3>
+<p><code>trans.py</code>如下</p>
+<pre><code>import xml.etree.ElementTree as ET
+import pickle
+import string
+import os
+import shutil
+from os import listdir, getcwd
+from os.path import join
+import cv2
+ 
+sets=[('2012', 'train')]
+ 
+classes = [&quot;class1&quot;,&quot;class2&quot;,&quot;class3&quot;,&quot;class4&quot;]
+ 
+def convert(size, box):
+    dw = 1./size[0]
+    dh = 1./size[1]
+    x = (box[0] + box[1])/2.0
+    y = (box[2] + box[3])/2.0
+    w = box[1] - box[0]
+    h = box[3] - box[2]
+    x = x*dw
+    w = w*dw
+    y = y*dh
+    h = h*dh
+    return (x,y,w,h)
+ 
+def convert_annotation(image_id,flag,savepath):
+ 
+    if flag == 0:
+        in_file = open(savepath+'/trainImageXML/%s.xml' % (os.path.splitext(image_id)[0]))
+        out_file = open(savepath+'/trainImage/%s.txt' % (os.path.splitext(image_id)[0]), 'w')
+        tree = ET.parse(in_file)
+        root = tree.getroot()
+        size = root.find('size')
+ 
+        img = cv2.imread('./trainImage/'+str(image_id))
+        h = img.shape[0]
+        w = img.shape[1]
+ 
+    elif flag == 1:
+        in_file = open(savepath+'/validateImageXML/%s.xml' % (os.path.splitext(image_id)[0]))
+        out_file = open(savepath+'/validateImage/%s.txt' % (os.path.splitext(image_id)[0]), 'w')
+ 
+        tree = ET.parse(in_file)
+        root = tree.getroot()
+        size = root.find('size')
+ 
+        img = cv2.imread('./validateImage/' + str(image_id))
+        h = img.shape[0]
+        w = img.shape[1]
+ 
+    for obj in root.iter('object'):
+        difficult = obj.find('difficult').text
+        cls = obj.find('name').text
+        if cls not in classes or int(difficult) == 1:
+            continue
+        cls_id = classes.index(cls)
+        xmlbox = obj.find('bndbox')
+        b = (float(xmlbox.find('xmin').text), float(xmlbox.find('xmax').text), float(xmlbox.find('ymin').text), float(xmlbox.find('ymax').text))
+        bb = convert((w,h), b)
+        out_file.write(str(cls_id) + &quot; &quot; + &quot; &quot;.join([str(a) for a in bb]) + '\n')
+ 
+wd = getcwd()
+ 
+for year, image_set in sets:
+    savepath = os.getcwd();
+    idtxt = savepath + &quot;/validateImageId.txt&quot;;
+    pathtxt = savepath + &quot;/validateImagePath.txt&quot;;
+    image_ids = open(idtxt).read().strip().split()
+    list_file = open(pathtxt, 'w')
+    s = '\xef\xbb\xbf'
+    for image_id in image_ids:
+        nPos = image_id.find(s)
+        if nPos &gt;= 0:
+            image_id = image_id[3:]
+        list_file.write('%s/validateImage/%s\n' % (wd, image_id))
+        print(image_id)
+        convert_annotation(image_id, 1, savepath)
+    list_file.close()
+ 
+    idtxt = savepath + &quot;/trainImageId.txt&quot;;
+    pathtxt = savepath + &quot;/trainImagePath.txt&quot; ;
+    image_ids = open(idtxt).read().strip().split()
+    list_file = open(pathtxt, 'w')
+    s = '\xef\xbb\xbf'
+    for image_id in image_ids:
+        nPos = image_id.find(s)
+        if nPos &gt;= 0:
+           image_id = image_id[3:]
+        list_file.write('%s/trainImage/%s\n'%(wd,image_id))
+        print(image_id)
+        convert_annotation(image_id,0,savepath)
+    list_file.close()
+</code></pre>
+<p>[<em><strong>注意</strong></em>]</p>
+<ol>
+<li>使用自己的分类,需要修改代码开头的<code>classes = [&quot;class1&quot;,&quot;class2&quot;,&quot;class3&quot;,&quot;class4&quot;]</code>,改为自己的标签,有几个写几个,比如我有一个分类<code>classes = [&quot;redArmor&quot;]</code></li>
+<li>如果运行命令报错,很有可能是图片打标打漏了,可通过出错的图片路径,在打标工具中寻找,不必每张都查</li>
+</ol>
+<h4 id="六-修改配置文件">六. 修改配置文件</h4>
+<ol>
+<li>修改<code>darknet/data/voc.names</code>文件<br>
+把文件内容改为自己的分类,例如有三个分类<code>class_1</code>, <code>class_2</code>, <code>class_3</code>,则改为:</li>
+</ol>
+<pre><code>class_1
+class_2
+class_3
+</code></pre>
+<ol start="2">
+<li>修改<code>darknet/cfg/voc.data</code>文件内容</li>
+</ol>
+<pre><code>根据自己的实际情况做以下修改：
+classes = N     //（N为自己的分类数量，如有1类不同的对象，N = 1）
+train = /home/XXX/darknet/trainImagePath.txt        // 训练集完整路径列表
+valid = /home/XXX/darknet/validateImagePath.txt     // 测试集完整路径列表
+names = data/voc.names   // 类别文件
+backup = backup  //（训练结果保存在darknet/backup/目录下）
+</code></pre>
+<ol start="3">
+<li>修改<code>darknet/cfg/yolov3-tiny.cfg</code>文件</li>
+</ol>
+<pre><code>1. classes = N （N为自己的分类数）
+2. 修改每一个filters为 3 * (classes + 1 + 4)，如有3个分类，则修改 filters = 24
+3. 修改训练的最大迭代次数， max_batches = N,默认50200，太多了，可以改小一点。
+</code></pre>
+<p>将文件开头改为如下:</p>
+<pre><code># Testing
+# batch=1
+# subdivisions=1
+# Training
+batch=1
+subdivisions=1
+</code></pre>
+<p>tx2的性能不是很高,所以需要将<code>batch</code>和<code>subdivisions</code>都调低</p>
+<h3 id="开始训练">开始训练</h3>
+<p>先确保<code>darknet</code>文件夹中有<code>darknet53.conv.74</code></p>
+<p>下载:</p>
+<pre><code>cd darknet
+wget https://pjreddie.com/media/files/darknet53.conv.74
+</code></pre>
+<p>训练:</p>
+<pre><code>./darknet detector train cfg/voc.data cfg/yolov3-tiny.cfg darknet53.conv.74
+</code></pre>
+<p>训练完成后结果文件 ‘yolov3-voc_final.weights’ 保存在 backup文件中</p>
+<p>[<strong>说明</strong>]</p>
+<ol>
+<li>Region Avg IOU: 0.326577： 表示在当前subdivision内的图片的平均IOU，代表预测的矩形框和真实目标的交集与并集之比。越大越好</li>
+<li>Class: 0.742537： 标注物体分类的正确率，期望该值趋近于1。</li>
+<li>Obj: 0.033966： 越接近1越好。</li>
+<li>No Obj: 0.000793： 期望该值越来越小，但不为零。</li>
+<li>Avg Recall: 0.12500：是在recall/count中定义的，是当前模型在所有subdivision图片中检测出的正样本与实际的正样本的比值。在本例中，只有八分之一的正样本被正确的检测到。</li>
+<li>count: 8：count后的值是所有的当前subdivision图片（本例中一共8张）中包含正样本的图片的数量。在输出log中的其他行中，可以看到其他subdivision也有的只含有6或7个正样本，说明在subdivision中含有不含检测对象的图片。</li>
+<li>如果出现很多Nan,表示训练不收敛，可以增大banch,或者调小subdivisions。</li>
+</ol>
+<h3 id="测试">测试</h3>
+<pre><code>./darknet detector test cfg/voc.data cfg/yolov3-tiny.cfg backup/yolov3-voc_final.weights xxx.jpg
+</code></pre>
+<p>修改xxx.jpg为自己的图片</p>
+<h3 id="references">References</h3>
 <blockquote>
-<p>640 * 480<br>
-1280 * 720<br>
-1920 * 1080<br>
-2104 * 1560<br>
-2592 * 1944<br>
-2616 * 1472<br>
-3840 * 2160<br>
-3896 * 2192<br>
-4208 * 3120<br>
-5632 * 3168<br>
-5632 * 4224</p>
-</blockquote>
-<p>使用q + 回车退出摄像头</p>
-<h3 id="72调用usb摄像头">7.2调用usb摄像头</h3>
-<p>如果想使用usb接口的摄像头，需要将VideoCapture中数值改为1，因为板载摄像头默认是0</p>
-<pre><code>VideoCapture capture(1);
-</code></pre>
-<h2 id="8qt-creator">8.qt creator</h2>
-<blockquote>
-<p>因为vscode在tx2上不太好用，所以需要换个IDE，幸好qt的配置并不难</p>
-</blockquote>
-<p>直接终端运行</p>
-<pre><code>~$sudo apt-get install qt5-default qtcreator -y
-</code></pre>
-<p>Reference：</p>
-<blockquote>
-<p><a href="https://blog.csdn.net/jiangchao3392/article/details/73822655">NVIDIA Jetson TX2 安装qt - CSDN</a></p>
+<ol>
+<li><a href="https://blog.csdn.net/qq_30193419/article/details/82460870"></a></li>
+</ol>
 </blockquote>
 
                     </div>
@@ -368,7 +464,7 @@ deb-src http://mirrors.ustc.edu.cn/ubuntu-ports/ bionic main universe restricted
 
                         <p class="copyright-item">
                             <span>Permalink:</span>
-                            <span><a href="https://liuup.github.io/post/nvidia-jetson-tx2-notes">https://liuup.github.io/post/nvidia-jetson-tx2-notes</a></span>
+                            <span><a href="https://liuup.github.io/post/yolov3-tiny-shi-xian-zhuang-jia-ban-shi-bie">https://liuup.github.io/post/yolov3-tiny-shi-xian-zhuang-jia-ban-shi-bie</a></span>
                         </p>
 
                         <p class="copyright-item">
@@ -385,7 +481,7 @@ deb-src http://mirrors.ustc.edu.cn/ubuntu-ports/ bionic main universe restricted
 
                         <p class="copyright-item">
                             <span>&#x6C38;&#x4E45;&#x94FE;&#x63A5;:</span>
-                            <span><a href="https://liuup.github.io/post/nvidia-jetson-tx2-notes">https://liuup.github.io/post/nvidia-jetson-tx2-notes</a></span>
+                            <span><a href="https://liuup.github.io/post/yolov3-tiny-shi-xian-zhuang-jia-ban-shi-bie">https://liuup.github.io/post/yolov3-tiny-shi-xian-zhuang-jia-ban-shi-bie</a></span>
                         </p>
 
                         <p class="copyright-item">
@@ -400,7 +496,9 @@ deb-src http://mirrors.ustc.edu.cn/ubuntu-ports/ bionic main universe restricted
                             <span class="tag">
                                 
                                 
-                                <a href="https://liuup.github.io/tag/CgN_fZBlG"># TX2</a>
+                                <a href="https://liuup.github.io/tag/PoSVTjgFI"># 深度学习乱七八糟</a>
+                                
+                                <a href="https://liuup.github.io/tag/ftlC-0f95"># Yolov3</a>
                                 
                                 
                             </span>
@@ -418,7 +516,9 @@ deb-src http://mirrors.ustc.edu.cn/ubuntu-ports/ bionic main universe restricted
                             <span class="tag">
                                 
                                 
-                                <a href="https://liuup.github.io/tag/CgN_fZBlG"># TX2</a>
+                                <a href="https://liuup.github.io/tag/PoSVTjgFI"># 深度学习乱七八糟</a>
+                                
+                                <a href="https://liuup.github.io/tag/ftlC-0f95"># Yolov3</a>
                                 
                                 
                             </span>
@@ -432,13 +532,13 @@ deb-src http://mirrors.ustc.edu.cn/ubuntu-ports/ bionic main universe restricted
                     </section>
                     <section class="post-nav">
                         
-                        <a class="prev" rel="prev" href="https://liuup.github.io/post/python-shu-ju-jie-gou">
-                            python数据结构
+                        <a class="prev" rel="prev" href="https://liuup.github.io/post/rm-vision-kai-yuan-zong-jie">
+                            RM VISION 开源总结
                         </a>
                         
                         
-                        <a class="next" rel="next" href="https://liuup.github.io/post/2lian-xu-cun-chu-shu-zu-de-suan-fa-yan-shi">
-                            2.连续存储数组的算法演示
+                        <a class="next" rel="next" href="https://liuup.github.io/post/chu-xian-de-yi-xie-ying-wen-dan-ci">
+                            出现的一些英文单词
                         </a>
                         
                     </section>
