@@ -1,377 +1,146 @@
+<!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8" >
 
-<head>
-    <meta charset="utf-8" />
-<meta name="description" content="" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>
-    TX2 | UP
-</title>
-<link rel="shortcut icon" href="https://liuup.github.io//favicon.ico?v=1578574004049">
-<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
-<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<title>TX2 | UP</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://liuup.github.io//favicon.ico?v=1578574127898">
 <link rel="stylesheet" href="https://liuup.github.io//styles/main.css">
-<!-- js -->
-<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://liuup.github.io//media/js/jquery.sticky-sidebar.min.js"></script>
-<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
-</head>
 
-<body>
-    <div class="main">
-        <div class="header">
-    <div class="nav">
-        <div class="logo">
-            <a href="https://liuup.github.io/">
-                <img class="avatar" src="https://liuup.github.io//images/avatar.png?v=1578574004049" alt="">
-            </a>
-            <div class="site-title">
-                <h1>
-                    UP
-                </h1>
-            </div>
-        </div>
-        <span class="menu-btn fa fa-align-justify"></span>
-        <div class="menu-container">
-            <ul>
-                
-                    
-                            <li>
-                                <a href="/" class="menu">
-                                    首页
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/archives" class="menu">
-                                    归档
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/tags" class="menu">
-                                    标签
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/post/about" class="menu">
-                                    关于
-                                </a>
-                            </li>
-                            
-                                
-            </ul>
-        </div>
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="UP&#39;s Blog">
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://liuup.github.io/">
+        <img src="https://liuup.github.io//images/avatar.png?v=1578574127898" class="site-logo">
+        <h1 class="site-title">UP</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
     </div>
-</div>
-
-<script>
-    $(document).ready(function() {
-        $(".menu-btn").click(function() {
-            $(".menu-container").slideToggle();
-        });
-        $(window).resize(function() {
-
-            if (window.matchMedia('(min-width: 960px)').matches) {
-                $(".menu-container").css('display', 'block')
-            } else {
-                $(".menu-container").css('display', 'none')
-            }
-
-        });
-    });
-</script>
-
-            <div id="main-content" class="post-container main-container">
-                <div id="content" class="main-container-left">
-                    
-    <div class="i-card">
-        <b>标签：#
-        TX2</b>
-    </div>
-    
+    <div>
+      
         
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://liuup.github.io/post/nvidia-jetson-tx2-notes">
-                        NVIDIA Jetson TX2 Notes 
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2020-01-09</time>
-                    
-                        <a href="https://liuup.github.io/tag/CgN_fZBlG" class="post-tag i-tag
-                            i-tag-warning">
-            #TX2
-        </a>
-                        
-                </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            NVIDIA Jetson TX2 Notes
-NVIDIA Jetson TX2 不论在各个方面对于一个新手来说都是一个天坑，而且坑是一个接着一个，我在此记录一些我在配置TX2时遇到的问题，并提出可靠的解决方案。
-host：
-
-System:Ubuntu 18.04 Lts
-Processor:Intel® Core™ i5-8300H CPU @ 2.30GHz × 8
-Graphics:GeForce GTX 1050 Ti/PCIe/SSE2
-
-Jetson TX2:
-
-System:Ubuntu 18.04 Lts
-Processor:ARMv8 Processor rev 3(v8l) × 4
-Graphics:NVIDIA Tegra X2(nvgpu)/integrated
-
-自己主机和TX2配置相差很大，但是刚开始自己并没有意识到这个问题，在更新sources.list时和安装vscode时才意识到这个问题。
-TX2的Ubuntu18.04Lts系统是NVIDIA魔改版，用的unity桌面，在界面上会有些不一样。
-1.乱七八糟的资料与百科
-1.Google镜像站，免翻墙在中国用google的最佳食用方式，Ubuntu改个hosts就行
-
-Google镜像站
-
-2.Jetson TX2 的全英百科，感觉还算全
-
-Jetson TX2 on elinux
-
-3.NVIDIA Jetson TX2 Official
-
-NVDIA Jetson TX2
-
-4.TX2接口一览
-
-2.关于刷机
-自己的host主机已经安装了NVIDIA SDKManger,将TX2进入恢复模式(同时长按POWER和RECOVERY键两秒后,按一下RESET键,再松开RECOVERY键),在host Terminal上输入lsusb,如果显示出NVIDIA Corp就证明基本连接成功.
-2.1 可能遇到的问题
-2.1.1 STEP 4 flash时提示没连接上
-将进入RECOVERY模式的TX2从host上拔下,直接在host上点刷机(当然,这肯定刷不进去),出来个提示框,第一个模式会让输入TX2的账号和密码,第二个模式是全自动.此时再将TX2连入host,点继续就能成功刷机
-2.1.2 刷机过程中提示时间过长,超出预期
-点继续就行了
-更换数据线,请尽量使用官方数据线,使用质量可靠的数据线能够显著增加数据传输速度
-
-
-NVIDIA上的关于flash卡99.8%的讨论
-值得注意的是,数据线和充电线并不太一样
-
-
-2.1.3 更换数据线后仍提示检测不到TX2
-将TX2彻底关机,将数据线从host上拔出,将电源线拔出,重新连接数据线和电源线,再次进入恢复模式,重新连接数据线和电源线,再次在host上SDKManger中检测
-3.关于配置
-1.这个地方不注意连sudo apt-get update
-都更新不了，为了降低功耗，TX2的CPU架构是arm64(aarch64)，可以通过以下代码查看CPU架构
-~$uname -a
-或者
-~$dpkg --print-architecture
-
-2.由于CPU架构的不同，在后面更新sources.list时要做出一些改变
-4.Sources
-为了加快各个软件的更新下载速度,需要将更新源换成国内
-arm ubuntu开发板的apt库和普通ubuntu的库是不一样的，arm用的是ubuntu-ports库。
-先获取root权限，再执行
-~$gedit /etc/apt/sources.list
-
-修改source，在此给出Ubuntu 18.04 Lts USTC的源，值得注意的是，arm64的源和普通PC的不一样，要将ubuntu改成ubuntu-ports才能更新
-deb http://mirrors.ustc.edu.cn/ubuntu-ports/ bionic-updates main restricted universe multiverse 
-deb-src http://mirrors.ustc.edu.cn/ubuntu-ports/ bionic-updates main restricted universe multiverse 
-deb http://mirrors.ustc.edu.cn/ubuntu-ports/ bionic-security main restricted universe multiverse 
-deb-src http://mirrors.ustc.edu.cn/ubuntu-ports/ bionic-security main restricted universe multiverse 
-deb http://mirrors.ustc.edu.cn/ubuntu-ports/ bionic-backports main restricted universe multiverse 
-deb-src http://mirrors.ustc.edu.cn/ubuntu-ports/ bionic-backports main restricted universe multiverse 
-deb http://mirrors.ustc.edu.cn/ubuntu-ports/ bionic main universe restricted 
-deb-src http://mirrors.ustc.edu.cn/ubuntu-ports/ bionic main universe restricted
-
-更新源
-~$sudo apt-get update
-
-更新之后可能会报GPG Error，我列出Error如下
-~$GPG error: https://packagecloud.io/headmelted/codebuilds/debian stretch InRelease: The following signatures couldn&#39;t be verified because the public key is not available: NO_PUBKEY 0CC3FD642696BFC8
-
-解决方案：这里要将公钥改成上面给出的公钥
-~$apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0CC3FD642696BFC8
-
-如果出现下列结果，说明Error已经消失了
-~$Executing: /tmp/apt-key-gpghome.ZnhRCRjnAd/gpg.1.sh --recv-keys --keyserver keyserver.ubuntu.com 0CC3FD642696BFC8
-～$gpg: key 8D9940AE59B46979: public key &amp;quot;https://packagecloud.io/headmelted/code-oss (https://packagecloud.io/docs#gpg_signing) &amp;lt;support@packagecloud.io&amp;gt;&amp;quot; imported
-~$gpg: Total number processed: 1
-~$gpg:               imported: 1
-
-
-然后再更新一下源和软件，这就意味着可以正常从库下载软件了
-~$sudo apt-get update
-~$sudo apt-get upgrade
-
-5.VSCODE
-紧接着就安装宇宙最强IDE：vscode
-我看了好久的Microsoft官方文档，发现官方根本就不支持在linux arm64上面运行，在google上搜索，看到nvidia论坛里也有人问怎么安装vscode。继续以关键词arm64 vscode搜索，发现有人发了如何在树莓派上安装vscode的教程
-直接在终端运行，便可以安装vscode
-~$sudo apt-get install code-oss
-
-再安装中文包及各种插件，但是会发现c++插件不支持arm64
-插件会提示
-Architecture arm64 is not supported;
-
-&amp;gt;&amp;gt; 来源:C/C++(拓展)
-
-但是能在vscode里用cmake编译，所以个人认为vscode在tx2上并不太好用,推荐安装qt
-6.OpenCV
-刷机后，TX2自带的是3.3.1，将其刷成3.4.5
-刚开始用的16.04Lts arm64源，一直导致好多包安装不了，按照我上面写的换成18.04的源就行
-Refenrences：
-
-1.环境配置-Ubuntu 16.04安装opencv3.4.3 - 简书
-2.ubuntu下安装opencv3.4.2 - CSDN
-3.opencv - github
-4.opencv_toncrib - github
-
-可能出现的问题:
-
-提示boostdesc_bgm.i缺少
-
-
-1.1 编译OpenCV以及openc_contrib提示缺少boostdesc_bgm.i文件出错的解决 - CSDN
-1.2 atal error: boostdesc_bgm.i: No such file or directory  - Github
-
-
-提示各种文件路径不对的
-
-
-直接进入提示错误的文件修改opencv的源代码
-
-在终端使用命令检验是否安装到位
-~$pkg-config --modversion opencv
-~$3.4.5
-
-使用g++编译的方法：
-~$g++ main.cpp -o main.out `pkg-config opencv --cflags --libs`
-
-7.调用摄像头
-7.1调用板载摄像头
-终端运行
-nvgstcapture-1.0 --cus-prev-res=1920*1080
-
-但是我还没搞懂怎么通过opencv来调用板载摄像头
-分辨率可调：
-
-640 * 480
-1280 * 720
-1920 * 1080
-2104 * 1560
-2592 * 1944
-2616 * 1472
-3840 * 2160
-3896 * 2192
-4208 * 3120
-5632 * 3168
-5632 * 4224
-
-使用q + 回车退出摄像头
-7.2调用usb摄像头
-如果想使用usb接口的摄像头，需要将VideoCapture中数值改为1，因为板载摄像头默认是0
-VideoCapture capture(1);
-
-8.qt creator
-
-因为vscode在tx2上不太好用，所以需要换个IDE，幸好qt的配置并不难
-
-直接终端运行
-~$sudo apt-get install qt5-default qtcreator -y
-
-Reference：
-
-NVIDIA Jetson TX2 安装qt - CSDN
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://liuup.github.io/post/nvidia-jetson-tx2-notes">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
-                <!-- 翻页 -->
-                
-                </div>
-                <!--  -->
-                <div class="main-container-middle"></div>
-                <!--  -->
-                <div id="sidebar" class="main-container-right">
-
-                    <!-- 个人信息 -->
-                    
-    <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://liuup.github.io//images/avatar.png?v=1578574004049)">
-        </div>
-        <h1 class="id_card-title">
-            UP
-        </h1>
-        <h2 class="id_card-description">
-            UP&#39;s Blog
-        </h2>
-        <!--  -->
-        <div class="id_card-sns">
-            <!-- github -->
-            
-                <a href="https://github.com/liuup" target="_blank" rel="noopener noreferrer"><i
-                class="fa fa-github"></i></a>
-                
-                    <!-- twitter -->
-                    
-                            <!-- weibo -->
-                            
-                                <a href="https://weibo.com/u/1627921701" target="_blank" rel="noopener noreferrer"><i
-                class="fa fa-weibo"></i></a>
-                                
-                                    <!-- facebook -->
-                                    
-
-        </div>
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
     </div>
-    
-
-                        <!-- 公告栏 -->
-                        
-    <div class="notice-card i-card ">
-        <div class="notice-title i-card-title">公告</div>
-        <div class="notice-content">
-            This is UP...
-        </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/liuup" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://weibo.com/u/1627921701" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+      
+        
+      
     </div>
-    
-
-                </div>
-            </div>
-
-
-
-            <div class="site-footer">
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
-  <a class="rss" href="https://liuup.github.io//atom.xml" target="_blank">RSS</a>
+    <div class="site-description">
+      UP's Blog
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://liuup.github.io//atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
 </div>
 
-<script>
-  hljs.initHighlightingOnLoad()
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <h2 class="current-tag">标签: TX2</h2>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://liuup.github.io/post/nvidia-jetson-tx2-notes">
+                  <h2 class="post-title">NVIDIA Jetson TX2 Notes </h2>
+                </a>
+                <div class="post-date">
+                  2020-01-09
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+            </article>
+          
+
+          <div class="pagination-container">
+  
+  
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
 </script>
 
-    </div>
-    <script>
-        $('#sidebar').stickySidebar({
-            topSpacing: 80,
-            // bottomSpacing: 60
-        });
-    </script>
-</body>
 
+
+
+
+
+  </body>
 </html>

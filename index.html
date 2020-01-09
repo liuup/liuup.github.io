@@ -1,678 +1,283 @@
+<!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8" >
 
-<head>
-    <meta charset="utf-8" />
-<meta name="description" content="" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>
-    UP
-</title>
-<link rel="shortcut icon" href="https://liuup.github.io//favicon.ico?v=1578574004049">
-<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
-<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<title>UP</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://liuup.github.io//favicon.ico?v=1578574127898">
 <link rel="stylesheet" href="https://liuup.github.io//styles/main.css">
-<!-- js -->
-<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://liuup.github.io//media/js/jquery.sticky-sidebar.min.js"></script>
-<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
-</head>
 
-<body>
-    <div class="main">
-        <div class="header">
-    <div class="nav">
-        <div class="logo">
-            <a href="https://liuup.github.io/">
-                <img class="avatar" src="https://liuup.github.io//images/avatar.png?v=1578574004049" alt="">
-            </a>
-            <div class="site-title">
-                <h1>
-                    UP
-                </h1>
-            </div>
-        </div>
-        <span class="menu-btn fa fa-align-justify"></span>
-        <div class="menu-container">
-            <ul>
-                
-                    
-                            <li>
-                                <a href="/" class="menu">
-                                    首页
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/archives" class="menu">
-                                    归档
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/tags" class="menu">
-                                    标签
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/post/about" class="menu">
-                                    关于
-                                </a>
-                            </li>
-                            
-                                
-            </ul>
-        </div>
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="UP&#39;s Blog">
+    
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://liuup.github.io/">
+        <img src="https://liuup.github.io//images/avatar.png?v=1578574127898" class="site-logo">
+        <h1 class="site-title">UP</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
     </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/liuup" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://weibo.com/u/1627921701" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      UP's Blog
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://liuup.github.io//atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
 </div>
 
-<script>
-    $(document).ready(function() {
-        $(".menu-btn").click(function() {
-            $(".menu-container").slideToggle();
-        });
-        $(window).resize(function() {
 
-            if (window.matchMedia('(min-width: 960px)').matches) {
-                $(".menu-container").css('display', 'block')
-            } else {
-                $(".menu-container").css('display', 'none')
-            }
-
-        });
-    });
-</script>
-
-            <div id="main-content" class="post-container main-container">
-                <div id="content" class="main-container-left">
-                    
-        
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://liuup.github.io/post/6-qdialog">
-                        6. QDialog
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2020-01-09</time>
-                    
-                        <a href="https://liuup.github.io/tag/VtNF4AbzN" class="post-tag i-tag
-                            i-tag-primary">
-            #QT
-        </a>
-                        
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://liuup.github.io/post/6-qdialog">
+                  <h2 class="post-title">6. QDialog</h2>
+                </a>
+                <div class="post-date">
+                  2020-01-09
                 </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            对话框
-// 点击新建按钮,弹出一个对话框
-connect(ui-&amp;gt;actionNew, &amp;amp;QAction::triggered, this, [=](){
-    // 对话框 分离
-    // 模态对话框(不可以对其他窗口进行操作)
-    // 非模态对话框(可以对其他窗口进行操作)
-
-    // 模态
-    QDialog newWin(this);
-    newWin.resize(200, 100);
-    newWin.exec();
-    cout &amp;lt;&amp;lt; &amp;quot;模态弹出&amp;quot; &amp;lt;&amp;lt; endl;
-
-    // 非模态对话框
-    QDialog * newWin2 = new QDialog(this);
-    newWin2-&amp;gt;resize(200, 150);
-    newWin2-&amp;gt;show();
-    // 为了防止内存泄漏,需要移除对象
-    newWin2-&amp;gt;setAttribute(Qt::WA_DeleteOnClose);    // 55号属性
-
-    
-    cout &amp;lt;&amp;lt; &amp;quot;非模态对话框&amp;quot; &amp;lt;&amp;lt; endl;
-
-
-
-});
-
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://liuup.github.io/post/6-qdialog">Read More ~</a>
-                            </div>
+                <div class="post-abstract">
+                  
                 </div>
+              </div>
+              
             </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://liuup.github.io/post/5-add-resources">
-                        5. Add resources
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2020-01-09</time>
-                    
-                        <a href="https://liuup.github.io/tag/VtNF4AbzN" class="post-tag i-tag
-                            i-tag-other_1">
-            #QT
-        </a>
-                        
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://liuup.github.io/post/5-add-resources">
+                  <h2 class="post-title">5. Add resources</h2>
+                </a>
+                <div class="post-date">
+                  2020-01-09
                 </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            // 资源文件
-
-// 将文件拷贝到项目下
-
-// 右键文件,添加新文件,QT resources file
-
-// Open in editer 
-
-// 通过ui可以找到所有的控件
-ui-&amp;gt;actionNew-&amp;gt;setIcon(QIcon(&amp;quot;:/icons/edit.png&amp;quot;));
-ui-&amp;gt;actionExit-&amp;gt;setIcon(QIcon(&amp;quot;:/icons/edit.png&amp;quot;));
-
-
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://liuup.github.io/post/5-add-resources">Read More ~</a>
-                            </div>
+                <div class="post-abstract">
+                  
                 </div>
+              </div>
+              
             </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://liuup.github.io/post/4-status">
-                        4. Status
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2020-01-09</time>
-                    
-                        <a href="https://liuup.github.io/tag/VtNF4AbzN" class="post-tag i-tag
-                            i-tag-other_3">
-            #QT
-        </a>
-                        
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://liuup.github.io/post/4-status">
+                  <h2 class="post-title">4. Status</h2>
+                </a>
+                <div class="post-date">
+                  2020-01-09
                 </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            #include &amp;lt;QStatusBar&amp;gt;
-#include &amp;lt;Qlabel&amp;gt;
-
-// 状态栏,最多一个
-QStatusBar * stBar = statusBar();
-setStatusBar(stBar);
-QLabel * label = new QLabel(&amp;quot;提示信息&amp;quot;, this);
-stBar-&amp;gt;addWidget(label);
-
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://liuup.github.io/post/4-status">Read More ~</a>
-                            </div>
+                <div class="post-abstract">
+                  
                 </div>
+              </div>
+              
             </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://liuup.github.io/post/3menu">
-                        3.Menu
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2020-01-09</time>
-                    
-                        <a href="https://liuup.github.io/tag/VtNF4AbzN" class="post-tag i-tag
-                            i-tag-primary">
-            #QT
-        </a>
-                        
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://liuup.github.io/post/3menu">
+                  <h2 class="post-title">3.Menu</h2>
+                </a>
+                <div class="post-date">
+                  2020-01-09
                 </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            #include &amp;lt;QMenu&amp;gt;
-
-QMenuBar * bar = menuBar();
-setMenuBar(bar);
-// 创建菜单
-QMenu * fileMenu = bar-&amp;gt;addMenu(&amp;quot;File&amp;quot;);
-QMenu * editMenu = bar-&amp;gt;addMenu(&amp;quot;Edit&amp;quot;);
-QMenu * helpMenu = bar-&amp;gt;addMenu(&amp;quot;Help&amp;quot;);
-
-// 创建菜单项
-fileMenu-&amp;gt;addAction(&amp;quot;New file&amp;quot;);
-fileMenu-&amp;gt;addAction(&amp;quot;NULL&amp;quot;);
-fileMenu-&amp;gt;addSeparator();
-QAction *file_exit = fileMenu-&amp;gt;addAction(&amp;quot;Exit&amp;quot;);
-connect(file_exit, &amp;amp;QAction::triggered, this, &amp;amp;MainWindow::close);
-
-QAction *help_about = helpMenu-&amp;gt;addAction(&amp;quot;About&amp;quot;);
-connect(help_about, &amp;amp;QAction::triggered, this, &amp;amp;MainWindow::HelpAboutFunc);
-
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://liuup.github.io/post/3menu">Read More ~</a>
-                            </div>
+                <div class="post-abstract">
+                  
                 </div>
+              </div>
+              
             </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://liuup.github.io/post/2-xin-hao-yu-cao">
-                        2. 信号与槽
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2020-01-09</time>
-                    
-                        <a href="https://liuup.github.io/tag/VtNF4AbzN" class="post-tag i-tag
-                            i-tag-other_2">
-            #QT
-        </a>
-                        
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://liuup.github.io/post/2-xin-hao-yu-cao">
+                  <h2 class="post-title">2. 信号与槽</h2>
+                </a>
+                <div class="post-date">
+                  2020-01-09
                 </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            将老师和学生创建到对象树上面
-// 创建老师和学生对象
-    this-&amp;gt;teacher = new Teacher(this);
-    this-&amp;gt;student = new Student(this);
-
-连接函数：connect()
-params:
-param1: 信号的发送者
-param2: 发送的信号
-param3: 信号的接受者
-param4: 处理的槽函数
-松散耦合
-实现点击按钮关闭窗口的案例
-connect(btn2, &amp;amp;QPushButton::clicked, this, &amp;amp;MainWindow::close);
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://liuup.github.io/post/2-xin-hao-yu-cao">Read More ~</a>
-                            </div>
+                <div class="post-abstract">
+                  
                 </div>
+              </div>
+              
             </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://liuup.github.io/post/1-button-de-chuang-jian">
-                        1. Button的创建
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2020-01-09</time>
-                    
-                        <a href="https://liuup.github.io/tag/VtNF4AbzN" class="post-tag i-tag
-                            i-tag-other_3">
-            #QT
-        </a>
-                        
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://liuup.github.io/post/1-button-de-chuang-jian">
+                  <h2 class="post-title">1. Button的创建</h2>
+                </a>
+                <div class="post-date">
+                  2020-01-09
                 </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            1. Button的创建
-#include &amp;lt;QPushButton&amp;gt;  // 引入头文件
-
-// 第一种方式
-
-// 创建一个按钮
-QPushButton * btn = new QPushButton;
-btn-&amp;gt;show();    // 以顶层方式弹出窗口控件，也就是游离于主窗口之外
-// 让btn对象依赖在MainWindow窗口中
-btn-&amp;gt;setParent(this);
-
-// 显示文本
-btn-&amp;gt;setText(&amp;quot;set&amp;quot;);
-
-
-// 第二种方式
-
-// 创建第二个按钮，按照控件的大小创建窗口
-QPushButton * btn2 = new QPushButton(&amp;quot;the first&amp;quot;, this);
-// 移动btn2按钮
-btn2-&amp;gt;move(50, 0);
-
-// 重置主窗口大小
-resize(400, 300);
-
-// 设置固定的主窗口大小
-setFixedSize(400, 300);
-
-
-//设置主窗口标题
-setWindowTitle(&amp;quot;第一个窗口&amp;quot;);
-
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://liuup.github.io/post/1-button-de-chuang-jian">Read More ~</a>
-                            </div>
+                <div class="post-abstract">
+                  
                 </div>
+              </div>
+              
             </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://liuup.github.io/post/cmakelists_md">
-                        CMakeLists_md
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2020-01-09</time>
-                    
-                        <a href="https://liuup.github.io/tag/ivOVAibdN" class="post-tag i-tag
-                            i-tag-success">
-            #Config
-        </a>
-                        
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://liuup.github.io/post/cmakelists_md">
+                  <h2 class="post-title">CMakeLists_md</h2>
+                </a>
+                <div class="post-date">
+                  2020-01-09
                 </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            cmake_minimum_required(VERSION 2.8)
-PROJECT(main)
-find_package(OpenCV 3.4.5)
-set(CMAKE_C_FLAGS &amp;quot;${CMAKE_C_FLAGS} -std=c++11 -march=native&amp;quot;)
-set(CMAKE_CXX_FLAGS &amp;quot;${CMAKE_CXX_FLAGS} -std=c++11 -march=native&amp;quot;)
-include_directories(${OpenCV_INCLUDE_DIRS})
-ADD_EXECUTABLE(main /home/liuup/Desktop/cpp_test/main.cpp
-                    
-)
-target_link_libraries(main ${OpenCV_LIBS})
-find_package(Threads)
-target_link_libraries(main ${CMAKE_THREAD_LIBS_INIT})
-find_package(X11 REQUIRED)
-include_directories(${X11_INLUCDE_DIR})
-target_link_libraries(main ${X11_LIBRARIES})
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://liuup.github.io/post/cmakelists_md">Read More ~</a>
-                            </div>
+                <div class="post-abstract">
+                  
                 </div>
+              </div>
+              
             </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://liuup.github.io/post/qt-opencv-pro-pei-zhi">
-                        qt opencv .pro配置
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2020-01-09</time>
-                    
-                        <a href="https://liuup.github.io/tag/VtNF4AbzN" class="post-tag i-tag
-                            i-tag-banana">
-            #QT
-        </a>
-                        
-                        <a href="https://liuup.github.io/tag/ivOVAibdN" class="post-tag i-tag
-                            i-tag-other_4">
-            #Config
-        </a>
-                        
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://liuup.github.io/post/qt-opencv-pro-pei-zhi">
+                  <h2 class="post-title">qt opencv .pro配置</h2>
+                </a>
+                <div class="post-date">
+                  2020-01-09
                 </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            在.pro文件中加入以下代码：
-INCLUDEPATH += /usr/local/include
-INCLUDEPATH += /usr/local/include/opencv
-INCLUDEPATH += /usr/local/include/opencv2
-INCLUDEPATH += /usr/local/include/opencv2/core
-INCLUDEPATH += /usr/local/include/opencv2/highgui
-INCLUDEPATH += /usr/local/include/opencv2/imgproc
-INCLUDEPATH += /usr/local/include/opencv2/flann
-INCLUDEPATH += /usr/local/include/opencv2/photo
-INCLUDEPATH += /usr/local/include/opencv2/video
-INCLUDEPATH += /usr/local/include/opencv2/features2d
-INCLUDEPATH += /usr/local/include/opencv2/objdetect
-INCLUDEPATH += /usr/local/include/opencv2/calib3d
-INCLUDEPATH += /usr/local/include/opencv2/ml
-INCLUDEPATH += /usr/local/include/opencv2/contrib
-LIBS += `pkg-config opencv --cflags --libs`
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://liuup.github.io/post/qt-opencv-pro-pei-zhi">Read More ~</a>
-                            </div>
+                <div class="post-abstract">
+                  
                 </div>
+              </div>
+              
             </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://liuup.github.io/post/tasksjson">
-                        tasks.json
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2020-01-09</time>
-                    
-                        <a href="https://liuup.github.io/tag/ivOVAibdN" class="post-tag i-tag
-                            i-tag-primary">
-            #Config
-        </a>
-                        
-                        <a href="https://liuup.github.io/tag/WxMNu79pu" class="post-tag i-tag
-                            i-tag-other_2">
-            #vscode
-        </a>
-                        
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://liuup.github.io/post/tasksjson">
+                  <h2 class="post-title">tasks.json</h2>
+                </a>
+                <div class="post-date">
+                  2020-01-09
                 </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            tasks.json
-{
-// 有关 tasks.json 格式的文档，请参见
-    // https://go.microsoft.com/fwlink/?LinkId=733558
-    &amp;quot;version&amp;quot;: &amp;quot;2.0.0&amp;quot;,
-    &amp;quot;tasks&amp;quot;: [
-        {
-            &amp;quot;type&amp;quot;: &amp;quot;shell&amp;quot;,
-            &amp;quot;label&amp;quot;: &amp;quot;cpp build active file&amp;quot;,
-            &amp;quot;command&amp;quot;: &amp;quot;/usr/bin/cpp&amp;quot;,
-            &amp;quot;args&amp;quot;: [
-                &amp;quot;-g&amp;quot;,
-                &amp;quot;${file}&amp;quot;,
-                &amp;quot;-o&amp;quot;,
-                &amp;quot;${fileDirname}/${fileBasenameNoExtension}&amp;quot;
-            ],
-            &amp;quot;options&amp;quot;: {
-                &amp;quot;cwd&amp;quot;: &amp;quot;/usr/bin&amp;quot;
-            },
-            &amp;quot;problemMatcher&amp;quot;: [
-                &amp;quot;$gcc&amp;quot;
-            ],
-            &amp;quot;group&amp;quot;: &amp;quot;build&amp;quot;
-        },
-        {
-            &amp;quot;type&amp;quot;: &amp;quot;shell&amp;quot;,
-            &amp;quot;label&amp;quot;: &amp;quot;g++ build active file&amp;quot;,
-            &amp;quot;command&amp;quot;: &amp;quot;/usr/bin/g++&amp;quot;,
-            &amp;quot;args&amp;quot;: [
-                &amp;quot;-g&amp;quot;,
-                &amp;quot;${file}&amp;quot;,
-                &amp;quot;-o&amp;quot;,
-                &amp;quot;${fileDirname}/${fileBasenameNoExtension}&amp;quot;
-            ],
-            &amp;quot;options&amp;quot;: {
-                &amp;quot;cwd&amp;quot;: &amp;quot;/usr/bin&amp;quot;
-            },
-            &amp;quot;problemMatcher&amp;quot;: [
-                &amp;quot;$gcc&amp;quot;
-            ],
-            &amp;quot;group&amp;quot;: &amp;quot;build&amp;quot;
-        }
-    ]
-}
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://liuup.github.io/post/tasksjson">Read More ~</a>
-                            </div>
+                <div class="post-abstract">
+                  
                 </div>
+              </div>
+              
             </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://liuup.github.io/post/settingsjson">
-                        settings.json
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2020-01-09</time>
-                    
-                        <a href="https://liuup.github.io/tag/ivOVAibdN" class="post-tag i-tag
-                            i-tag-other_1">
-            #Config
-        </a>
-                        
-                        <a href="https://liuup.github.io/tag/WxMNu79pu" class="post-tag i-tag
-                            i-tag-other_2">
-            #vscode
-        </a>
-                        
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://liuup.github.io/post/settingsjson">
+                  <h2 class="post-title">settings.json</h2>
+                </a>
+                <div class="post-date">
+                  2020-01-09
                 </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            settings.json
-{
-    &amp;quot;cmake.configureOnOpen&amp;quot;: true
-}
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://liuup.github.io/post/settingsjson">Read More ~</a>
-                            </div>
+                <div class="post-abstract">
+                  
                 </div>
+              </div>
+              
             </article>
-            
-                <!-- 翻页 -->
-                
-    <div class="pagination-container">
-        
-                
-                    <a href="https://liuup.github.io/page/2" class="page-btn btn">下一页</a>
-                    
-    </div>
-    
-                </div>
-                <!--  -->
-                <div class="main-container-middle"></div>
-                <!--  -->
-                <div id="sidebar" class="main-container-right">
+          
 
-                    <!-- 个人信息 -->
-                    
-    <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://liuup.github.io//images/avatar.png?v=1578574004049)">
-        </div>
-        <h1 class="id_card-title">
-            UP
-        </h1>
-        <h2 class="id_card-description">
-            UP&#39;s Blog
-        </h2>
-        <!--  -->
-        <div class="id_card-sns">
-            <!-- github -->
-            
-                <a href="https://github.com/liuup" target="_blank" rel="noopener noreferrer"><i
-                class="fa fa-github"></i></a>
-                
-                    <!-- twitter -->
-                    
-                            <!-- weibo -->
-                            
-                                <a href="https://weibo.com/u/1627921701" target="_blank" rel="noopener noreferrer"><i
-                class="fa fa-weibo"></i></a>
-                                
-                                    <!-- facebook -->
-                                    
-
-        </div>
-    </div>
-    
-
-                        <!-- 公告栏 -->
-                        
-    <div class="notice-card i-card ">
-        <div class="notice-title i-card-title">公告</div>
-        <div class="notice-content">
-            This is UP...
-        </div>
-    </div>
-    
-
-                </div>
-            </div>
-
-
-
-            <div class="site-footer">
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
-  <a class="rss" href="https://liuup.github.io//atom.xml" target="_blank">RSS</a>
+          <div class="pagination-container">
+  
+  
+    <a href="https://liuup.github.io/page/2" class="next">下一页 <i class="icon-arrow-ios-forward-outline"></i></a>
+  
 </div>
 
-<script>
-  hljs.initHighlightingOnLoad()
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
 </script>
 
-    </div>
-    <script>
-        $('#sidebar').stickySidebar({
-            topSpacing: 80,
-            // bottomSpacing: 60
-        });
-    </script>
-</body>
 
+
+
+
+
+  </body>
 </html>

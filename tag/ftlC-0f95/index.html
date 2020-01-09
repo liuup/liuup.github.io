@@ -1,474 +1,146 @@
+<!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8" >
 
-<head>
-    <meta charset="utf-8" />
-<meta name="description" content="" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>
-    Yolov3 | UP
-</title>
-<link rel="shortcut icon" href="https://liuup.github.io//favicon.ico?v=1578574004049">
-<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
-<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<title>Yolov3 | UP</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://liuup.github.io//favicon.ico?v=1578574127898">
 <link rel="stylesheet" href="https://liuup.github.io//styles/main.css">
-<!-- js -->
-<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://liuup.github.io//media/js/jquery.sticky-sidebar.min.js"></script>
-<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
-</head>
 
-<body>
-    <div class="main">
-        <div class="header">
-    <div class="nav">
-        <div class="logo">
-            <a href="https://liuup.github.io/">
-                <img class="avatar" src="https://liuup.github.io//images/avatar.png?v=1578574004049" alt="">
-            </a>
-            <div class="site-title">
-                <h1>
-                    UP
-                </h1>
-            </div>
-        </div>
-        <span class="menu-btn fa fa-align-justify"></span>
-        <div class="menu-container">
-            <ul>
-                
-                    
-                            <li>
-                                <a href="/" class="menu">
-                                    首页
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/archives" class="menu">
-                                    归档
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/tags" class="menu">
-                                    标签
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/post/about" class="menu">
-                                    关于
-                                </a>
-                            </li>
-                            
-                                
-            </ul>
-        </div>
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="UP&#39;s Blog">
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://liuup.github.io/">
+        <img src="https://liuup.github.io//images/avatar.png?v=1578574127898" class="site-logo">
+        <h1 class="site-title">UP</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
     </div>
-</div>
-
-<script>
-    $(document).ready(function() {
-        $(".menu-btn").click(function() {
-            $(".menu-container").slideToggle();
-        });
-        $(window).resize(function() {
-
-            if (window.matchMedia('(min-width: 960px)').matches) {
-                $(".menu-container").css('display', 'block')
-            } else {
-                $(".menu-container").css('display', 'none')
-            }
-
-        });
-    });
-</script>
-
-            <div id="main-content" class="post-container main-container">
-                <div id="content" class="main-container-left">
-                    
-    <div class="i-card">
-        <b>标签：#
-        Yolov3</b>
-    </div>
-    
+    <div>
+      
         
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://liuup.github.io/post/yolov3-tiny-shi-xian-zhuang-jia-ban-shi-bie">
-                        YOLOv3-tiny实现装甲板识别
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2020-01-09</time>
-                    
-                        <a href="https://liuup.github.io/tag/PoSVTjgFI" class="post-tag i-tag
-                            i-tag-other_2">
-            #深度学习乱七八糟
-        </a>
-                        
-                        <a href="https://liuup.github.io/tag/ftlC-0f95" class="post-tag i-tag
-                            i-tag-other_4">
-            #Yolov3
-        </a>
-                        
-                </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            流程
-
-准备照片,分为训练集和验证集
-使用labelImg工具,将目标圈出来,贴好标签,生成XML文件
-使用createID.py生成训练集和验证集的图片名称列表trainImageId.txt和valitatedImageId.txt
-使用trans.py生成训练集和验证集的完整路径列表并完成标签XML文件到txt文件的转换
-修改配置文件,开始训练
-
-YOLOv3的安装
-按照官网的教程来就行,必要时可以借助一下翻译
-Reference
-
-darknet offical
-
-YOLOv3的测试及注意事项
-
-如果想要使用GPU cuDNN opencv需要在编译的时候修改Makefile.改为:
-
-GPU=1
-CUDNN=1
-OPENCV=1
-
-
-demo测试代码
-
-
-见官网
-
-VOC数据集准备
-一. 准备照片
-想要使用YOLOv3实现装甲板识别,首先需要用自己的数据去训练网络,大概也需要几百张吧
-步骤: 在darknet文件夹中创建4个文件夹:trainImage,valitateImage, trainImageXML, valitateImageXML,分别存放第二步中的训练集图片,验证集图片,训练集xml标签和验证集xml标签.将照片放入文件夹中,之后准备做标签.
-注意: 生成的xml文件中包含文件位置信息,所以一定要准备好图片,放入文件夹后,再进行标注
-二. 标注工具LabeImg安装
-没必要按照CSDN的步骤又是降级又是去官网找pip包之类的
-
-先去labeImg - github下载软件包
-安装py3qt5
-
-sudo pip install sip
-sudo apt-get install pyqt5-dev-tools
-sudo apt-get install python3-pyqt5
-make qt5py3
-
-或者按照github官方教程来就行,我试了试,第二步可能会出现找不到文件的错误,不过还是在此列出
-sudo apt-get install pyqt5-dev-tools
-sudo pip3 install -r requirements/requirements-linux-python3.txt
-make qt5py3
-python3 labelImg.py
-python3 labelImg.py [IMAGE_PATH] [PRE-DEFINED CLASS FILE]
-
-
-如果没有错误,就应该能启动打标软件了
-
-三. 对图片做标签,将目标圈出来,保存成xml文件
-
-左边打开文件夹位置,在darknet文件夹里面
-左边选择xm保存位置,应该在darknet里面,
-快捷键
-
-crtl + s 保存
-w 画圈
-a 上一张图片
-d 下一张图片
-
-
-右边可设置自动标签
-
-四. 使用createID.py生成训练集和和验证集的图片名称列表trainImageId.txt和valitateImageId.txt
-在darknet文件夹中新建createID.py,将代码复制进去,之后运行
-cd darknet
-python3 createID.py
-
-# -*- coding: utf-8 -*-
-import os;
-import shutil;
- 
-def listname(path,idtxtpath):
-    filelist = os.listdir(path);  # 该文件夹下所有的文件（包括文件夹）
-    filelist.sort()
-    f = open(idtxtpath, &#39;w&#39;);
-    for files in filelist:  # 遍历所有文件
-        Olddir = os.path.join(path, files);  # 原来的文件路径
-        if os.path.isdir(Olddir):  # 如果是文件夹则跳过
-            continue;
-        f.write(files);
-        f.write(&#39;\n&#39;);
-    f.close();
- 
-savepath = os.getcwd()
-imgidtxttrainpath = savepath+&amp;quot;/trainImageId.txt&amp;quot;
-imgidtxtvalpath = savepath + &amp;quot;/validateImageId.txt&amp;quot;
-listname(savepath + &amp;quot;/trainImage&amp;quot;,imgidtxttrainpath)
-listname(savepath + &amp;quot;/validateImage&amp;quot;,imgidtxtvalpath)
-print &amp;quot;trainImageId.txt &amp;amp;&amp;amp; validateImageId.txt have been created!&amp;quot;
-
-警告 进行多次训练,需要删除之前生成的txt文件
-五. 使用trans.py生成训练集和验证集的完整路径列表并完成xml文件到txt文件的转换
-trans.py如下
-import xml.etree.ElementTree as ET
-import pickle
-import string
-import os
-import shutil
-from os import listdir, getcwd
-from os.path import join
-import cv2
- 
-sets=[(&#39;2012&#39;, &#39;train&#39;)]
- 
-classes = [&amp;quot;class1&amp;quot;,&amp;quot;class2&amp;quot;,&amp;quot;class3&amp;quot;,&amp;quot;class4&amp;quot;]
- 
-def convert(size, box):
-    dw = 1./size[0]
-    dh = 1./size[1]
-    x = (box[0] + box[1])/2.0
-    y = (box[2] + box[3])/2.0
-    w = box[1] - box[0]
-    h = box[3] - box[2]
-    x = x*dw
-    w = w*dw
-    y = y*dh
-    h = h*dh
-    return (x,y,w,h)
- 
-def convert_annotation(image_id,flag,savepath):
- 
-    if flag == 0:
-        in_file = open(savepath+&#39;/trainImageXML/%s.xml&#39; % (os.path.splitext(image_id)[0]))
-        out_file = open(savepath+&#39;/trainImage/%s.txt&#39; % (os.path.splitext(image_id)[0]), &#39;w&#39;)
-        tree = ET.parse(in_file)
-        root = tree.getroot()
-        size = root.find(&#39;size&#39;)
- 
-        img = cv2.imread(&#39;./trainImage/&#39;+str(image_id))
-        h = img.shape[0]
-        w = img.shape[1]
- 
-    elif flag == 1:
-        in_file = open(savepath+&#39;/validateImageXML/%s.xml&#39; % (os.path.splitext(image_id)[0]))
-        out_file = open(savepath+&#39;/validateImage/%s.txt&#39; % (os.path.splitext(image_id)[0]), &#39;w&#39;)
- 
-        tree = ET.parse(in_file)
-        root = tree.getroot()
-        size = root.find(&#39;size&#39;)
- 
-        img = cv2.imread(&#39;./validateImage/&#39; + str(image_id))
-        h = img.shape[0]
-        w = img.shape[1]
- 
-    for obj in root.iter(&#39;object&#39;):
-        difficult = obj.find(&#39;difficult&#39;).text
-        cls = obj.find(&#39;name&#39;).text
-        if cls not in classes or int(difficult) == 1:
-            continue
-        cls_id = classes.index(cls)
-        xmlbox = obj.find(&#39;bndbox&#39;)
-        b = (float(xmlbox.find(&#39;xmin&#39;).text), float(xmlbox.find(&#39;xmax&#39;).text), float(xmlbox.find(&#39;ymin&#39;).text), float(xmlbox.find(&#39;ymax&#39;).text))
-        bb = convert((w,h), b)
-        out_file.write(str(cls_id) + &amp;quot; &amp;quot; + &amp;quot; &amp;quot;.join([str(a) for a in bb]) + &#39;\n&#39;)
- 
-wd = getcwd()
- 
-for year, image_set in sets:
-    savepath = os.getcwd();
-    idtxt = savepath + &amp;quot;/validateImageId.txt&amp;quot;;
-    pathtxt = savepath + &amp;quot;/validateImagePath.txt&amp;quot;;
-    image_ids = open(idtxt).read().strip().split()
-    list_file = open(pathtxt, &#39;w&#39;)
-    s = &#39;\xef\xbb\xbf&#39;
-    for image_id in image_ids:
-        nPos = image_id.find(s)
-        if nPos &amp;gt;= 0:
-            image_id = image_id[3:]
-        list_file.write(&#39;%s/validateImage/%s\n&#39; % (wd, image_id))
-        print(image_id)
-        convert_annotation(image_id, 1, savepath)
-    list_file.close()
- 
-    idtxt = savepath + &amp;quot;/trainImageId.txt&amp;quot;;
-    pathtxt = savepath + &amp;quot;/trainImagePath.txt&amp;quot; ;
-    image_ids = open(idtxt).read().strip().split()
-    list_file = open(pathtxt, &#39;w&#39;)
-    s = &#39;\xef\xbb\xbf&#39;
-    for image_id in image_ids:
-        nPos = image_id.find(s)
-        if nPos &amp;gt;= 0:
-           image_id = image_id[3:]
-        list_file.write(&#39;%s/trainImage/%s\n&#39;%(wd,image_id))
-        print(image_id)
-        convert_annotation(image_id,0,savepath)
-    list_file.close()
-
-[注意]
-
-使用自己的分类,需要修改代码开头的classes = [&amp;quot;class1&amp;quot;,&amp;quot;class2&amp;quot;,&amp;quot;class3&amp;quot;,&amp;quot;class4&amp;quot;],改为自己的标签,有几个写几个,比如我有一个分类classes = [&amp;quot;redArmor&amp;quot;]
-如果运行命令报错,很有可能是图片打标打漏了,可通过出错的图片路径,在打标工具中寻找,不必每张都查
-
-六. 修改配置文件
-
-修改darknet/data/voc.names文件
-把文件内容改为自己的分类,例如有三个分类class_1, class_2, class_3,则改为:
-
-class_1
-class_2
-class_3
-
-
-修改darknet/cfg/voc.data文件内容
-
-根据自己的实际情况做以下修改：
-classes = N     //（N为自己的分类数量，如有1类不同的对象，N = 1）
-train = /home/XXX/darknet/trainImagePath.txt        // 训练集完整路径列表
-valid = /home/XXX/darknet/validateImagePath.txt     // 测试集完整路径列表
-names = data/voc.names   // 类别文件
-backup = backup  //（训练结果保存在darknet/backup/目录下）
-
-
-修改darknet/cfg/yolov3-tiny.cfg文件
-
-1. classes = N （N为自己的分类数）
-2. 修改每一个filters为 3 * (classes + 1 + 4)，如有3个分类，则修改 filters = 24
-3. 修改训练的最大迭代次数， max_batches = N,默认50200，太多了，可以改小一点。
-
-将文件开头改为如下:
-# Testing
-# batch=1
-# subdivisions=1
-# Training
-batch=1
-subdivisions=1
-
-tx2的性能不是很高,所以需要将batch和subdivisions都调低
-开始训练
-先确保darknet文件夹中有darknet53.conv.74
-下载:
-cd darknet
-wget https://pjreddie.com/media/files/darknet53.conv.74
-
-训练:
-./darknet detector train cfg/voc.data cfg/yolov3-tiny.cfg darknet53.conv.74
-
-训练完成后结果文件 ‘yolov3-voc_final.weights’ 保存在 backup文件中
-[说明]
-
-Region Avg IOU: 0.326577： 表示在当前subdivision内的图片的平均IOU，代表预测的矩形框和真实目标的交集与并集之比。越大越好
-Class: 0.742537： 标注物体分类的正确率，期望该值趋近于1。
-Obj: 0.033966： 越接近1越好。
-No Obj: 0.000793： 期望该值越来越小，但不为零。
-Avg Recall: 0.12500：是在recall/count中定义的，是当前模型在所有subdivision图片中检测出的正样本与实际的正样本的比值。在本例中，只有八分之一的正样本被正确的检测到。
-count: 8：count后的值是所有的当前subdivision图片（本例中一共8张）中包含正样本的图片的数量。在输出log中的其他行中，可以看到其他subdivision也有的只含有6或7个正样本，说明在subdivision中含有不含检测对象的图片。
-如果出现很多Nan,表示训练不收敛，可以增大banch,或者调小subdivisions。
-
-测试
-./darknet detector test cfg/voc.data cfg/yolov3-tiny.cfg backup/yolov3-voc_final.weights xxx.jpg
-
-修改xxx.jpg为自己的图片
-References
-
-
-
-
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://liuup.github.io/post/yolov3-tiny-shi-xian-zhuang-jia-ban-shi-bie">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
-                <!-- 翻页 -->
-                
-                </div>
-                <!--  -->
-                <div class="main-container-middle"></div>
-                <!--  -->
-                <div id="sidebar" class="main-container-right">
-
-                    <!-- 个人信息 -->
-                    
-    <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://liuup.github.io//images/avatar.png?v=1578574004049)">
-        </div>
-        <h1 class="id_card-title">
-            UP
-        </h1>
-        <h2 class="id_card-description">
-            UP&#39;s Blog
-        </h2>
-        <!--  -->
-        <div class="id_card-sns">
-            <!-- github -->
-            
-                <a href="https://github.com/liuup" target="_blank" rel="noopener noreferrer"><i
-                class="fa fa-github"></i></a>
-                
-                    <!-- twitter -->
-                    
-                            <!-- weibo -->
-                            
-                                <a href="https://weibo.com/u/1627921701" target="_blank" rel="noopener noreferrer"><i
-                class="fa fa-weibo"></i></a>
-                                
-                                    <!-- facebook -->
-                                    
-
-        </div>
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
     </div>
-    
-
-                        <!-- 公告栏 -->
-                        
-    <div class="notice-card i-card ">
-        <div class="notice-title i-card-title">公告</div>
-        <div class="notice-content">
-            This is UP...
-        </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/liuup" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://weibo.com/u/1627921701" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+      
+        
+      
     </div>
-    
-
-                </div>
-            </div>
-
-
-
-            <div class="site-footer">
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
-  <a class="rss" href="https://liuup.github.io//atom.xml" target="_blank">RSS</a>
+    <div class="site-description">
+      UP's Blog
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://liuup.github.io//atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
 </div>
 
-<script>
-  hljs.initHighlightingOnLoad()
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <h2 class="current-tag">标签: Yolov3</h2>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://liuup.github.io/post/yolov3-tiny-shi-xian-zhuang-jia-ban-shi-bie">
+                  <h2 class="post-title">YOLOv3-tiny实现装甲板识别</h2>
+                </a>
+                <div class="post-date">
+                  2020-01-09
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+            </article>
+          
+
+          <div class="pagination-container">
+  
+  
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
 </script>
 
-    </div>
-    <script>
-        $('#sidebar').stickySidebar({
-            topSpacing: 80,
-            // bottomSpacing: 60
-        });
-    </script>
-</body>
 
+
+
+
+
+  </body>
 </html>

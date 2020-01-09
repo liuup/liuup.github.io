@@ -1,1275 +1,285 @@
+<!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8" >
 
-<head>
-    <meta charset="utf-8" />
-<meta name="description" content="" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>
-    UP
-</title>
-<link rel="shortcut icon" href="https://liuup.github.io//favicon.ico?v=1578574004049">
-<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
-<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<title>UP</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://liuup.github.io//favicon.ico?v=1578574127898">
 <link rel="stylesheet" href="https://liuup.github.io//styles/main.css">
-<!-- js -->
-<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://liuup.github.io//media/js/jquery.sticky-sidebar.min.js"></script>
-<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
-</head>
 
-<body>
-    <div class="main">
-        <div class="header">
-    <div class="nav">
-        <div class="logo">
-            <a href="https://liuup.github.io/">
-                <img class="avatar" src="https://liuup.github.io//images/avatar.png?v=1578574004049" alt="">
-            </a>
-            <div class="site-title">
-                <h1>
-                    UP
-                </h1>
-            </div>
-        </div>
-        <span class="menu-btn fa fa-align-justify"></span>
-        <div class="menu-container">
-            <ul>
-                
-                    
-                            <li>
-                                <a href="/" class="menu">
-                                    首页
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/archives" class="menu">
-                                    归档
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/tags" class="menu">
-                                    标签
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/post/about" class="menu">
-                                    关于
-                                </a>
-                            </li>
-                            
-                                
-            </ul>
-        </div>
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="UP&#39;s Blog">
+    
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://liuup.github.io/">
+        <img src="https://liuup.github.io//images/avatar.png?v=1578574127898" class="site-logo">
+        <h1 class="site-title">UP</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
     </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/liuup" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://weibo.com/u/1627921701" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      UP's Blog
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://liuup.github.io//atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
 </div>
 
-<script>
-    $(document).ready(function() {
-        $(".menu-btn").click(function() {
-            $(".menu-container").slideToggle();
-        });
-        $(window).resize(function() {
 
-            if (window.matchMedia('(min-width: 960px)').matches) {
-                $(".menu-container").css('display', 'block')
-            } else {
-                $(".menu-container").css('display', 'none')
-            }
-
-        });
-    });
-</script>
-
-            <div id="main-content" class="post-container main-container">
-                <div id="content" class="main-container-left">
-                    
-        
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://liuup.github.io/post/launchjson">
-                        launch.json
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2020-01-09</time>
-                    
-                        <a href="https://liuup.github.io/tag/ivOVAibdN" class="post-tag i-tag
-                            i-tag-primary">
-            #Config
-        </a>
-                        
-                        <a href="https://liuup.github.io/tag/WxMNu79pu" class="post-tag i-tag
-                            i-tag-other_4">
-            #vscode
-        </a>
-                        
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://liuup.github.io/post/launchjson">
+                  <h2 class="post-title">launch.json</h2>
+                </a>
+                <div class="post-date">
+                  2020-01-09
                 </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            launch.json
-{
-    // 使用 IntelliSense 了解相关属性。 
-    // 悬停以查看现有属性的描述。
-    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
-    &amp;quot;version&amp;quot;: &amp;quot;0.2.0&amp;quot;,
-    &amp;quot;configurations&amp;quot;: [
-        
-        {
-            &amp;quot;name&amp;quot;: &amp;quot;g++ build and debug active file&amp;quot;,
-            &amp;quot;type&amp;quot;: &amp;quot;cppdbg&amp;quot;,
-            &amp;quot;request&amp;quot;: &amp;quot;launch&amp;quot;,
-            &amp;quot;program&amp;quot;: &amp;quot;${workspaceFolder}/build/main&amp;quot;,
-            &amp;quot;args&amp;quot;: [],
-            &amp;quot;stopAtEntry&amp;quot;: false,
-            &amp;quot;cwd&amp;quot;: &amp;quot;${workspaceFolder}&amp;quot;,
-            &amp;quot;environment&amp;quot;: [],
-            &amp;quot;externalConsole&amp;quot;: true,
-            &amp;quot;MIMode&amp;quot;: &amp;quot;gdb&amp;quot;,
-            &amp;quot;setupCommands&amp;quot;: [
-                {
-                    &amp;quot;description&amp;quot;: &amp;quot;Enable pretty-printing for gdb&amp;quot;,
-                    &amp;quot;text&amp;quot;: &amp;quot;-enable-pretty-printing&amp;quot;,
-                    &amp;quot;ignoreFailures&amp;quot;: true
-                }
-            ],
-            //&amp;quot;preLaunchTask&amp;quot;: &amp;quot;g++ build active file&amp;quot;,
-            //&amp;quot;miDebuggerPath&amp;quot;: &amp;quot;/usr/bin/gdb&amp;quot;
-        }
-    ]
-}
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://liuup.github.io/post/launchjson">Read More ~</a>
-                            </div>
+                <div class="post-abstract">
+                  
                 </div>
+              </div>
+              
             </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://liuup.github.io/post/mo-ming-qi-miao-de-yi-xie-si-lu">
-                        莫名其妙的一些思路
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2020-01-09</time>
-                    
-                        <a href="https://liuup.github.io/tag/t8gEwQ-FD" class="post-tag i-tag
-                            i-tag-other_2">
-            #CV
-        </a>
-                        
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://liuup.github.io/post/mo-ming-qi-miao-de-yi-xie-si-lu">
+                  <h2 class="post-title">莫名其妙的一些思路</h2>
+                </a>
+                <div class="post-date">
+                  2020-01-09
                 </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            RM2020视觉代码的一些想法和思路
-在前一段发布的规则修订中,能量机关又变为了RM2019的样子,甚至连尺寸都没有变,所以降低了今年的视觉识别难度
-1. 代码规范
-函数名：使用首字母小写的驼峰命名法
-类型名：使用首字母大写的驼峰命名法
-变量名：使用下划线分割命名法
-2. 模块化编程
-3.
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://liuup.github.io/post/mo-ming-qi-miao-de-yi-xie-si-lu">Read More ~</a>
-                            </div>
+                <div class="post-abstract">
+                  
                 </div>
+              </div>
+              
             </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://liuup.github.io/post/rm-vision-kai-yuan-zong-jie">
-                        RM VISION 开源总结
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2020-01-09</time>
-                    
-                        <a href="https://liuup.github.io/tag/t8gEwQ-FD" class="post-tag i-tag
-                            i-tag-warning">
-            #CV
-        </a>
-                        
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://liuup.github.io/post/rm-vision-kai-yuan-zong-jie">
+                  <h2 class="post-title">RM VISION 开源总结</h2>
+                </a>
+                <div class="post-date">
+                  2020-01-09
                 </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            Official
-官方及参赛队历年开源资料汇总（持续更新）
-2019
-深圳大学RobotPilots战队RM2019步兵视觉开源
-【北理珠】RoboMaster 2019 步兵视觉开源
-【SJTU视觉开源】上海交通大学交龙战队RM2019步兵视觉开源
-【太原理工大学】2019TRoMaC战队英雄自动瞄准算法开源
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://liuup.github.io/post/rm-vision-kai-yuan-zong-jie">Read More ~</a>
-                            </div>
+                <div class="post-abstract">
+                  
                 </div>
+              </div>
+              
             </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://liuup.github.io/post/yolov3-tiny-shi-xian-zhuang-jia-ban-shi-bie">
-                        YOLOv3-tiny实现装甲板识别
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2020-01-09</time>
-                    
-                        <a href="https://liuup.github.io/tag/PoSVTjgFI" class="post-tag i-tag
-                            i-tag-">
-            #深度学习乱七八糟
-        </a>
-                        
-                        <a href="https://liuup.github.io/tag/ftlC-0f95" class="post-tag i-tag
-                            i-tag-other_4">
-            #Yolov3
-        </a>
-                        
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://liuup.github.io/post/yolov3-tiny-shi-xian-zhuang-jia-ban-shi-bie">
+                  <h2 class="post-title">YOLOv3-tiny实现装甲板识别</h2>
+                </a>
+                <div class="post-date">
+                  2020-01-09
                 </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            流程
-
-准备照片,分为训练集和验证集
-使用labelImg工具,将目标圈出来,贴好标签,生成XML文件
-使用createID.py生成训练集和验证集的图片名称列表trainImageId.txt和valitatedImageId.txt
-使用trans.py生成训练集和验证集的完整路径列表并完成标签XML文件到txt文件的转换
-修改配置文件,开始训练
-
-YOLOv3的安装
-按照官网的教程来就行,必要时可以借助一下翻译
-Reference
-
-darknet offical
-
-YOLOv3的测试及注意事项
-
-如果想要使用GPU cuDNN opencv需要在编译的时候修改Makefile.改为:
-
-GPU=1
-CUDNN=1
-OPENCV=1
-
-
-demo测试代码
-
-
-见官网
-
-VOC数据集准备
-一. 准备照片
-想要使用YOLOv3实现装甲板识别,首先需要用自己的数据去训练网络,大概也需要几百张吧
-步骤: 在darknet文件夹中创建4个文件夹:trainImage,valitateImage, trainImageXML, valitateImageXML,分别存放第二步中的训练集图片,验证集图片,训练集xml标签和验证集xml标签.将照片放入文件夹中,之后准备做标签.
-注意: 生成的xml文件中包含文件位置信息,所以一定要准备好图片,放入文件夹后,再进行标注
-二. 标注工具LabeImg安装
-没必要按照CSDN的步骤又是降级又是去官网找pip包之类的
-
-先去labeImg - github下载软件包
-安装py3qt5
-
-sudo pip install sip
-sudo apt-get install pyqt5-dev-tools
-sudo apt-get install python3-pyqt5
-make qt5py3
-
-或者按照github官方教程来就行,我试了试,第二步可能会出现找不到文件的错误,不过还是在此列出
-sudo apt-get install pyqt5-dev-tools
-sudo pip3 install -r requirements/requirements-linux-python3.txt
-make qt5py3
-python3 labelImg.py
-python3 labelImg.py [IMAGE_PATH] [PRE-DEFINED CLASS FILE]
-
-
-如果没有错误,就应该能启动打标软件了
-
-三. 对图片做标签,将目标圈出来,保存成xml文件
-
-左边打开文件夹位置,在darknet文件夹里面
-左边选择xm保存位置,应该在darknet里面,
-快捷键
-
-crtl + s 保存
-w 画圈
-a 上一张图片
-d 下一张图片
-
-
-右边可设置自动标签
-
-四. 使用createID.py生成训练集和和验证集的图片名称列表trainImageId.txt和valitateImageId.txt
-在darknet文件夹中新建createID.py,将代码复制进去,之后运行
-cd darknet
-python3 createID.py
-
-# -*- coding: utf-8 -*-
-import os;
-import shutil;
- 
-def listname(path,idtxtpath):
-    filelist = os.listdir(path);  # 该文件夹下所有的文件（包括文件夹）
-    filelist.sort()
-    f = open(idtxtpath, &#39;w&#39;);
-    for files in filelist:  # 遍历所有文件
-        Olddir = os.path.join(path, files);  # 原来的文件路径
-        if os.path.isdir(Olddir):  # 如果是文件夹则跳过
-            continue;
-        f.write(files);
-        f.write(&#39;\n&#39;);
-    f.close();
- 
-savepath = os.getcwd()
-imgidtxttrainpath = savepath+&amp;quot;/trainImageId.txt&amp;quot;
-imgidtxtvalpath = savepath + &amp;quot;/validateImageId.txt&amp;quot;
-listname(savepath + &amp;quot;/trainImage&amp;quot;,imgidtxttrainpath)
-listname(savepath + &amp;quot;/validateImage&amp;quot;,imgidtxtvalpath)
-print &amp;quot;trainImageId.txt &amp;amp;&amp;amp; validateImageId.txt have been created!&amp;quot;
-
-警告 进行多次训练,需要删除之前生成的txt文件
-五. 使用trans.py生成训练集和验证集的完整路径列表并完成xml文件到txt文件的转换
-trans.py如下
-import xml.etree.ElementTree as ET
-import pickle
-import string
-import os
-import shutil
-from os import listdir, getcwd
-from os.path import join
-import cv2
- 
-sets=[(&#39;2012&#39;, &#39;train&#39;)]
- 
-classes = [&amp;quot;class1&amp;quot;,&amp;quot;class2&amp;quot;,&amp;quot;class3&amp;quot;,&amp;quot;class4&amp;quot;]
- 
-def convert(size, box):
-    dw = 1./size[0]
-    dh = 1./size[1]
-    x = (box[0] + box[1])/2.0
-    y = (box[2] + box[3])/2.0
-    w = box[1] - box[0]
-    h = box[3] - box[2]
-    x = x*dw
-    w = w*dw
-    y = y*dh
-    h = h*dh
-    return (x,y,w,h)
- 
-def convert_annotation(image_id,flag,savepath):
- 
-    if flag == 0:
-        in_file = open(savepath+&#39;/trainImageXML/%s.xml&#39; % (os.path.splitext(image_id)[0]))
-        out_file = open(savepath+&#39;/trainImage/%s.txt&#39; % (os.path.splitext(image_id)[0]), &#39;w&#39;)
-        tree = ET.parse(in_file)
-        root = tree.getroot()
-        size = root.find(&#39;size&#39;)
- 
-        img = cv2.imread(&#39;./trainImage/&#39;+str(image_id))
-        h = img.shape[0]
-        w = img.shape[1]
- 
-    elif flag == 1:
-        in_file = open(savepath+&#39;/validateImageXML/%s.xml&#39; % (os.path.splitext(image_id)[0]))
-        out_file = open(savepath+&#39;/validateImage/%s.txt&#39; % (os.path.splitext(image_id)[0]), &#39;w&#39;)
- 
-        tree = ET.parse(in_file)
-        root = tree.getroot()
-        size = root.find(&#39;size&#39;)
- 
-        img = cv2.imread(&#39;./validateImage/&#39; + str(image_id))
-        h = img.shape[0]
-        w = img.shape[1]
- 
-    for obj in root.iter(&#39;object&#39;):
-        difficult = obj.find(&#39;difficult&#39;).text
-        cls = obj.find(&#39;name&#39;).text
-        if cls not in classes or int(difficult) == 1:
-            continue
-        cls_id = classes.index(cls)
-        xmlbox = obj.find(&#39;bndbox&#39;)
-        b = (float(xmlbox.find(&#39;xmin&#39;).text), float(xmlbox.find(&#39;xmax&#39;).text), float(xmlbox.find(&#39;ymin&#39;).text), float(xmlbox.find(&#39;ymax&#39;).text))
-        bb = convert((w,h), b)
-        out_file.write(str(cls_id) + &amp;quot; &amp;quot; + &amp;quot; &amp;quot;.join([str(a) for a in bb]) + &#39;\n&#39;)
- 
-wd = getcwd()
- 
-for year, image_set in sets:
-    savepath = os.getcwd();
-    idtxt = savepath + &amp;quot;/validateImageId.txt&amp;quot;;
-    pathtxt = savepath + &amp;quot;/validateImagePath.txt&amp;quot;;
-    image_ids = open(idtxt).read().strip().split()
-    list_file = open(pathtxt, &#39;w&#39;)
-    s = &#39;\xef\xbb\xbf&#39;
-    for image_id in image_ids:
-        nPos = image_id.find(s)
-        if nPos &amp;gt;= 0:
-            image_id = image_id[3:]
-        list_file.write(&#39;%s/validateImage/%s\n&#39; % (wd, image_id))
-        print(image_id)
-        convert_annotation(image_id, 1, savepath)
-    list_file.close()
- 
-    idtxt = savepath + &amp;quot;/trainImageId.txt&amp;quot;;
-    pathtxt = savepath + &amp;quot;/trainImagePath.txt&amp;quot; ;
-    image_ids = open(idtxt).read().strip().split()
-    list_file = open(pathtxt, &#39;w&#39;)
-    s = &#39;\xef\xbb\xbf&#39;
-    for image_id in image_ids:
-        nPos = image_id.find(s)
-        if nPos &amp;gt;= 0:
-           image_id = image_id[3:]
-        list_file.write(&#39;%s/trainImage/%s\n&#39;%(wd,image_id))
-        print(image_id)
-        convert_annotation(image_id,0,savepath)
-    list_file.close()
-
-[注意]
-
-使用自己的分类,需要修改代码开头的classes = [&amp;quot;class1&amp;quot;,&amp;quot;class2&amp;quot;,&amp;quot;class3&amp;quot;,&amp;quot;class4&amp;quot;],改为自己的标签,有几个写几个,比如我有一个分类classes = [&amp;quot;redArmor&amp;quot;]
-如果运行命令报错,很有可能是图片打标打漏了,可通过出错的图片路径,在打标工具中寻找,不必每张都查
-
-六. 修改配置文件
-
-修改darknet/data/voc.names文件
-把文件内容改为自己的分类,例如有三个分类class_1, class_2, class_3,则改为:
-
-class_1
-class_2
-class_3
-
-
-修改darknet/cfg/voc.data文件内容
-
-根据自己的实际情况做以下修改：
-classes = N     //（N为自己的分类数量，如有1类不同的对象，N = 1）
-train = /home/XXX/darknet/trainImagePath.txt        // 训练集完整路径列表
-valid = /home/XXX/darknet/validateImagePath.txt     // 测试集完整路径列表
-names = data/voc.names   // 类别文件
-backup = backup  //（训练结果保存在darknet/backup/目录下）
-
-
-修改darknet/cfg/yolov3-tiny.cfg文件
-
-1. classes = N （N为自己的分类数）
-2. 修改每一个filters为 3 * (classes + 1 + 4)，如有3个分类，则修改 filters = 24
-3. 修改训练的最大迭代次数， max_batches = N,默认50200，太多了，可以改小一点。
-
-将文件开头改为如下:
-# Testing
-# batch=1
-# subdivisions=1
-# Training
-batch=1
-subdivisions=1
-
-tx2的性能不是很高,所以需要将batch和subdivisions都调低
-开始训练
-先确保darknet文件夹中有darknet53.conv.74
-下载:
-cd darknet
-wget https://pjreddie.com/media/files/darknet53.conv.74
-
-训练:
-./darknet detector train cfg/voc.data cfg/yolov3-tiny.cfg darknet53.conv.74
-
-训练完成后结果文件 ‘yolov3-voc_final.weights’ 保存在 backup文件中
-[说明]
-
-Region Avg IOU: 0.326577： 表示在当前subdivision内的图片的平均IOU，代表预测的矩形框和真实目标的交集与并集之比。越大越好
-Class: 0.742537： 标注物体分类的正确率，期望该值趋近于1。
-Obj: 0.033966： 越接近1越好。
-No Obj: 0.000793： 期望该值越来越小，但不为零。
-Avg Recall: 0.12500：是在recall/count中定义的，是当前模型在所有subdivision图片中检测出的正样本与实际的正样本的比值。在本例中，只有八分之一的正样本被正确的检测到。
-count: 8：count后的值是所有的当前subdivision图片（本例中一共8张）中包含正样本的图片的数量。在输出log中的其他行中，可以看到其他subdivision也有的只含有6或7个正样本，说明在subdivision中含有不含检测对象的图片。
-如果出现很多Nan,表示训练不收敛，可以增大banch,或者调小subdivisions。
-
-测试
-./darknet detector test cfg/voc.data cfg/yolov3-tiny.cfg backup/yolov3-voc_final.weights xxx.jpg
-
-修改xxx.jpg为自己的图片
-References
-
-
-
-
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://liuup.github.io/post/yolov3-tiny-shi-xian-zhuang-jia-ban-shi-bie">Read More ~</a>
-                            </div>
+                <div class="post-abstract">
+                  
                 </div>
+              </div>
+              
             </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://liuup.github.io/post/chu-xian-de-yi-xie-ying-wen-dan-ci">
-                        出现的一些英文单词
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2020-01-09</time>
-                    
-                        <a href="https://liuup.github.io/tag/KsSikKorK" class="post-tag i-tag
-                            i-tag-warning">
-            #我的资源
-        </a>
-                        
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://liuup.github.io/post/chu-xian-de-yi-xie-ying-wen-dan-ci">
+                  <h2 class="post-title">出现的一些英文单词</h2>
+                </a>
+                <div class="post-date">
+                  2020-01-09
                 </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            A
-armor 盔甲
-B
-C
-contours 轮廓
-D
-dect 决定
-detect 检测
-detach 分离
-E
-F
-flabellum 扇叶
-G
-gimbal 云台
-H
-hierarchy 阶层
-I
-intensity 强度
-J
-K
-L
-least 最小
-M
-N
-O
-obsolete 过时的
-P
-Q
-R
-S
-scale 比例
-status 状态
-T
-tangent 切线
-U
-V
-W
-X
-Y
-Z
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://liuup.github.io/post/chu-xian-de-yi-xie-ying-wen-dan-ci">Read More ~</a>
-                            </div>
+                <div class="post-abstract">
+                  
                 </div>
+              </div>
+              
             </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://liuup.github.io/post/ubuntu-1804-sources">
-                        Ubuntu 18.04 sources
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2020-01-09</time>
-                    
-                        <a href="https://liuup.github.io/tag/fReFQPtNm" class="post-tag i-tag
-                            i-tag-other_4">
-            #Ubuntu
-        </a>
-                        
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://liuup.github.io/post/ubuntu-1804-sources">
+                  <h2 class="post-title">Ubuntu 18.04 sources</h2>
+                </a>
+                <div class="post-date">
+                  2020-01-09
                 </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            Ubuntu offical
-#Ubuntu 官方源 
-deb http://archive.ubuntu.com/ubuntu/ gutsy main restricted universe multiverse
-deb http://archive.ubuntu.com/ubuntu/ gutsy-security main restricted universe multiverse
-deb http://archive.ubuntu.com/ubuntu/ gutsy-updates main restricted universe multiverse
-deb http://archive.ubuntu.com/ubuntu/ gutsy-proposed main restricted universe multiverse
-deb http://archive.ubuntu.com/ubuntu/ gutsy-backports main restricted universe multiverse
-deb-src http://archive.ubuntu.com/ubuntu/ gutsy main restricted universe multiverse
-deb-src http://archive.ubuntu.com/ubuntu/ gutsy-security main restricted universe multiverse
-deb-src http://archive.ubuntu.com/ubuntu/ gutsy-updates main restricted universe multiverse
-deb-src http://archive.ubuntu.com/ubuntu/ gutsy-proposed main restricted universe multiverse
-deb-src http://archive.ubuntu.com/ubuntu/ gutsy-backports main restricted universe multiverse
-
-Ubuntu 163
-deb http://mirrors.163.com/ubuntu/ trusty main restricted universe multiverse
-deb http://mirrors.163.com/ubuntu/ trusty-security main restricted universe multiverse
-deb http://mirrors.163.com/ubuntu/ trusty-updates main restricted universe multiverse
-deb http://mirrors.163.com/ubuntu/ trusty-proposed main restricted universe multiverse
-deb http://mirrors.163.com/ubuntu/ trusty-backports main restricted universe multiverse
-deb-src http://mirrors.163.com/ubuntu/ trusty main restricted universe multiverse
-deb-src http://mirrors.163.com/ubuntu/ trusty-security main restricted universe multiverse
-deb-src http://mirrors.163.com/ubuntu/ trusty-updates main restricted universe multiverse
-deb-src http://mirrors.163.com/ubuntu/ trusty-proposed main restricted universe multiverse
-deb-src http://mirrors.163.com/ubuntu/ trusty-backports main restricted universe multiverse
-
-Ubuntu aliyun
-deb http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse
-deb http://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse
-deb http://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse
-deb http://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse
-deb http://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse
-deb-src http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse
-deb-src http://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse
-deb-src http://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse
-deb-src http://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse
-deb-src http://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse
-
-Ubuntu tsinghua
-# 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释
-deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse
-# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse
-deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse
-# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse
-deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse
-# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse
-deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted universe multiverse
-# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted universe multiverse
-
-# 预发布软件源，不建议启用
-# deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse
-# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://liuup.github.io/post/ubuntu-1804-sources">Read More ~</a>
-                            </div>
+                <div class="post-abstract">
+                  
                 </div>
+              </div>
+              
             </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://liuup.github.io/post/python-shu-ju-jie-gou">
-                        python数据结构
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2020-01-09</time>
-                    
-                        <a href="https://liuup.github.io/tag/nUUf4mxn5" class="post-tag i-tag
-                            i-tag-other_2">
-            #python
-        </a>
-                        
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://liuup.github.io/post/python-shu-ju-jie-gou">
+                  <h2 class="post-title">python数据结构</h2>
+                </a>
+                <div class="post-date">
+                  2020-01-09
                 </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            
-https://runestone.academy/runestone/books/published/pythonds/index.html
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://liuup.github.io/post/python-shu-ju-jie-gou">Read More ~</a>
-                            </div>
+                <div class="post-abstract">
+                  
                 </div>
+              </div>
+              
             </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://liuup.github.io/post/nvidia-jetson-tx2-notes">
-                        NVIDIA Jetson TX2 Notes 
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2020-01-09</time>
-                    
-                        <a href="https://liuup.github.io/tag/CgN_fZBlG" class="post-tag i-tag
-                            i-tag-">
-            #TX2
-        </a>
-                        
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://liuup.github.io/post/nvidia-jetson-tx2-notes">
+                  <h2 class="post-title">NVIDIA Jetson TX2 Notes </h2>
+                </a>
+                <div class="post-date">
+                  2020-01-09
                 </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            NVIDIA Jetson TX2 Notes
-NVIDIA Jetson TX2 不论在各个方面对于一个新手来说都是一个天坑，而且坑是一个接着一个，我在此记录一些我在配置TX2时遇到的问题，并提出可靠的解决方案。
-host：
-
-System:Ubuntu 18.04 Lts
-Processor:Intel® Core™ i5-8300H CPU @ 2.30GHz × 8
-Graphics:GeForce GTX 1050 Ti/PCIe/SSE2
-
-Jetson TX2:
-
-System:Ubuntu 18.04 Lts
-Processor:ARMv8 Processor rev 3(v8l) × 4
-Graphics:NVIDIA Tegra X2(nvgpu)/integrated
-
-自己主机和TX2配置相差很大，但是刚开始自己并没有意识到这个问题，在更新sources.list时和安装vscode时才意识到这个问题。
-TX2的Ubuntu18.04Lts系统是NVIDIA魔改版，用的unity桌面，在界面上会有些不一样。
-1.乱七八糟的资料与百科
-1.Google镜像站，免翻墙在中国用google的最佳食用方式，Ubuntu改个hosts就行
-
-Google镜像站
-
-2.Jetson TX2 的全英百科，感觉还算全
-
-Jetson TX2 on elinux
-
-3.NVIDIA Jetson TX2 Official
-
-NVDIA Jetson TX2
-
-4.TX2接口一览
-
-2.关于刷机
-自己的host主机已经安装了NVIDIA SDKManger,将TX2进入恢复模式(同时长按POWER和RECOVERY键两秒后,按一下RESET键,再松开RECOVERY键),在host Terminal上输入lsusb,如果显示出NVIDIA Corp就证明基本连接成功.
-2.1 可能遇到的问题
-2.1.1 STEP 4 flash时提示没连接上
-将进入RECOVERY模式的TX2从host上拔下,直接在host上点刷机(当然,这肯定刷不进去),出来个提示框,第一个模式会让输入TX2的账号和密码,第二个模式是全自动.此时再将TX2连入host,点继续就能成功刷机
-2.1.2 刷机过程中提示时间过长,超出预期
-点继续就行了
-更换数据线,请尽量使用官方数据线,使用质量可靠的数据线能够显著增加数据传输速度
-
-
-NVIDIA上的关于flash卡99.8%的讨论
-值得注意的是,数据线和充电线并不太一样
-
-
-2.1.3 更换数据线后仍提示检测不到TX2
-将TX2彻底关机,将数据线从host上拔出,将电源线拔出,重新连接数据线和电源线,再次进入恢复模式,重新连接数据线和电源线,再次在host上SDKManger中检测
-3.关于配置
-1.这个地方不注意连sudo apt-get update
-都更新不了，为了降低功耗，TX2的CPU架构是arm64(aarch64)，可以通过以下代码查看CPU架构
-~$uname -a
-或者
-~$dpkg --print-architecture
-
-2.由于CPU架构的不同，在后面更新sources.list时要做出一些改变
-4.Sources
-为了加快各个软件的更新下载速度,需要将更新源换成国内
-arm ubuntu开发板的apt库和普通ubuntu的库是不一样的，arm用的是ubuntu-ports库。
-先获取root权限，再执行
-~$gedit /etc/apt/sources.list
-
-修改source，在此给出Ubuntu 18.04 Lts USTC的源，值得注意的是，arm64的源和普通PC的不一样，要将ubuntu改成ubuntu-ports才能更新
-deb http://mirrors.ustc.edu.cn/ubuntu-ports/ bionic-updates main restricted universe multiverse 
-deb-src http://mirrors.ustc.edu.cn/ubuntu-ports/ bionic-updates main restricted universe multiverse 
-deb http://mirrors.ustc.edu.cn/ubuntu-ports/ bionic-security main restricted universe multiverse 
-deb-src http://mirrors.ustc.edu.cn/ubuntu-ports/ bionic-security main restricted universe multiverse 
-deb http://mirrors.ustc.edu.cn/ubuntu-ports/ bionic-backports main restricted universe multiverse 
-deb-src http://mirrors.ustc.edu.cn/ubuntu-ports/ bionic-backports main restricted universe multiverse 
-deb http://mirrors.ustc.edu.cn/ubuntu-ports/ bionic main universe restricted 
-deb-src http://mirrors.ustc.edu.cn/ubuntu-ports/ bionic main universe restricted
-
-更新源
-~$sudo apt-get update
-
-更新之后可能会报GPG Error，我列出Error如下
-~$GPG error: https://packagecloud.io/headmelted/codebuilds/debian stretch InRelease: The following signatures couldn&#39;t be verified because the public key is not available: NO_PUBKEY 0CC3FD642696BFC8
-
-解决方案：这里要将公钥改成上面给出的公钥
-~$apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0CC3FD642696BFC8
-
-如果出现下列结果，说明Error已经消失了
-~$Executing: /tmp/apt-key-gpghome.ZnhRCRjnAd/gpg.1.sh --recv-keys --keyserver keyserver.ubuntu.com 0CC3FD642696BFC8
-～$gpg: key 8D9940AE59B46979: public key &amp;quot;https://packagecloud.io/headmelted/code-oss (https://packagecloud.io/docs#gpg_signing) &amp;lt;support@packagecloud.io&amp;gt;&amp;quot; imported
-~$gpg: Total number processed: 1
-~$gpg:               imported: 1
-
-
-然后再更新一下源和软件，这就意味着可以正常从库下载软件了
-~$sudo apt-get update
-~$sudo apt-get upgrade
-
-5.VSCODE
-紧接着就安装宇宙最强IDE：vscode
-我看了好久的Microsoft官方文档，发现官方根本就不支持在linux arm64上面运行，在google上搜索，看到nvidia论坛里也有人问怎么安装vscode。继续以关键词arm64 vscode搜索，发现有人发了如何在树莓派上安装vscode的教程
-直接在终端运行，便可以安装vscode
-~$sudo apt-get install code-oss
-
-再安装中文包及各种插件，但是会发现c++插件不支持arm64
-插件会提示
-Architecture arm64 is not supported;
-
-&amp;gt;&amp;gt; 来源:C/C++(拓展)
-
-但是能在vscode里用cmake编译，所以个人认为vscode在tx2上并不太好用,推荐安装qt
-6.OpenCV
-刷机后，TX2自带的是3.3.1，将其刷成3.4.5
-刚开始用的16.04Lts arm64源，一直导致好多包安装不了，按照我上面写的换成18.04的源就行
-Refenrences：
-
-1.环境配置-Ubuntu 16.04安装opencv3.4.3 - 简书
-2.ubuntu下安装opencv3.4.2 - CSDN
-3.opencv - github
-4.opencv_toncrib - github
-
-可能出现的问题:
-
-提示boostdesc_bgm.i缺少
-
-
-1.1 编译OpenCV以及openc_contrib提示缺少boostdesc_bgm.i文件出错的解决 - CSDN
-1.2 atal error: boostdesc_bgm.i: No such file or directory  - Github
-
-
-提示各种文件路径不对的
-
-
-直接进入提示错误的文件修改opencv的源代码
-
-在终端使用命令检验是否安装到位
-~$pkg-config --modversion opencv
-~$3.4.5
-
-使用g++编译的方法：
-~$g++ main.cpp -o main.out `pkg-config opencv --cflags --libs`
-
-7.调用摄像头
-7.1调用板载摄像头
-终端运行
-nvgstcapture-1.0 --cus-prev-res=1920*1080
-
-但是我还没搞懂怎么通过opencv来调用板载摄像头
-分辨率可调：
-
-640 * 480
-1280 * 720
-1920 * 1080
-2104 * 1560
-2592 * 1944
-2616 * 1472
-3840 * 2160
-3896 * 2192
-4208 * 3120
-5632 * 3168
-5632 * 4224
-
-使用q + 回车退出摄像头
-7.2调用usb摄像头
-如果想使用usb接口的摄像头，需要将VideoCapture中数值改为1，因为板载摄像头默认是0
-VideoCapture capture(1);
-
-8.qt creator
-
-因为vscode在tx2上不太好用，所以需要换个IDE，幸好qt的配置并不难
-
-直接终端运行
-~$sudo apt-get install qt5-default qtcreator -y
-
-Reference：
-
-NVIDIA Jetson TX2 安装qt - CSDN
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://liuup.github.io/post/nvidia-jetson-tx2-notes">Read More ~</a>
-                            </div>
+                <div class="post-abstract">
+                  
                 </div>
+              </div>
+              
             </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://liuup.github.io/post/2lian-xu-cun-chu-shu-zu-de-suan-fa-yan-shi">
-                        2.连续存储数组的算法演示
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2020-01-09</time>
-                    
-                        <a href="https://liuup.github.io/tag/QlEooH6b7" class="post-tag i-tag
-                            i-tag-error">
-            #C数据结构
-        </a>
-                        
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://liuup.github.io/post/2lian-xu-cun-chu-shu-zu-de-suan-fa-yan-shi">
+                  <h2 class="post-title">2.连续存储数组的算法演示</h2>
+                </a>
+                <div class="post-date">
+                  2020-01-09
                 </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            #include &amp;lt;stdio.h&amp;gt;
-#include &amp;lt;stdlib.h&amp;gt;
-#include &amp;lt;malloc.h&amp;gt;
-
-struct Arr
-{
-	int *pBase;	// 存储的是数组第一个元素的地址
-	int len;	// 数组所能容纳的最大元素的地址
-	int cnt;	// 当前数组有效元素的个数
-};
-
-void init_arr(struct Arr * pArr, int length);	
-bool append_arr(struct Arr * pArr, int val);
-bool insert_arr(struct Arr * pArr, int pos, int val);	// pos的值从1开始
-bool delete_arr(struct Arr * pArr, int pos);
-int get();
-bool is_empty(struct Arr * pArr);
-bool is_full(struct Arr * pArr);
-void sort_arr(struct Arr * pArr);
-void show_arr(struct Arr * pArr);
-void inversion_arr();
-
-
-int main()
-{
-	struct Arr arr;
-	init_arr(&amp;amp;arr, 9);
-	append_arr(&amp;amp;arr, 1);
-	append_arr(&amp;amp;arr, 2);
-	append_arr(&amp;amp;arr, 9);
-	append_arr(&amp;amp;arr, 4);
-	append_arr(&amp;amp;arr, 5);
-	append_arr(&amp;amp;arr, 6);
-	//append_arr(&amp;amp;arr, 7);
-	//append_arr(&amp;amp;arr, 8);
-	//insert_arr(&amp;amp;arr, 0, 88);
-
-	//delete_arr(&amp;amp;arr, 2);
-	sort_arr(&amp;amp;arr);
-	show_arr(&amp;amp;arr);
-
-
-
-
-	printf(&amp;quot;\n\n\n\n&amp;quot;);
-	return 0;
-}
-
-
-// @brief 数组初始化
-// @param 结构体的地址
-// @param 数组的长度
-void init_arr(struct Arr * pArr, int length)
-{
-	pArr-&amp;gt;pBase = (int *)malloc(sizeof(int) * length);
-	if(pArr-&amp;gt;pBase == NULL)
-	{
-		printf(&amp;quot;动态内存分配失败\n&amp;quot;);
-		exit(-1);	// 终止整个程序
-	}
-	
-	printf(&amp;quot;动态内存分配成功!\n&amp;quot;);
-	pArr-&amp;gt;len = length;
-	pArr-&amp;gt;cnt = 0;
-
-	return ;
-}
-
-
-// @brief 判度是否已满
-//
-//
-bool is_full(struct Arr * pArr)
-{
-	return pArr-&amp;gt;cnt == pArr-&amp;gt;len ? true : false;
-}
-
-// @brief 追加元素
-//
-//
-bool append_arr(struct Arr * pArr, int val)
-{
-	// 数组为满的判断
-	if(is_full(pArr))
-	{
-		printf(&amp;quot;数组已满!\n&amp;quot;);
-		exit(-1);
-	}
-
-	// 不满时追加 
-	pArr-&amp;gt;pBase[pArr-&amp;gt;cnt] = val;
-	(pArr-&amp;gt;cnt)++;
-	return true;
-}
-
-
-// @brief 插入元素
-//
-//
-bool insert_arr(struct Arr * pArr, int pos, int val)
-{
-	// 判断下标合法性
-	if(pos &amp;lt; 0)
-	{
-		printf(&amp;quot;插入元素的下标非法!\n&amp;quot;);
-		exit(-1);
-	}
-
-	// 先对元素进行移动,后面的元素先移动
-	(pArr-&amp;gt;cnt)++;
-	for(int i = pArr-&amp;gt;cnt - 1; i &amp;gt;= pos; i--)
-	{
-		pArr-&amp;gt;pBase[i] = pArr-&amp;gt;pBase[i - 1];
-	}
-	// 元素赋值
-	pArr-&amp;gt;pBase[pos] = val;
-
-	return true;
-}
-
-
-// @brief 删除特定位置的数值
-//
-//
-bool delete_arr(struct Arr * pArr, int pos)
-{
-	if(pos &amp;lt; 0)
-	{
-		printf(&amp;quot;删除的元素下标有误!\n&amp;quot;);
-		exit(-1);
-	}
-
-	for(int i = pos; i &amp;lt; pArr-&amp;gt;cnt; i++)
-	{
-		pArr-&amp;gt;pBase[i] = pArr-&amp;gt;pBase[i + 1];
-	}
-	(pArr-&amp;gt;cnt)--;
-
-	return true;
-}
-
-
-
-
-// @brief 判断数组是否为空
-//
-//
-bool is_empty(struct Arr * pArr)
-{
-	return pArr-&amp;gt;cnt == 0 ? true : false;	// 使用三元运算符
-}
-
-
-// @brief 对数组排序
-//
-//
-void sort_arr(struct Arr * pArr)
-{
-	int temp;
-	for(int i = 0; i &amp;lt; pArr-&amp;gt;cnt - 1; i++)
-	{
-		for(int j = 0; j &amp;lt; pArr-&amp;gt;cnt - i - 1; j++)
-		{
-			if(pArr-&amp;gt;pBase[j] &amp;gt; pArr-&amp;gt;pBase[j + 1])
-			{
-				temp = pArr-&amp;gt;pBase[j];
-				pArr-&amp;gt;pBase[j] = pArr-&amp;gt;pBase[j + 1];
-				pArr-&amp;gt;pBase[j + 1] = temp;
-			}
-		}
-	}
-}
-
-
-
-
-// @brief 输出数组的元素
-//
-//
-void show_arr(struct Arr * pArr)
-{
-	if(is_empty(pArr) == true)
-	{
-		printf(&amp;quot;数组为空!\n&amp;quot;);
-		exit(-1);
-	}
-
-	for(int i = 0; i &amp;lt; pArr-&amp;gt;cnt; i++)
-	{
-		printf(&amp;quot;%d &amp;quot;, pArr-&amp;gt;pBase[i]);
-	}
-}
-
-
-
-
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://liuup.github.io/post/2lian-xu-cun-chu-shu-zu-de-suan-fa-yan-shi">Read More ~</a>
-                            </div>
+                <div class="post-abstract">
+                  
                 </div>
+              </div>
+              
             </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://liuup.github.io/post/1mallochan-shu-dong-tai-fen-pei-nei-cun-gai-shu">
-                        1.malloc()函数动态分配内存概述
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2020-01-09</time>
-                    
-                        <a href="https://liuup.github.io/tag/QlEooH6b7" class="post-tag i-tag
-                            i-tag-">
-            #C数据结构
-        </a>
-                        
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://liuup.github.io/post/1mallochan-shu-dong-tai-fen-pei-nei-cun-gai-shu">
+                  <h2 class="post-title">1.malloc()函数动态分配内存概述</h2>
+                </a>
+                <div class="post-date">
+                  2020-01-09
                 </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            malloc()默认返回值是void *
-创建并释放
-#include &amp;lt;stdio.h&amp;gt;
-#include &amp;lt;stdlib.h&amp;gt;
-#include &amp;lt;malloc.h&amp;gt;
-
-int main()
-{
-	// molloc()动态内存
-
-	int len;
-	printf(&amp;quot;please input the len:&amp;quot;);
-	scanf(&amp;quot;%d&amp;quot;, &amp;amp;len);
-
-	int *pArr = (int *)malloc(sizeof(int) * len);	// pArr是地址
-
-	*pArr = 10;	// 类似于pArr[0] = 10
-	pArr[1] = 2;
-	pArr[2] = 3;
-
-	printf(&amp;quot;%d\n&amp;quot;, *(pArr++));	// pArr[0]
-	printf(&amp;quot;%d\n&amp;quot;, *(pArr++));
-	printf(&amp;quot;%d\n&amp;quot;, *(pArr++));
-    
-    free(pArr); // 把pArr代表的动态分配的内存释放
-    
-    
-	return 0;
-}
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://liuup.github.io/post/1mallochan-shu-dong-tai-fen-pei-nei-cun-gai-shu">Read More ~</a>
-                            </div>
+                <div class="post-abstract">
+                  
                 </div>
+              </div>
+              
             </article>
-            
-                <!-- 翻页 -->
-                
-    <div class="pagination-container">
-        
-            <a href="https://liuup.github.io/" class="page-btn btn">上一页</a>
-            
-                
-                    <a href="https://liuup.github.io/page/3/" class="page-btn btn">下一页</a>
-                    
-    </div>
-    
-                </div>
-                <!--  -->
-                <div class="main-container-middle"></div>
-                <!--  -->
-                <div id="sidebar" class="main-container-right">
+          
 
-                    <!-- 个人信息 -->
-                    
-    <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://liuup.github.io//images/avatar.png?v=1578574004049)">
-        </div>
-        <h1 class="id_card-title">
-            UP
-        </h1>
-        <h2 class="id_card-description">
-            UP&#39;s Blog
-        </h2>
-        <!--  -->
-        <div class="id_card-sns">
-            <!-- github -->
-            
-                <a href="https://github.com/liuup" target="_blank" rel="noopener noreferrer"><i
-                class="fa fa-github"></i></a>
-                
-                    <!-- twitter -->
-                    
-                            <!-- weibo -->
-                            
-                                <a href="https://weibo.com/u/1627921701" target="_blank" rel="noopener noreferrer"><i
-                class="fa fa-weibo"></i></a>
-                                
-                                    <!-- facebook -->
-                                    
-
-        </div>
-    </div>
-    
-
-                        <!-- 公告栏 -->
-                        
-    <div class="notice-card i-card ">
-        <div class="notice-title i-card-title">公告</div>
-        <div class="notice-content">
-            This is UP...
-        </div>
-    </div>
-    
-
-                </div>
-            </div>
-
-
-
-            <div class="site-footer">
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
-  <a class="rss" href="https://liuup.github.io//atom.xml" target="_blank">RSS</a>
+          <div class="pagination-container">
+  
+    <a href="https://liuup.github.io/" class="prev"><i class="icon-arrow-ios-back-outline"></i> 上一页</a>
+  
+  
+    <a href="https://liuup.github.io/page/3/" class="next">下一页 <i class="icon-arrow-ios-forward-outline"></i></a>
+  
 </div>
 
-<script>
-  hljs.initHighlightingOnLoad()
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
 </script>
 
-    </div>
-    <script>
-        $('#sidebar').stickySidebar({
-            topSpacing: 80,
-            // bottomSpacing: 60
-        });
-    </script>
-</body>
 
+
+
+
+
+  </body>
 </html>

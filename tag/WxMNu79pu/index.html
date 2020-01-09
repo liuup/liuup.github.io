@@ -1,359 +1,176 @@
+<!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8" >
 
-<head>
-    <meta charset="utf-8" />
-<meta name="description" content="" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>
-    vscode | UP
-</title>
-<link rel="shortcut icon" href="https://liuup.github.io//favicon.ico?v=1578574004049">
-<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
-<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<title>vscode | UP</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://liuup.github.io//favicon.ico?v=1578574127898">
 <link rel="stylesheet" href="https://liuup.github.io//styles/main.css">
-<!-- js -->
-<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://liuup.github.io//media/js/jquery.sticky-sidebar.min.js"></script>
-<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
-</head>
 
-<body>
-    <div class="main">
-        <div class="header">
-    <div class="nav">
-        <div class="logo">
-            <a href="https://liuup.github.io/">
-                <img class="avatar" src="https://liuup.github.io//images/avatar.png?v=1578574004049" alt="">
-            </a>
-            <div class="site-title">
-                <h1>
-                    UP
-                </h1>
-            </div>
-        </div>
-        <span class="menu-btn fa fa-align-justify"></span>
-        <div class="menu-container">
-            <ul>
-                
-                    
-                            <li>
-                                <a href="/" class="menu">
-                                    首页
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/archives" class="menu">
-                                    归档
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/tags" class="menu">
-                                    标签
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/post/about" class="menu">
-                                    关于
-                                </a>
-                            </li>
-                            
-                                
-            </ul>
-        </div>
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="UP&#39;s Blog">
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://liuup.github.io/">
+        <img src="https://liuup.github.io//images/avatar.png?v=1578574127898" class="site-logo">
+        <h1 class="site-title">UP</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
     </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/liuup" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://weibo.com/u/1627921701" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      UP's Blog
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://liuup.github.io//atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
 </div>
 
-<script>
-    $(document).ready(function() {
-        $(".menu-btn").click(function() {
-            $(".menu-container").slideToggle();
-        });
-        $(window).resize(function() {
 
-            if (window.matchMedia('(min-width: 960px)').matches) {
-                $(".menu-container").css('display', 'block')
-            } else {
-                $(".menu-container").css('display', 'none')
-            }
-
-        });
-    });
-</script>
-
-            <div id="main-content" class="post-container main-container">
-                <div id="content" class="main-container-left">
-                    
-    <div class="i-card">
-        <b>标签：#
-        vscode</b>
-    </div>
-    
-        
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://liuup.github.io/post/tasksjson">
-                        tasks.json
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2020-01-09</time>
-                    
-                        <a href="https://liuup.github.io/tag/ivOVAibdN" class="post-tag i-tag
-                            i-tag-other_3">
-            #Config
-        </a>
-                        
-                        <a href="https://liuup.github.io/tag/WxMNu79pu" class="post-tag i-tag
-                            i-tag-other_1">
-            #vscode
-        </a>
-                        
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <h2 class="current-tag">标签: vscode</h2>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://liuup.github.io/post/tasksjson">
+                  <h2 class="post-title">tasks.json</h2>
+                </a>
+                <div class="post-date">
+                  2020-01-09
                 </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            tasks.json
-{
-// 有关 tasks.json 格式的文档，请参见
-    // https://go.microsoft.com/fwlink/?LinkId=733558
-    &amp;quot;version&amp;quot;: &amp;quot;2.0.0&amp;quot;,
-    &amp;quot;tasks&amp;quot;: [
-        {
-            &amp;quot;type&amp;quot;: &amp;quot;shell&amp;quot;,
-            &amp;quot;label&amp;quot;: &amp;quot;cpp build active file&amp;quot;,
-            &amp;quot;command&amp;quot;: &amp;quot;/usr/bin/cpp&amp;quot;,
-            &amp;quot;args&amp;quot;: [
-                &amp;quot;-g&amp;quot;,
-                &amp;quot;${file}&amp;quot;,
-                &amp;quot;-o&amp;quot;,
-                &amp;quot;${fileDirname}/${fileBasenameNoExtension}&amp;quot;
-            ],
-            &amp;quot;options&amp;quot;: {
-                &amp;quot;cwd&amp;quot;: &amp;quot;/usr/bin&amp;quot;
-            },
-            &amp;quot;problemMatcher&amp;quot;: [
-                &amp;quot;$gcc&amp;quot;
-            ],
-            &amp;quot;group&amp;quot;: &amp;quot;build&amp;quot;
-        },
-        {
-            &amp;quot;type&amp;quot;: &amp;quot;shell&amp;quot;,
-            &amp;quot;label&amp;quot;: &amp;quot;g++ build active file&amp;quot;,
-            &amp;quot;command&amp;quot;: &amp;quot;/usr/bin/g++&amp;quot;,
-            &amp;quot;args&amp;quot;: [
-                &amp;quot;-g&amp;quot;,
-                &amp;quot;${file}&amp;quot;,
-                &amp;quot;-o&amp;quot;,
-                &amp;quot;${fileDirname}/${fileBasenameNoExtension}&amp;quot;
-            ],
-            &amp;quot;options&amp;quot;: {
-                &amp;quot;cwd&amp;quot;: &amp;quot;/usr/bin&amp;quot;
-            },
-            &amp;quot;problemMatcher&amp;quot;: [
-                &amp;quot;$gcc&amp;quot;
-            ],
-            &amp;quot;group&amp;quot;: &amp;quot;build&amp;quot;
-        }
-    ]
-}
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://liuup.github.io/post/tasksjson">Read More ~</a>
-                            </div>
+                <div class="post-abstract">
+                  
                 </div>
+              </div>
+              
             </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://liuup.github.io/post/settingsjson">
-                        settings.json
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2020-01-09</time>
-                    
-                        <a href="https://liuup.github.io/tag/ivOVAibdN" class="post-tag i-tag
-                            i-tag-info">
-            #Config
-        </a>
-                        
-                        <a href="https://liuup.github.io/tag/WxMNu79pu" class="post-tag i-tag
-                            i-tag-error">
-            #vscode
-        </a>
-                        
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://liuup.github.io/post/settingsjson">
+                  <h2 class="post-title">settings.json</h2>
+                </a>
+                <div class="post-date">
+                  2020-01-09
                 </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            settings.json
-{
-    &amp;quot;cmake.configureOnOpen&amp;quot;: true
-}
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://liuup.github.io/post/settingsjson">Read More ~</a>
-                            </div>
+                <div class="post-abstract">
+                  
                 </div>
+              </div>
+              
             </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://liuup.github.io/post/launchjson">
-                        launch.json
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2020-01-09</time>
-                    
-                        <a href="https://liuup.github.io/tag/ivOVAibdN" class="post-tag i-tag
-                            i-tag-other_4">
-            #Config
-        </a>
-                        
-                        <a href="https://liuup.github.io/tag/WxMNu79pu" class="post-tag i-tag
-                            i-tag-error">
-            #vscode
-        </a>
-                        
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://liuup.github.io/post/launchjson">
+                  <h2 class="post-title">launch.json</h2>
+                </a>
+                <div class="post-date">
+                  2020-01-09
                 </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            launch.json
-{
-    // 使用 IntelliSense 了解相关属性。 
-    // 悬停以查看现有属性的描述。
-    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
-    &amp;quot;version&amp;quot;: &amp;quot;0.2.0&amp;quot;,
-    &amp;quot;configurations&amp;quot;: [
-        
-        {
-            &amp;quot;name&amp;quot;: &amp;quot;g++ build and debug active file&amp;quot;,
-            &amp;quot;type&amp;quot;: &amp;quot;cppdbg&amp;quot;,
-            &amp;quot;request&amp;quot;: &amp;quot;launch&amp;quot;,
-            &amp;quot;program&amp;quot;: &amp;quot;${workspaceFolder}/build/main&amp;quot;,
-            &amp;quot;args&amp;quot;: [],
-            &amp;quot;stopAtEntry&amp;quot;: false,
-            &amp;quot;cwd&amp;quot;: &amp;quot;${workspaceFolder}&amp;quot;,
-            &amp;quot;environment&amp;quot;: [],
-            &amp;quot;externalConsole&amp;quot;: true,
-            &amp;quot;MIMode&amp;quot;: &amp;quot;gdb&amp;quot;,
-            &amp;quot;setupCommands&amp;quot;: [
-                {
-                    &amp;quot;description&amp;quot;: &amp;quot;Enable pretty-printing for gdb&amp;quot;,
-                    &amp;quot;text&amp;quot;: &amp;quot;-enable-pretty-printing&amp;quot;,
-                    &amp;quot;ignoreFailures&amp;quot;: true
-                }
-            ],
-            //&amp;quot;preLaunchTask&amp;quot;: &amp;quot;g++ build active file&amp;quot;,
-            //&amp;quot;miDebuggerPath&amp;quot;: &amp;quot;/usr/bin/gdb&amp;quot;
-        }
-    ]
-}
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://liuup.github.io/post/launchjson">Read More ~</a>
-                            </div>
+                <div class="post-abstract">
+                  
                 </div>
+              </div>
+              
             </article>
-            
-                <!-- 翻页 -->
-                
-                </div>
-                <!--  -->
-                <div class="main-container-middle"></div>
-                <!--  -->
-                <div id="sidebar" class="main-container-right">
+          
 
-                    <!-- 个人信息 -->
-                    
-    <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://liuup.github.io//images/avatar.png?v=1578574004049)">
-        </div>
-        <h1 class="id_card-title">
-            UP
-        </h1>
-        <h2 class="id_card-description">
-            UP&#39;s Blog
-        </h2>
-        <!--  -->
-        <div class="id_card-sns">
-            <!-- github -->
-            
-                <a href="https://github.com/liuup" target="_blank" rel="noopener noreferrer"><i
-                class="fa fa-github"></i></a>
-                
-                    <!-- twitter -->
-                    
-                            <!-- weibo -->
-                            
-                                <a href="https://weibo.com/u/1627921701" target="_blank" rel="noopener noreferrer"><i
-                class="fa fa-weibo"></i></a>
-                                
-                                    <!-- facebook -->
-                                    
-
-        </div>
-    </div>
-    
-
-                        <!-- 公告栏 -->
-                        
-    <div class="notice-card i-card ">
-        <div class="notice-title i-card-title">公告</div>
-        <div class="notice-content">
-            This is UP...
-        </div>
-    </div>
-    
-
-                </div>
-            </div>
-
-
-
-            <div class="site-footer">
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
-  <a class="rss" href="https://liuup.github.io//atom.xml" target="_blank">RSS</a>
+          <div class="pagination-container">
+  
+  
 </div>
 
-<script>
-  hljs.initHighlightingOnLoad()
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
 </script>
 
-    </div>
-    <script>
-        $('#sidebar').stickySidebar({
-            topSpacing: 80,
-            // bottomSpacing: 60
-        });
-    </script>
-</body>
 
+
+
+
+
+  </body>
 </html>

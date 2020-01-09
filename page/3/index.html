@@ -1,394 +1,236 @@
+<!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8" >
 
-<head>
-    <meta charset="utf-8" />
-<meta name="description" content="" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>
-    UP
-</title>
-<link rel="shortcut icon" href="https://liuup.github.io//favicon.ico?v=1578574004049">
-<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
-<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<title>UP</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://liuup.github.io//favicon.ico?v=1578574127898">
 <link rel="stylesheet" href="https://liuup.github.io//styles/main.css">
-<!-- js -->
-<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://liuup.github.io//media/js/jquery.sticky-sidebar.min.js"></script>
-<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
-</head>
 
-<body>
-    <div class="main">
-        <div class="header">
-    <div class="nav">
-        <div class="logo">
-            <a href="https://liuup.github.io/">
-                <img class="avatar" src="https://liuup.github.io//images/avatar.png?v=1578574004049" alt="">
-            </a>
-            <div class="site-title">
-                <h1>
-                    UP
-                </h1>
-            </div>
-        </div>
-        <span class="menu-btn fa fa-align-justify"></span>
-        <div class="menu-container">
-            <ul>
-                
-                    
-                            <li>
-                                <a href="/" class="menu">
-                                    首页
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/archives" class="menu">
-                                    归档
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/tags" class="menu">
-                                    标签
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/post/about" class="menu">
-                                    关于
-                                </a>
-                            </li>
-                            
-                                
-            </ul>
-        </div>
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="UP&#39;s Blog">
+    
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://liuup.github.io/">
+        <img src="https://liuup.github.io//images/avatar.png?v=1578574127898" class="site-logo">
+        <h1 class="site-title">UP</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
     </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/liuup" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://weibo.com/u/1627921701" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      UP's Blog
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://liuup.github.io//atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
 </div>
 
-<script>
-    $(document).ready(function() {
-        $(".menu-btn").click(function() {
-            $(".menu-container").slideToggle();
-        });
-        $(window).resize(function() {
 
-            if (window.matchMedia('(min-width: 960px)').matches) {
-                $(".menu-container").css('display', 'block')
-            } else {
-                $(".menu-container").css('display', 'none')
-            }
-
-        });
-    });
-</script>
-
-            <div id="main-content" class="post-container main-container">
-                <div id="content" class="main-container-left">
-                    
-        
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://liuup.github.io/post/c-huo-qu-cpu-zui-da-xian-cheng">
-                        C++  获取CPU最大线程
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2020-01-09</time>
-                    
-                        <a href="https://liuup.github.io/tag/omjs2khAU" class="post-tag i-tag
-                            i-tag-other_4">
-            #C++
-        </a>
-                        
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://liuup.github.io/post/c-huo-qu-cpu-zui-da-xian-cheng">
+                  <h2 class="post-title">C++  获取CPU最大线程</h2>
+                </a>
+                <div class="post-date">
+                  2020-01-09
                 </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            #include &amp;lt;thread&amp;gt;
-
-cout &amp;lt;&amp;lt; std::thread::hardware_concurrency() &amp;lt;&amp;lt; endl;
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://liuup.github.io/post/c-huo-qu-cpu-zui-da-xian-cheng">Read More ~</a>
-                            </div>
+                <div class="post-abstract">
+                  
                 </div>
+              </div>
+              
             </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://liuup.github.io/post/c-int-lei-xing-zhuan-string">
-                        C++ int类型转string
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2020-01-09</time>
-                    
-                        <a href="https://liuup.github.io/tag/omjs2khAU" class="post-tag i-tag
-                            i-tag-other_4">
-            #C++
-        </a>
-                        
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://liuup.github.io/post/c-int-lei-xing-zhuan-string">
+                  <h2 class="post-title">C++ int类型转string</h2>
+                </a>
+                <div class="post-date">
+                  2020-01-09
                 </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            好像c++和c的强制类型转换不太一样，在此记录一下
-#include &amp;lt;string.h&amp;gt;
-
-string to_string (int val);
-string to_string (long val);
-string to_string (long long val);
-string to_string (unsigned val);
-string to_string (unsigned long val);
-string to_string (unsigned long long val);
-string to_string (float val);
-string to_string (double val);
-string to_string (long double val);
-
-Reference
-
-C++数值类型与string的相互转换
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://liuup.github.io/post/c-int-lei-xing-zhuan-string">Read More ~</a>
-                            </div>
+                <div class="post-abstract">
+                  
                 </div>
+              </div>
+              
             </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://liuup.github.io/post/static_cast-and-unit-explanation">
-                        static_cast and unit explanation
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2020-01-09</time>
-                    
-                        <a href="https://liuup.github.io/tag/omjs2khAU" class="post-tag i-tag
-                            i-tag-">
-            #C++
-        </a>
-                        
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://liuup.github.io/post/static_cast-and-unit-explanation">
+                  <h2 class="post-title">static_cast and unit explanation</h2>
+                </a>
+                <div class="post-date">
+                  2020-01-09
                 </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            static_cast
-一种强制类型转换
-uint
-定义在types.h中，表示无符号整型
-typedef unsigned int uint;
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://liuup.github.io/post/static_cast-and-unit-explanation">Read More ~</a>
-                            </div>
+                <div class="post-abstract">
+                  
                 </div>
+              </div>
+              
             </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://liuup.github.io/post/mou-pao-pai-xu-dai-ma-yan-shi">
-                        冒泡排序代码演示
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2020-01-09</time>
-                    
-                        <a href="https://liuup.github.io/tag/Pi7XrGTyz" class="post-tag i-tag
-                            i-tag-">
-            #C
-        </a>
-                        
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://liuup.github.io/post/mou-pao-pai-xu-dai-ma-yan-shi">
+                  <h2 class="post-title">冒泡排序代码演示</h2>
+                </a>
+                <div class="post-date">
+                  2020-01-09
                 </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                    <div class="post-content-abstract">
-                                        <p>C语言冒泡排序算法...</p>
+                <div class="post-abstract">
+                  <p>C语言冒泡排序算法...</p>
 
-                                    </div>
-                                    
-                                            <a class="btn btn-text" href="https://liuup.github.io/post/mou-pao-pai-xu-dai-ma-yan-shi">Read More ~</a>
-                            </div>
                 </div>
+              </div>
+              
             </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://liuup.github.io/post/mardown-ce-shi-wen-zhang">
-                        Mardown测试文章
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2020-01-09</time>
-                    
-                        <a href="https://liuup.github.io/tag/-Tsg7pvY6" class="post-tag i-tag
-                            i-tag-error">
-            #Markdown
-        </a>
-                        
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://liuup.github.io/post/mardown-ce-shi-wen-zhang">
+                  <h2 class="post-title">Mardown测试文章</h2>
+                </a>
+                <div class="post-date">
+                  2020-01-09
                 </div>
-                <div class="post-article">
-                    
-                        <a href="https://liuup.github.io/post/mardown-ce-shi-wen-zhang" class="post-feature-image" style="background-image:url(https://cn.bing.com/th?id=OIP.yh6LRHy_BrM0JJWV0DpLgQHaEj&amp;pid=Api&amp;rs=1) ">
-                        </a>
-                        
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            一级标题
-二级标题
-三级标题
-四级标题
-五级标题
-
-引用
-
-代码块
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://liuup.github.io/post/mardown-ce-shi-wen-zhang">Read More ~</a>
-                            </div>
+                <div class="post-abstract">
+                  
                 </div>
+              </div>
+              
+                <a class="right" href="https://liuup.github.io/post/mardown-ce-shi-wen-zhang">
+                  <div class="feature-container" style="background-image: url('https://cn.bing.com/th?id=OIP.yh6LRHy_BrM0JJWV0DpLgQHaEj&amp;pid=Api&amp;rs=1')">
+                  </div>
+                </a>
+              
             </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://liuup.github.io/post/hello-gridea">
-                        Hello Gridea
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2018-12-12</time>
-                    
-                        <a href="https://liuup.github.io/tag/OB7-ecDj5" class="post-tag i-tag
-                            i-tag-error">
-            #Gridea
-        </a>
-                        
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://liuup.github.io/post/hello-gridea">
+                  <h2 class="post-title">Hello Gridea</h2>
+                </a>
+                <div class="post-date">
+                  2018-12-12
                 </div>
-                <div class="post-article">
-                    
-                        <a href="https://liuup.github.io/post/hello-gridea" class="post-feature-image" style="background-image:url(https://liuup.github.io//post-images/hello-gridea.jpg) ">
-                        </a>
-                        
-                            <div class="post-content">
-                                
-                                    <div class="post-content-abstract">
-                                        <p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
+                <div class="post-abstract">
+                  <p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
 ✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
 
-                                    </div>
-                                    
-                                            <a class="btn btn-text" href="https://liuup.github.io/post/hello-gridea">Read More ~</a>
-                            </div>
                 </div>
+              </div>
+              
+                <a class="right" href="https://liuup.github.io/post/hello-gridea">
+                  <div class="feature-container" style="background-image: url('https://liuup.github.io//post-images/hello-gridea.jpg')">
+                  </div>
+                </a>
+              
             </article>
-            
-                <!-- 翻页 -->
-                
-    <div class="pagination-container">
-        
-            <a href="https://liuup.github.io/page/2/" class="page-btn btn">上一页</a>
-            
-                
-    </div>
-    
-                </div>
-                <!--  -->
-                <div class="main-container-middle"></div>
-                <!--  -->
-                <div id="sidebar" class="main-container-right">
+          
 
-                    <!-- 个人信息 -->
-                    
-    <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://liuup.github.io//images/avatar.png?v=1578574004049)">
-        </div>
-        <h1 class="id_card-title">
-            UP
-        </h1>
-        <h2 class="id_card-description">
-            UP&#39;s Blog
-        </h2>
-        <!--  -->
-        <div class="id_card-sns">
-            <!-- github -->
-            
-                <a href="https://github.com/liuup" target="_blank" rel="noopener noreferrer"><i
-                class="fa fa-github"></i></a>
-                
-                    <!-- twitter -->
-                    
-                            <!-- weibo -->
-                            
-                                <a href="https://weibo.com/u/1627921701" target="_blank" rel="noopener noreferrer"><i
-                class="fa fa-weibo"></i></a>
-                                
-                                    <!-- facebook -->
-                                    
-
-        </div>
-    </div>
-    
-
-                        <!-- 公告栏 -->
-                        
-    <div class="notice-card i-card ">
-        <div class="notice-title i-card-title">公告</div>
-        <div class="notice-content">
-            This is UP...
-        </div>
-    </div>
-    
-
-                </div>
-            </div>
-
-
-
-            <div class="site-footer">
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
-  <a class="rss" href="https://liuup.github.io//atom.xml" target="_blank">RSS</a>
+          <div class="pagination-container">
+  
+    <a href="https://liuup.github.io/page/2/" class="prev"><i class="icon-arrow-ios-back-outline"></i> 上一页</a>
+  
+  
 </div>
 
-<script>
-  hljs.initHighlightingOnLoad()
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
 </script>
 
-    </div>
-    <script>
-        $('#sidebar').stickySidebar({
-            topSpacing: 80,
-            // bottomSpacing: 60
-        });
-    </script>
-</body>
 
+
+
+
+
+  </body>
 </html>
