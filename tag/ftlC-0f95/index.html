@@ -1,207 +1,474 @@
-<!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
-    UP
+    Yolov3 | UP
 </title>
-<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
-<meta http-equiv="x-dns-prefetch-control" content="on">
-<link rel="dns-prefetch" href="https://liuup.github.io/">
-<link rel="dns-prefetch" href="https://cdn.bootcss.com">
-<meta name="author" content="UP">
-<meta name="description" content="UP&#39;s Blog">
-<meta name="keywords" content="">
-<link rel="stylesheet" href="https://liuup.github.io//media/css/style.min.css" />
-<link rel="stylesheet" href="https://liuup.github.io//styles/main.css" />
-<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
-<script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/1.7.1/jquery.min.js"></script>
-<script src="https://liuup.github.io//media/script/tocbot.min.js"></script>
-<script src="https://liuup.github.io//media/script/script.min.js"></script>
-<script src="https://liuup.github.io//media/script/icon.min.js"></script>
-<link rel="stylesheet" href="https://liuup.github.io//media/live2d/css/live2d.css" />
-<script src="https://cdn.bootcss.com/highlight.js/9.13.1/highlight.min.js"></script>
-<link href="https://cdn.bootcss.com/highlight.js/9.13.1/styles/atelier-estuary-dark.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/katex.min.css">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/katex.min.js"></script>
-<script>
-    (function() {
-        var bp = document.createElement('script');
-        var curProtocol = window.location.protocol.split(':')[0];
-        if (curProtocol === 'https') {
-            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-        } else {
-            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-        }
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(bp, s);
-    })();
-</script>
+<link rel="shortcut icon" href="https://liuup.github.io//favicon.ico?v=1578574004049">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://liuup.github.io//styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://liuup.github.io//media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+
 
 </head>
+
 <body>
-    <div class="wrapper">
-        <header>
-    <nav class="navbar">
-        <div class="container">
-            <div class="navbar-header header-logo">
-                <a href="https://liuup.github.io/">
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://liuup.github.io/">
+                <img class="avatar" src="https://liuup.github.io//images/avatar.png?v=1578574004049" alt="">
+            </a>
+            <div class="site-title">
+                <h1>
                     UP
-                </a>
-            </div>
-            <div class="menu navbar-right">
-                
-                <a class="menu-item" href="/">
-                    首页
-                </a>
-                
-                <a class="menu-item" href="/archives">
-                    归档
-                </a>
-                
-                <a class="menu-item" href="/tags">
-                    标签
-                </a>
-                
-                <a class="menu-item" href="/post/about">
-                    关于
-                </a>
-                
-                <input id="switch_default" type="checkbox" class="switch_default">
-                <label for="switch_default" class="toggleBtn"></label>
-            </div>
-
-        </div>
-    </nav>
-
-    
-    <nav class="navbar-mobile" id="nav-mobile">
-        <div class="container">
-            <div class="navbar-header">
-                <div>
-                    <a href="https://liuup.github.io/">
-                        UP
-                    </a>
-                    <!--en-->
-                    <a id="mobile-toggle-theme-en" class="a en">&nbsp;Dark</a>
-                    <!--zh-->
-                    <a id="mobile-toggle-theme-zh" class="a zh">&nbsp;\u6697\u9ED1</a>
-                </div>
-                <!--en-->
-                <div class="menu-toggle" id="menu-toggle-en" onclick="mobileBtn()">&#9776; Menu</div>
-                <!--zh-->
-                <div class="menu-toggle" id="menu-toggle-zh" onclick="mobileBtn()">&#9776; è�œå�•</div>
-
-            </div>
-            <div class="menu" id="mobile-menu">
-                
-                <a class="menu-item" href="/">
-                    首页
-                </a>
-                
-                <a class="menu-item" href="/archives">
-                    归档
-                </a>
-                
-                <a class="menu-item" href="/tags">
-                    标签
-                </a>
-                
-                <a class="menu-item" href="/post/about">
-                    关于
-                </a>
-                
+                </h1>
             </div>
         </div>
-    </nav>
-</header>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/post/about" class="menu">
+                                    关于
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
+    </div>
+</div>
+
 <script>
-    var mobileBtn = function f() {
-        var toggleMenu = document.getElementById("menu-toggle-en");
-        var toggleMenu_zh = document.getElementById("menu-toggle-zh");
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
 
-        var mobileMenu = document.getElementById("mobile-menu");
-        if (toggleMenu.display != "none") {
-            if (toggleMenu.classList.contains("active")) {
-                toggleMenu.classList.remove("active")
-                mobileMenu.classList.remove("active")
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
             } else {
-                toggleMenu.classList.add("active")
-                mobileMenu.classList.add("active")
+                $(".menu-container").css('display', 'none')
             }
-        } else if (toggleMenu_zh.display != "none") {
-            if (toggleMenu_zh.classList.contains("active")) {
-                toggleMenu_zh.classList.remove("active")
-                mobileMenu.classList.remove("active")
-            } else {
-                toggleMenu_zh.classList.add("active")
-                mobileMenu.classList.add("active")
-            }
-        }
 
-    }
+        });
+    });
 </script>
-        <div class="main">
-            <div class="container">
-                <div class="post-wrap archive">
-                    
-                    
-                    <h3>
-                        2020
-                    </h3>
-                    
-                    
 
-                    <article class="archive-item">
-                        <a class="archive-item-link" href="https://liuup.github.io/post/yolov3-tiny-shi-xian-zhuang-jia-ban-shi-bie">
-                            YOLOv3-tiny实现装甲板识别
-                        </a>
-                        <span class="archive-item-date">2020-01-09 </span>
-                    </article>
+            <div id="main-content" class="post-container main-container">
+                <div id="content" class="main-container-left">
                     
+    <div class="i-card">
+        <b>标签：#
+        Yolov3</b>
+    </div>
+    
+        
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://liuup.github.io/post/yolov3-tiny-shi-xian-zhuang-jia-ban-shi-bie">
+                        YOLOv3-tiny实现装甲板识别
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2020-01-09</time>
                     
-                    
+                        <a href="https://liuup.github.io/tag/PoSVTjgFI" class="post-tag i-tag
+                            i-tag-other_2">
+            #深度学习乱七八糟
+        </a>
+                        
+                        <a href="https://liuup.github.io/tag/ftlC-0f95" class="post-tag i-tag
+                            i-tag-other_4">
+            #Yolov3
+        </a>
+                        
                 </div>
-            </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            流程
+
+准备照片,分为训练集和验证集
+使用labelImg工具,将目标圈出来,贴好标签,生成XML文件
+使用createID.py生成训练集和验证集的图片名称列表trainImageId.txt和valitatedImageId.txt
+使用trans.py生成训练集和验证集的完整路径列表并完成标签XML文件到txt文件的转换
+修改配置文件,开始训练
+
+YOLOv3的安装
+按照官网的教程来就行,必要时可以借助一下翻译
+Reference
+
+darknet offical
+
+YOLOv3的测试及注意事项
+
+如果想要使用GPU cuDNN opencv需要在编译的时候修改Makefile.改为:
+
+GPU=1
+CUDNN=1
+OPENCV=1
+
+
+demo测试代码
+
+
+见官网
+
+VOC数据集准备
+一. 准备照片
+想要使用YOLOv3实现装甲板识别,首先需要用自己的数据去训练网络,大概也需要几百张吧
+步骤: 在darknet文件夹中创建4个文件夹:trainImage,valitateImage, trainImageXML, valitateImageXML,分别存放第二步中的训练集图片,验证集图片,训练集xml标签和验证集xml标签.将照片放入文件夹中,之后准备做标签.
+注意: 生成的xml文件中包含文件位置信息,所以一定要准备好图片,放入文件夹后,再进行标注
+二. 标注工具LabeImg安装
+没必要按照CSDN的步骤又是降级又是去官网找pip包之类的
+
+先去labeImg - github下载软件包
+安装py3qt5
+
+sudo pip install sip
+sudo apt-get install pyqt5-dev-tools
+sudo apt-get install python3-pyqt5
+make qt5py3
+
+或者按照github官方教程来就行,我试了试,第二步可能会出现找不到文件的错误,不过还是在此列出
+sudo apt-get install pyqt5-dev-tools
+sudo pip3 install -r requirements/requirements-linux-python3.txt
+make qt5py3
+python3 labelImg.py
+python3 labelImg.py [IMAGE_PATH] [PRE-DEFINED CLASS FILE]
+
+
+如果没有错误,就应该能启动打标软件了
+
+三. 对图片做标签,将目标圈出来,保存成xml文件
+
+左边打开文件夹位置,在darknet文件夹里面
+左边选择xm保存位置,应该在darknet里面,
+快捷键
+
+crtl + s 保存
+w 画圈
+a 上一张图片
+d 下一张图片
+
+
+右边可设置自动标签
+
+四. 使用createID.py生成训练集和和验证集的图片名称列表trainImageId.txt和valitateImageId.txt
+在darknet文件夹中新建createID.py,将代码复制进去,之后运行
+cd darknet
+python3 createID.py
+
+# -*- coding: utf-8 -*-
+import os;
+import shutil;
+ 
+def listname(path,idtxtpath):
+    filelist = os.listdir(path);  # 该文件夹下所有的文件（包括文件夹）
+    filelist.sort()
+    f = open(idtxtpath, &#39;w&#39;);
+    for files in filelist:  # 遍历所有文件
+        Olddir = os.path.join(path, files);  # 原来的文件路径
+        if os.path.isdir(Olddir):  # 如果是文件夹则跳过
+            continue;
+        f.write(files);
+        f.write(&#39;\n&#39;);
+    f.close();
+ 
+savepath = os.getcwd()
+imgidtxttrainpath = savepath+&amp;quot;/trainImageId.txt&amp;quot;
+imgidtxtvalpath = savepath + &amp;quot;/validateImageId.txt&amp;quot;
+listname(savepath + &amp;quot;/trainImage&amp;quot;,imgidtxttrainpath)
+listname(savepath + &amp;quot;/validateImage&amp;quot;,imgidtxtvalpath)
+print &amp;quot;trainImageId.txt &amp;amp;&amp;amp; validateImageId.txt have been created!&amp;quot;
+
+警告 进行多次训练,需要删除之前生成的txt文件
+五. 使用trans.py生成训练集和验证集的完整路径列表并完成xml文件到txt文件的转换
+trans.py如下
+import xml.etree.ElementTree as ET
+import pickle
+import string
+import os
+import shutil
+from os import listdir, getcwd
+from os.path import join
+import cv2
+ 
+sets=[(&#39;2012&#39;, &#39;train&#39;)]
+ 
+classes = [&amp;quot;class1&amp;quot;,&amp;quot;class2&amp;quot;,&amp;quot;class3&amp;quot;,&amp;quot;class4&amp;quot;]
+ 
+def convert(size, box):
+    dw = 1./size[0]
+    dh = 1./size[1]
+    x = (box[0] + box[1])/2.0
+    y = (box[2] + box[3])/2.0
+    w = box[1] - box[0]
+    h = box[3] - box[2]
+    x = x*dw
+    w = w*dw
+    y = y*dh
+    h = h*dh
+    return (x,y,w,h)
+ 
+def convert_annotation(image_id,flag,savepath):
+ 
+    if flag == 0:
+        in_file = open(savepath+&#39;/trainImageXML/%s.xml&#39; % (os.path.splitext(image_id)[0]))
+        out_file = open(savepath+&#39;/trainImage/%s.txt&#39; % (os.path.splitext(image_id)[0]), &#39;w&#39;)
+        tree = ET.parse(in_file)
+        root = tree.getroot()
+        size = root.find(&#39;size&#39;)
+ 
+        img = cv2.imread(&#39;./trainImage/&#39;+str(image_id))
+        h = img.shape[0]
+        w = img.shape[1]
+ 
+    elif flag == 1:
+        in_file = open(savepath+&#39;/validateImageXML/%s.xml&#39; % (os.path.splitext(image_id)[0]))
+        out_file = open(savepath+&#39;/validateImage/%s.txt&#39; % (os.path.splitext(image_id)[0]), &#39;w&#39;)
+ 
+        tree = ET.parse(in_file)
+        root = tree.getroot()
+        size = root.find(&#39;size&#39;)
+ 
+        img = cv2.imread(&#39;./validateImage/&#39; + str(image_id))
+        h = img.shape[0]
+        w = img.shape[1]
+ 
+    for obj in root.iter(&#39;object&#39;):
+        difficult = obj.find(&#39;difficult&#39;).text
+        cls = obj.find(&#39;name&#39;).text
+        if cls not in classes or int(difficult) == 1:
+            continue
+        cls_id = classes.index(cls)
+        xmlbox = obj.find(&#39;bndbox&#39;)
+        b = (float(xmlbox.find(&#39;xmin&#39;).text), float(xmlbox.find(&#39;xmax&#39;).text), float(xmlbox.find(&#39;ymin&#39;).text), float(xmlbox.find(&#39;ymax&#39;).text))
+        bb = convert((w,h), b)
+        out_file.write(str(cls_id) + &amp;quot; &amp;quot; + &amp;quot; &amp;quot;.join([str(a) for a in bb]) + &#39;\n&#39;)
+ 
+wd = getcwd()
+ 
+for year, image_set in sets:
+    savepath = os.getcwd();
+    idtxt = savepath + &amp;quot;/validateImageId.txt&amp;quot;;
+    pathtxt = savepath + &amp;quot;/validateImagePath.txt&amp;quot;;
+    image_ids = open(idtxt).read().strip().split()
+    list_file = open(pathtxt, &#39;w&#39;)
+    s = &#39;\xef\xbb\xbf&#39;
+    for image_id in image_ids:
+        nPos = image_id.find(s)
+        if nPos &amp;gt;= 0:
+            image_id = image_id[3:]
+        list_file.write(&#39;%s/validateImage/%s\n&#39; % (wd, image_id))
+        print(image_id)
+        convert_annotation(image_id, 1, savepath)
+    list_file.close()
+ 
+    idtxt = savepath + &amp;quot;/trainImageId.txt&amp;quot;;
+    pathtxt = savepath + &amp;quot;/trainImagePath.txt&amp;quot; ;
+    image_ids = open(idtxt).read().strip().split()
+    list_file = open(pathtxt, &#39;w&#39;)
+    s = &#39;\xef\xbb\xbf&#39;
+    for image_id in image_ids:
+        nPos = image_id.find(s)
+        if nPos &amp;gt;= 0:
+           image_id = image_id[3:]
+        list_file.write(&#39;%s/trainImage/%s\n&#39;%(wd,image_id))
+        print(image_id)
+        convert_annotation(image_id,0,savepath)
+    list_file.close()
+
+[注意]
+
+使用自己的分类,需要修改代码开头的classes = [&amp;quot;class1&amp;quot;,&amp;quot;class2&amp;quot;,&amp;quot;class3&amp;quot;,&amp;quot;class4&amp;quot;],改为自己的标签,有几个写几个,比如我有一个分类classes = [&amp;quot;redArmor&amp;quot;]
+如果运行命令报错,很有可能是图片打标打漏了,可通过出错的图片路径,在打标工具中寻找,不必每张都查
+
+六. 修改配置文件
+
+修改darknet/data/voc.names文件
+把文件内容改为自己的分类,例如有三个分类class_1, class_2, class_3,则改为:
+
+class_1
+class_2
+class_3
+
+
+修改darknet/cfg/voc.data文件内容
+
+根据自己的实际情况做以下修改：
+classes = N     //（N为自己的分类数量，如有1类不同的对象，N = 1）
+train = /home/XXX/darknet/trainImagePath.txt        // 训练集完整路径列表
+valid = /home/XXX/darknet/validateImagePath.txt     // 测试集完整路径列表
+names = data/voc.names   // 类别文件
+backup = backup  //（训练结果保存在darknet/backup/目录下）
+
+
+修改darknet/cfg/yolov3-tiny.cfg文件
+
+1. classes = N （N为自己的分类数）
+2. 修改每一个filters为 3 * (classes + 1 + 4)，如有3个分类，则修改 filters = 24
+3. 修改训练的最大迭代次数， max_batches = N,默认50200，太多了，可以改小一点。
+
+将文件开头改为如下:
+# Testing
+# batch=1
+# subdivisions=1
+# Training
+batch=1
+subdivisions=1
+
+tx2的性能不是很高,所以需要将batch和subdivisions都调低
+开始训练
+先确保darknet文件夹中有darknet53.conv.74
+下载:
+cd darknet
+wget https://pjreddie.com/media/files/darknet53.conv.74
+
+训练:
+./darknet detector train cfg/voc.data cfg/yolov3-tiny.cfg darknet53.conv.74
+
+训练完成后结果文件 ‘yolov3-voc_final.weights’ 保存在 backup文件中
+[说明]
+
+Region Avg IOU: 0.326577： 表示在当前subdivision内的图片的平均IOU，代表预测的矩形框和真实目标的交集与并集之比。越大越好
+Class: 0.742537： 标注物体分类的正确率，期望该值趋近于1。
+Obj: 0.033966： 越接近1越好。
+No Obj: 0.000793： 期望该值越来越小，但不为零。
+Avg Recall: 0.12500：是在recall/count中定义的，是当前模型在所有subdivision图片中检测出的正样本与实际的正样本的比值。在本例中，只有八分之一的正样本被正确的检测到。
+count: 8：count后的值是所有的当前subdivision图片（本例中一共8张）中包含正样本的图片的数量。在输出log中的其他行中，可以看到其他subdivision也有的只含有6或7个正样本，说明在subdivision中含有不含检测对象的图片。
+如果出现很多Nan,表示训练不收敛，可以增大banch,或者调小subdivisions。
+
+测试
+./darknet detector test cfg/voc.data cfg/yolov3-tiny.cfg backup/yolov3-voc_final.weights xxx.jpg
+
+修改xxx.jpg为自己的图片
+References
+
+
+
+
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://liuup.github.io/post/yolov3-tiny-shi-xian-zhuang-jia-ban-shi-bie">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+                <!-- 翻页 -->
+                
+                </div>
+                <!--  -->
+                <div class="main-container-middle"></div>
+                <!--  -->
+                <div id="sidebar" class="main-container-right">
+
+                    <!-- 个人信息 -->
+                    
+    <div class="id_card i-card">
+        <div class="id_card-avatar" style="background-image: url(https://liuup.github.io//images/avatar.png?v=1578574004049)">
+        </div>
+        <h1 class="id_card-title">
+            UP
+        </h1>
+        <h2 class="id_card-description">
+            UP&#39;s Blog
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                <a href="https://github.com/liuup" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-github"></i></a>
+                
+                    <!-- twitter -->
+                    
+                            <!-- weibo -->
+                            
+                                <a href="https://weibo.com/u/1627921701" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-weibo"></i></a>
+                                
+                                    <!-- facebook -->
+                                    
+
         </div>
     </div>
     
-        <footer id="footer" class="footer">
 
-            <div class="copyright">
-                <div class="Like">
-                    <div class="tip" data-tooltip="Do you like it?">
-                        <a href="https://github.com/ITJoker233/Gridea-theme-Chic" target="_blank" title=""><svg class="icon" aria-hidden="true"><use xlink:href="#like"></use></svg><b class="like_text" id="star"></b></a>
-                    </div>
-                </div>
-                Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
-                    <b id="hitokoto"></b><br>
-                    <svg viewBox="0 0 1024 1024" style="margin-left: 5px;margin-right: 5px;" version="1.0" width="8" height="8" class="my-face"><path d="M863.597631 513.574282l-271.33965-140.213484L729.783667 81.926656c3.583731-7.87141 7.167462-15.742819 7.167462-25.214109C736.887134 25.226908 708.345275 0.012799 672.635953 0.012799a63.611229 63.611229 0 0 0-39.293053 12.607055c-1.791866 1.59988-3.519736 3.19976-5.311602 3.19976L147.87531 418.925381a55.547834 55.547834 0 0 0-19.646527 47.356448c1.791866 17.278704 14.27093 33.021523 32.125591 42.492813l271.33965 141.749369L292.504463 945.221908c-12.479064 25.214109-1.791866 53.563983 23.166262 69.306802 10.751194 6.335525 23.230258 9.47129 35.709322 9.47129 16.062795 0 32.125591-4.735645 44.604655-15.742819l480.091993-403.297753a55.547834 55.547834 0 0 0 19.646526-47.228458 61.243407 61.243407 0 0 0-32.12559-44.156688z" fill="#93b5cf"></path></svg>
-                    UP &copy;Copyright
-                        <script>
-                            var date = new Date();
-                            document.write("" + date.getFullYear());
-                        </script>
-                        | Powered by <a href="https://coding.net" target="_blank">Coding.net</a>
-            </div>
-            <div id="update" style="display:none;">
-                on
-            </div>
-            
-                <div id="version" style="display:none;">
-                    1.5.0
-                </div>
-                
-        </footer>
-        
-                <script>
-                    hitokoto();
-                    getStar();
-                    hljs.initHighlighting();
-                    console.clear();
-                    CheckVersion();
-                    console.log("\n %c \u26a1Theme:Chic Author's Blog:https://blog.itjoker.cn  Write By ITJoker  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;", );
-                </script>
+                        <!-- 公告栏 -->
+                        
+    <div class="notice-card i-card ">
+        <div class="notice-title i-card-title">公告</div>
+        <div class="notice-content">
+            This is UP...
+        </div>
     </div>
+    
+
+                </div>
+            </div>
+
+
+
+            <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
+  <a class="rss" href="https://liuup.github.io//atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 80,
+            // bottomSpacing: 60
+        });
+    </script>
 </body>
+
 </html>

@@ -1,207 +1,377 @@
-<!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
-    UP
+    TX2 | UP
 </title>
-<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
-<meta http-equiv="x-dns-prefetch-control" content="on">
-<link rel="dns-prefetch" href="https://liuup.github.io/">
-<link rel="dns-prefetch" href="https://cdn.bootcss.com">
-<meta name="author" content="UP">
-<meta name="description" content="UP&#39;s Blog">
-<meta name="keywords" content="">
-<link rel="stylesheet" href="https://liuup.github.io//media/css/style.min.css" />
-<link rel="stylesheet" href="https://liuup.github.io//styles/main.css" />
-<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
-<script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/1.7.1/jquery.min.js"></script>
-<script src="https://liuup.github.io//media/script/tocbot.min.js"></script>
-<script src="https://liuup.github.io//media/script/script.min.js"></script>
-<script src="https://liuup.github.io//media/script/icon.min.js"></script>
-<link rel="stylesheet" href="https://liuup.github.io//media/live2d/css/live2d.css" />
-<script src="https://cdn.bootcss.com/highlight.js/9.13.1/highlight.min.js"></script>
-<link href="https://cdn.bootcss.com/highlight.js/9.13.1/styles/atelier-estuary-dark.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/katex.min.css">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/katex.min.js"></script>
-<script>
-    (function() {
-        var bp = document.createElement('script');
-        var curProtocol = window.location.protocol.split(':')[0];
-        if (curProtocol === 'https') {
-            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-        } else {
-            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-        }
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(bp, s);
-    })();
-</script>
+<link rel="shortcut icon" href="https://liuup.github.io//favicon.ico?v=1578574004049">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://liuup.github.io//styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://liuup.github.io//media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+
 
 </head>
+
 <body>
-    <div class="wrapper">
-        <header>
-    <nav class="navbar">
-        <div class="container">
-            <div class="navbar-header header-logo">
-                <a href="https://liuup.github.io/">
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://liuup.github.io/">
+                <img class="avatar" src="https://liuup.github.io//images/avatar.png?v=1578574004049" alt="">
+            </a>
+            <div class="site-title">
+                <h1>
                     UP
-                </a>
-            </div>
-            <div class="menu navbar-right">
-                
-                <a class="menu-item" href="/">
-                    首页
-                </a>
-                
-                <a class="menu-item" href="/archives">
-                    归档
-                </a>
-                
-                <a class="menu-item" href="/tags">
-                    标签
-                </a>
-                
-                <a class="menu-item" href="/post/about">
-                    关于
-                </a>
-                
-                <input id="switch_default" type="checkbox" class="switch_default">
-                <label for="switch_default" class="toggleBtn"></label>
-            </div>
-
-        </div>
-    </nav>
-
-    
-    <nav class="navbar-mobile" id="nav-mobile">
-        <div class="container">
-            <div class="navbar-header">
-                <div>
-                    <a href="https://liuup.github.io/">
-                        UP
-                    </a>
-                    <!--en-->
-                    <a id="mobile-toggle-theme-en" class="a en">&nbsp;Dark</a>
-                    <!--zh-->
-                    <a id="mobile-toggle-theme-zh" class="a zh">&nbsp;\u6697\u9ED1</a>
-                </div>
-                <!--en-->
-                <div class="menu-toggle" id="menu-toggle-en" onclick="mobileBtn()">&#9776; Menu</div>
-                <!--zh-->
-                <div class="menu-toggle" id="menu-toggle-zh" onclick="mobileBtn()">&#9776; è�œå�•</div>
-
-            </div>
-            <div class="menu" id="mobile-menu">
-                
-                <a class="menu-item" href="/">
-                    首页
-                </a>
-                
-                <a class="menu-item" href="/archives">
-                    归档
-                </a>
-                
-                <a class="menu-item" href="/tags">
-                    标签
-                </a>
-                
-                <a class="menu-item" href="/post/about">
-                    关于
-                </a>
-                
+                </h1>
             </div>
         </div>
-    </nav>
-</header>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/post/about" class="menu">
+                                    关于
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
+    </div>
+</div>
+
 <script>
-    var mobileBtn = function f() {
-        var toggleMenu = document.getElementById("menu-toggle-en");
-        var toggleMenu_zh = document.getElementById("menu-toggle-zh");
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
 
-        var mobileMenu = document.getElementById("mobile-menu");
-        if (toggleMenu.display != "none") {
-            if (toggleMenu.classList.contains("active")) {
-                toggleMenu.classList.remove("active")
-                mobileMenu.classList.remove("active")
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
             } else {
-                toggleMenu.classList.add("active")
-                mobileMenu.classList.add("active")
+                $(".menu-container").css('display', 'none')
             }
-        } else if (toggleMenu_zh.display != "none") {
-            if (toggleMenu_zh.classList.contains("active")) {
-                toggleMenu_zh.classList.remove("active")
-                mobileMenu.classList.remove("active")
-            } else {
-                toggleMenu_zh.classList.add("active")
-                mobileMenu.classList.add("active")
-            }
-        }
 
-    }
+        });
+    });
 </script>
-        <div class="main">
-            <div class="container">
-                <div class="post-wrap archive">
-                    
-                    
-                    <h3>
-                        2020
-                    </h3>
-                    
-                    
 
-                    <article class="archive-item">
-                        <a class="archive-item-link" href="https://liuup.github.io/post/nvidia-jetson-tx2-notes">
-                            NVIDIA Jetson TX2 Notes 
-                        </a>
-                        <span class="archive-item-date">2020-01-09 </span>
-                    </article>
+            <div id="main-content" class="post-container main-container">
+                <div id="content" class="main-container-left">
                     
+    <div class="i-card">
+        <b>标签：#
+        TX2</b>
+    </div>
+    
+        
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://liuup.github.io/post/nvidia-jetson-tx2-notes">
+                        NVIDIA Jetson TX2 Notes 
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2020-01-09</time>
                     
-                    
+                        <a href="https://liuup.github.io/tag/CgN_fZBlG" class="post-tag i-tag
+                            i-tag-warning">
+            #TX2
+        </a>
+                        
                 </div>
-            </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            NVIDIA Jetson TX2 Notes
+NVIDIA Jetson TX2 不论在各个方面对于一个新手来说都是一个天坑，而且坑是一个接着一个，我在此记录一些我在配置TX2时遇到的问题，并提出可靠的解决方案。
+host：
+
+System:Ubuntu 18.04 Lts
+Processor:Intel® Core™ i5-8300H CPU @ 2.30GHz × 8
+Graphics:GeForce GTX 1050 Ti/PCIe/SSE2
+
+Jetson TX2:
+
+System:Ubuntu 18.04 Lts
+Processor:ARMv8 Processor rev 3(v8l) × 4
+Graphics:NVIDIA Tegra X2(nvgpu)/integrated
+
+自己主机和TX2配置相差很大，但是刚开始自己并没有意识到这个问题，在更新sources.list时和安装vscode时才意识到这个问题。
+TX2的Ubuntu18.04Lts系统是NVIDIA魔改版，用的unity桌面，在界面上会有些不一样。
+1.乱七八糟的资料与百科
+1.Google镜像站，免翻墙在中国用google的最佳食用方式，Ubuntu改个hosts就行
+
+Google镜像站
+
+2.Jetson TX2 的全英百科，感觉还算全
+
+Jetson TX2 on elinux
+
+3.NVIDIA Jetson TX2 Official
+
+NVDIA Jetson TX2
+
+4.TX2接口一览
+
+2.关于刷机
+自己的host主机已经安装了NVIDIA SDKManger,将TX2进入恢复模式(同时长按POWER和RECOVERY键两秒后,按一下RESET键,再松开RECOVERY键),在host Terminal上输入lsusb,如果显示出NVIDIA Corp就证明基本连接成功.
+2.1 可能遇到的问题
+2.1.1 STEP 4 flash时提示没连接上
+将进入RECOVERY模式的TX2从host上拔下,直接在host上点刷机(当然,这肯定刷不进去),出来个提示框,第一个模式会让输入TX2的账号和密码,第二个模式是全自动.此时再将TX2连入host,点继续就能成功刷机
+2.1.2 刷机过程中提示时间过长,超出预期
+点继续就行了
+更换数据线,请尽量使用官方数据线,使用质量可靠的数据线能够显著增加数据传输速度
+
+
+NVIDIA上的关于flash卡99.8%的讨论
+值得注意的是,数据线和充电线并不太一样
+
+
+2.1.3 更换数据线后仍提示检测不到TX2
+将TX2彻底关机,将数据线从host上拔出,将电源线拔出,重新连接数据线和电源线,再次进入恢复模式,重新连接数据线和电源线,再次在host上SDKManger中检测
+3.关于配置
+1.这个地方不注意连sudo apt-get update
+都更新不了，为了降低功耗，TX2的CPU架构是arm64(aarch64)，可以通过以下代码查看CPU架构
+~$uname -a
+或者
+~$dpkg --print-architecture
+
+2.由于CPU架构的不同，在后面更新sources.list时要做出一些改变
+4.Sources
+为了加快各个软件的更新下载速度,需要将更新源换成国内
+arm ubuntu开发板的apt库和普通ubuntu的库是不一样的，arm用的是ubuntu-ports库。
+先获取root权限，再执行
+~$gedit /etc/apt/sources.list
+
+修改source，在此给出Ubuntu 18.04 Lts USTC的源，值得注意的是，arm64的源和普通PC的不一样，要将ubuntu改成ubuntu-ports才能更新
+deb http://mirrors.ustc.edu.cn/ubuntu-ports/ bionic-updates main restricted universe multiverse 
+deb-src http://mirrors.ustc.edu.cn/ubuntu-ports/ bionic-updates main restricted universe multiverse 
+deb http://mirrors.ustc.edu.cn/ubuntu-ports/ bionic-security main restricted universe multiverse 
+deb-src http://mirrors.ustc.edu.cn/ubuntu-ports/ bionic-security main restricted universe multiverse 
+deb http://mirrors.ustc.edu.cn/ubuntu-ports/ bionic-backports main restricted universe multiverse 
+deb-src http://mirrors.ustc.edu.cn/ubuntu-ports/ bionic-backports main restricted universe multiverse 
+deb http://mirrors.ustc.edu.cn/ubuntu-ports/ bionic main universe restricted 
+deb-src http://mirrors.ustc.edu.cn/ubuntu-ports/ bionic main universe restricted
+
+更新源
+~$sudo apt-get update
+
+更新之后可能会报GPG Error，我列出Error如下
+~$GPG error: https://packagecloud.io/headmelted/codebuilds/debian stretch InRelease: The following signatures couldn&#39;t be verified because the public key is not available: NO_PUBKEY 0CC3FD642696BFC8
+
+解决方案：这里要将公钥改成上面给出的公钥
+~$apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0CC3FD642696BFC8
+
+如果出现下列结果，说明Error已经消失了
+~$Executing: /tmp/apt-key-gpghome.ZnhRCRjnAd/gpg.1.sh --recv-keys --keyserver keyserver.ubuntu.com 0CC3FD642696BFC8
+～$gpg: key 8D9940AE59B46979: public key &amp;quot;https://packagecloud.io/headmelted/code-oss (https://packagecloud.io/docs#gpg_signing) &amp;lt;support@packagecloud.io&amp;gt;&amp;quot; imported
+~$gpg: Total number processed: 1
+~$gpg:               imported: 1
+
+
+然后再更新一下源和软件，这就意味着可以正常从库下载软件了
+~$sudo apt-get update
+~$sudo apt-get upgrade
+
+5.VSCODE
+紧接着就安装宇宙最强IDE：vscode
+我看了好久的Microsoft官方文档，发现官方根本就不支持在linux arm64上面运行，在google上搜索，看到nvidia论坛里也有人问怎么安装vscode。继续以关键词arm64 vscode搜索，发现有人发了如何在树莓派上安装vscode的教程
+直接在终端运行，便可以安装vscode
+~$sudo apt-get install code-oss
+
+再安装中文包及各种插件，但是会发现c++插件不支持arm64
+插件会提示
+Architecture arm64 is not supported;
+
+&amp;gt;&amp;gt; 来源:C/C++(拓展)
+
+但是能在vscode里用cmake编译，所以个人认为vscode在tx2上并不太好用,推荐安装qt
+6.OpenCV
+刷机后，TX2自带的是3.3.1，将其刷成3.4.5
+刚开始用的16.04Lts arm64源，一直导致好多包安装不了，按照我上面写的换成18.04的源就行
+Refenrences：
+
+1.环境配置-Ubuntu 16.04安装opencv3.4.3 - 简书
+2.ubuntu下安装opencv3.4.2 - CSDN
+3.opencv - github
+4.opencv_toncrib - github
+
+可能出现的问题:
+
+提示boostdesc_bgm.i缺少
+
+
+1.1 编译OpenCV以及openc_contrib提示缺少boostdesc_bgm.i文件出错的解决 - CSDN
+1.2 atal error: boostdesc_bgm.i: No such file or directory  - Github
+
+
+提示各种文件路径不对的
+
+
+直接进入提示错误的文件修改opencv的源代码
+
+在终端使用命令检验是否安装到位
+~$pkg-config --modversion opencv
+~$3.4.5
+
+使用g++编译的方法：
+~$g++ main.cpp -o main.out `pkg-config opencv --cflags --libs`
+
+7.调用摄像头
+7.1调用板载摄像头
+终端运行
+nvgstcapture-1.0 --cus-prev-res=1920*1080
+
+但是我还没搞懂怎么通过opencv来调用板载摄像头
+分辨率可调：
+
+640 * 480
+1280 * 720
+1920 * 1080
+2104 * 1560
+2592 * 1944
+2616 * 1472
+3840 * 2160
+3896 * 2192
+4208 * 3120
+5632 * 3168
+5632 * 4224
+
+使用q + 回车退出摄像头
+7.2调用usb摄像头
+如果想使用usb接口的摄像头，需要将VideoCapture中数值改为1，因为板载摄像头默认是0
+VideoCapture capture(1);
+
+8.qt creator
+
+因为vscode在tx2上不太好用，所以需要换个IDE，幸好qt的配置并不难
+
+直接终端运行
+~$sudo apt-get install qt5-default qtcreator -y
+
+Reference：
+
+NVIDIA Jetson TX2 安装qt - CSDN
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://liuup.github.io/post/nvidia-jetson-tx2-notes">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+                <!-- 翻页 -->
+                
+                </div>
+                <!--  -->
+                <div class="main-container-middle"></div>
+                <!--  -->
+                <div id="sidebar" class="main-container-right">
+
+                    <!-- 个人信息 -->
+                    
+    <div class="id_card i-card">
+        <div class="id_card-avatar" style="background-image: url(https://liuup.github.io//images/avatar.png?v=1578574004049)">
+        </div>
+        <h1 class="id_card-title">
+            UP
+        </h1>
+        <h2 class="id_card-description">
+            UP&#39;s Blog
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                <a href="https://github.com/liuup" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-github"></i></a>
+                
+                    <!-- twitter -->
+                    
+                            <!-- weibo -->
+                            
+                                <a href="https://weibo.com/u/1627921701" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-weibo"></i></a>
+                                
+                                    <!-- facebook -->
+                                    
+
         </div>
     </div>
     
-        <footer id="footer" class="footer">
 
-            <div class="copyright">
-                <div class="Like">
-                    <div class="tip" data-tooltip="Do you like it?">
-                        <a href="https://github.com/ITJoker233/Gridea-theme-Chic" target="_blank" title=""><svg class="icon" aria-hidden="true"><use xlink:href="#like"></use></svg><b class="like_text" id="star"></b></a>
-                    </div>
-                </div>
-                Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
-                    <b id="hitokoto"></b><br>
-                    <svg viewBox="0 0 1024 1024" style="margin-left: 5px;margin-right: 5px;" version="1.0" width="8" height="8" class="my-face"><path d="M863.597631 513.574282l-271.33965-140.213484L729.783667 81.926656c3.583731-7.87141 7.167462-15.742819 7.167462-25.214109C736.887134 25.226908 708.345275 0.012799 672.635953 0.012799a63.611229 63.611229 0 0 0-39.293053 12.607055c-1.791866 1.59988-3.519736 3.19976-5.311602 3.19976L147.87531 418.925381a55.547834 55.547834 0 0 0-19.646527 47.356448c1.791866 17.278704 14.27093 33.021523 32.125591 42.492813l271.33965 141.749369L292.504463 945.221908c-12.479064 25.214109-1.791866 53.563983 23.166262 69.306802 10.751194 6.335525 23.230258 9.47129 35.709322 9.47129 16.062795 0 32.125591-4.735645 44.604655-15.742819l480.091993-403.297753a55.547834 55.547834 0 0 0 19.646526-47.228458 61.243407 61.243407 0 0 0-32.12559-44.156688z" fill="#93b5cf"></path></svg>
-                    UP &copy;Copyright
-                        <script>
-                            var date = new Date();
-                            document.write("" + date.getFullYear());
-                        </script>
-                        | Powered by <a href="https://coding.net" target="_blank">Coding.net</a>
-            </div>
-            <div id="update" style="display:none;">
-                on
-            </div>
-            
-                <div id="version" style="display:none;">
-                    1.5.0
-                </div>
-                
-        </footer>
-        
-                <script>
-                    hitokoto();
-                    getStar();
-                    hljs.initHighlighting();
-                    console.clear();
-                    CheckVersion();
-                    console.log("\n %c \u26a1Theme:Chic Author's Blog:https://blog.itjoker.cn  Write By ITJoker  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;", );
-                </script>
+                        <!-- 公告栏 -->
+                        
+    <div class="notice-card i-card ">
+        <div class="notice-title i-card-title">公告</div>
+        <div class="notice-content">
+            This is UP...
+        </div>
     </div>
+    
+
+                </div>
+            </div>
+
+
+
+            <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
+  <a class="rss" href="https://liuup.github.io//atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 80,
+            // bottomSpacing: 60
+        });
+    </script>
 </body>
+
 </html>

@@ -1,272 +1,424 @@
-<!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
     UP
 </title>
-<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
-<meta http-equiv="x-dns-prefetch-control" content="on">
-<link rel="dns-prefetch" href="https://liuup.github.io/">
-<link rel="dns-prefetch" href="https://cdn.bootcss.com">
-<meta name="author" content="UP">
-<meta name="description" content="UP&#39;s Blog">
-<meta name="keywords" content="">
-<link rel="stylesheet" href="https://liuup.github.io//media/css/style.min.css" />
-<link rel="stylesheet" href="https://liuup.github.io//styles/main.css" />
-<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
-<script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/1.7.1/jquery.min.js"></script>
-<script src="https://liuup.github.io//media/script/tocbot.min.js"></script>
-<script src="https://liuup.github.io//media/script/script.min.js"></script>
-<script src="https://liuup.github.io//media/script/icon.min.js"></script>
-<link rel="stylesheet" href="https://liuup.github.io//media/live2d/css/live2d.css" />
-<script src="https://cdn.bootcss.com/highlight.js/9.13.1/highlight.min.js"></script>
-<link href="https://cdn.bootcss.com/highlight.js/9.13.1/styles/atelier-estuary-dark.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/katex.min.css">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/katex.min.js"></script>
-<script>
-    (function() {
-        var bp = document.createElement('script');
-        var curProtocol = window.location.protocol.split(':')[0];
-        if (curProtocol === 'https') {
-            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-        } else {
-            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-        }
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(bp, s);
-    })();
-</script>
+<link rel="shortcut icon" href="https://liuup.github.io//favicon.ico?v=1578574004049">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://liuup.github.io//styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://liuup.github.io//media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+
 
 </head>
+
 <body>
-    <div class="wrapper">
-        <header>
-    <nav class="navbar">
-        <div class="container">
-            <div class="navbar-header header-logo">
-                <a href="https://liuup.github.io/">
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://liuup.github.io/">
+                <img class="avatar" src="https://liuup.github.io//images/avatar.png?v=1578574004049" alt="">
+            </a>
+            <div class="site-title">
+                <h1>
                     UP
-                </a>
-            </div>
-            <div class="menu navbar-right">
-                
-                <a class="menu-item" href="/">
-                    首页
-                </a>
-                
-                <a class="menu-item" href="/archives">
-                    归档
-                </a>
-                
-                <a class="menu-item" href="/tags">
-                    标签
-                </a>
-                
-                <a class="menu-item" href="/post/about">
-                    关于
-                </a>
-                
-                <input id="switch_default" type="checkbox" class="switch_default">
-                <label for="switch_default" class="toggleBtn"></label>
-            </div>
-
-        </div>
-    </nav>
-
-    
-    <nav class="navbar-mobile" id="nav-mobile">
-        <div class="container">
-            <div class="navbar-header">
-                <div>
-                    <a href="https://liuup.github.io/">
-                        UP
-                    </a>
-                    <!--en-->
-                    <a id="mobile-toggle-theme-en" class="a en">&nbsp;Dark</a>
-                    <!--zh-->
-                    <a id="mobile-toggle-theme-zh" class="a zh">&nbsp;\u6697\u9ED1</a>
-                </div>
-                <!--en-->
-                <div class="menu-toggle" id="menu-toggle-en" onclick="mobileBtn()">&#9776; Menu</div>
-                <!--zh-->
-                <div class="menu-toggle" id="menu-toggle-zh" onclick="mobileBtn()">&#9776; è�œå�•</div>
-
-            </div>
-            <div class="menu" id="mobile-menu">
-                
-                <a class="menu-item" href="/">
-                    首页
-                </a>
-                
-                <a class="menu-item" href="/archives">
-                    归档
-                </a>
-                
-                <a class="menu-item" href="/tags">
-                    标签
-                </a>
-                
-                <a class="menu-item" href="/post/about">
-                    关于
-                </a>
-                
+                </h1>
             </div>
         </div>
-    </nav>
-</header>
-<script>
-    var mobileBtn = function f() {
-        var toggleMenu = document.getElementById("menu-toggle-en");
-        var toggleMenu_zh = document.getElementById("menu-toggle-zh");
-
-        var mobileMenu = document.getElementById("mobile-menu");
-        if (toggleMenu.display != "none") {
-            if (toggleMenu.classList.contains("active")) {
-                toggleMenu.classList.remove("active")
-                mobileMenu.classList.remove("active")
-            } else {
-                toggleMenu.classList.add("active")
-                mobileMenu.classList.add("active")
-            }
-        } else if (toggleMenu_zh.display != "none") {
-            if (toggleMenu_zh.classList.contains("active")) {
-                toggleMenu_zh.classList.remove("active")
-                mobileMenu.classList.remove("active")
-            } else {
-                toggleMenu_zh.classList.add("active")
-                mobileMenu.classList.add("active")
-            }
-        }
-
-    }
-</script>
-        <div class="main">
-            <div class="post-wrap archive">
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
                 
-                
-                <h3>2020</h3>
-                
-                
-                <article class="archive-item"><a class="archive-item-link" href="https://liuup.github.io/post/6-qdialog">6. QDialog</a><span class="archive-item-date">2020-01-09 </span></article>
-                
-                <article class="archive-item"><a class="archive-item-link" href="https://liuup.github.io/post/5-add-resources">5. Add resources</a><span class="archive-item-date">2020-01-09 </span></article>
-                
-                <article class="archive-item"><a class="archive-item-link" href="https://liuup.github.io/post/4-status">4. Status</a><span class="archive-item-date">2020-01-09 </span></article>
-                
-                <article class="archive-item"><a class="archive-item-link" href="https://liuup.github.io/post/3menu">3.Menu</a><span class="archive-item-date">2020-01-09 </span></article>
-                
-                <article class="archive-item"><a class="archive-item-link" href="https://liuup.github.io/post/2-xin-hao-yu-cao">2. 信号与槽</a><span class="archive-item-date">2020-01-09 </span></article>
-                
-                <article class="archive-item"><a class="archive-item-link" href="https://liuup.github.io/post/1-button-de-chuang-jian">1. Button的创建</a><span class="archive-item-date">2020-01-09 </span></article>
-                
-                <article class="archive-item"><a class="archive-item-link" href="https://liuup.github.io/post/cmakelists_md">CMakeLists_md</a><span class="archive-item-date">2020-01-09 </span></article>
-                
-                <article class="archive-item"><a class="archive-item-link" href="https://liuup.github.io/post/qt-opencv-pro-pei-zhi">qt opencv .pro配置</a><span class="archive-item-date">2020-01-09 </span></article>
-                
-                <article class="archive-item"><a class="archive-item-link" href="https://liuup.github.io/post/tasksjson">tasks.json</a><span class="archive-item-date">2020-01-09 </span></article>
-                
-                <article class="archive-item"><a class="archive-item-link" href="https://liuup.github.io/post/settingsjson">settings.json</a><span class="archive-item-date">2020-01-09 </span></article>
-                
-                <article class="archive-item"><a class="archive-item-link" href="https://liuup.github.io/post/launchjson">launch.json</a><span class="archive-item-date">2020-01-09 </span></article>
-                
-                <article class="archive-item"><a class="archive-item-link" href="https://liuup.github.io/post/mo-ming-qi-miao-de-yi-xie-si-lu">莫名其妙的一些思路</a><span class="archive-item-date">2020-01-09 </span></article>
-                
-                <article class="archive-item"><a class="archive-item-link" href="https://liuup.github.io/post/rm-vision-kai-yuan-zong-jie">RM VISION 开源总结</a><span class="archive-item-date">2020-01-09 </span></article>
-                
-                <article class="archive-item"><a class="archive-item-link" href="https://liuup.github.io/post/yolov3-tiny-shi-xian-zhuang-jia-ban-shi-bie">YOLOv3-tiny实现装甲板识别</a><span class="archive-item-date">2020-01-09 </span></article>
-                
-                <article class="archive-item"><a class="archive-item-link" href="https://liuup.github.io/post/chu-xian-de-yi-xie-ying-wen-dan-ci">出现的一些英文单词</a><span class="archive-item-date">2020-01-09 </span></article>
-                
-                <article class="archive-item"><a class="archive-item-link" href="https://liuup.github.io/post/ubuntu-1804-sources">Ubuntu 18.04 sources</a><span class="archive-item-date">2020-01-09 </span></article>
-                
-                <article class="archive-item"><a class="archive-item-link" href="https://liuup.github.io/post/python-shu-ju-jie-gou">python数据结构</a><span class="archive-item-date">2020-01-09 </span></article>
-                
-                <article class="archive-item"><a class="archive-item-link" href="https://liuup.github.io/post/nvidia-jetson-tx2-notes">NVIDIA Jetson TX2 Notes </a><span class="archive-item-date">2020-01-09 </span></article>
-                
-                <article class="archive-item"><a class="archive-item-link" href="https://liuup.github.io/post/2lian-xu-cun-chu-shu-zu-de-suan-fa-yan-shi">2.连续存储数组的算法演示</a><span class="archive-item-date">2020-01-09 </span></article>
-                
-                <article class="archive-item"><a class="archive-item-link" href="https://liuup.github.io/post/1mallochan-shu-dong-tai-fen-pei-nei-cun-gai-shu">1.malloc()函数动态分配内存概述</a><span class="archive-item-date">2020-01-09 </span></article>
-                
-                <article class="archive-item"><a class="archive-item-link" href="https://liuup.github.io/post/c-huo-qu-cpu-zui-da-xian-cheng">C++  获取CPU最大线程</a><span class="archive-item-date">2020-01-09 </span></article>
-                
-                <article class="archive-item"><a class="archive-item-link" href="https://liuup.github.io/post/c-int-lei-xing-zhuan-string">C++ int类型转string</a><span class="archive-item-date">2020-01-09 </span></article>
-                
-                <article class="archive-item"><a class="archive-item-link" href="https://liuup.github.io/post/static_cast-and-unit-explanation">static_cast and unit explanation</a><span class="archive-item-date">2020-01-09 </span></article>
-                
-                <article class="archive-item"><a class="archive-item-link" href="https://liuup.github.io/post/mou-pao-pai-xu-dai-ma-yan-shi">冒泡排序代码演示</a><span class="archive-item-date">2020-01-09 </span></article>
-                
-                <article class="archive-item"><a class="archive-item-link" href="https://liuup.github.io/post/mardown-ce-shi-wen-zhang">Mardown测试文章</a><span class="archive-item-date">2020-01-09 </span></article>
-                
-                <h3>2018</h3>
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                <article class="archive-item"><a class="archive-item-link" href="https://liuup.github.io/post/hello-gridea">Hello Gridea</a><span class="archive-item-date">2018-12-12 </span></article>
-            </div>
+                    
+                            <li>
+                                <a href="/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/post/about" class="menu">
+                                    关于
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
         </div>
     </div>
-    
-        <footer id="footer" class="footer">
+</div>
 
-            <div class="copyright">
-                <div class="Like">
-                    <div class="tip" data-tooltip="Do you like it?">
-                        <a href="https://github.com/ITJoker233/Gridea-theme-Chic" target="_blank" title=""><svg class="icon" aria-hidden="true"><use xlink:href="#like"></use></svg><b class="like_text" id="star"></b></a>
-                    </div>
-                </div>
-                Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
-                    <b id="hitokoto"></b><br>
-                    <svg viewBox="0 0 1024 1024" style="margin-left: 5px;margin-right: 5px;" version="1.0" width="8" height="8" class="my-face"><path d="M863.597631 513.574282l-271.33965-140.213484L729.783667 81.926656c3.583731-7.87141 7.167462-15.742819 7.167462-25.214109C736.887134 25.226908 708.345275 0.012799 672.635953 0.012799a63.611229 63.611229 0 0 0-39.293053 12.607055c-1.791866 1.59988-3.519736 3.19976-5.311602 3.19976L147.87531 418.925381a55.547834 55.547834 0 0 0-19.646527 47.356448c1.791866 17.278704 14.27093 33.021523 32.125591 42.492813l271.33965 141.749369L292.504463 945.221908c-12.479064 25.214109-1.791866 53.563983 23.166262 69.306802 10.751194 6.335525 23.230258 9.47129 35.709322 9.47129 16.062795 0 32.125591-4.735645 44.604655-15.742819l480.091993-403.297753a55.547834 55.547834 0 0 0 19.646526-47.228458 61.243407 61.243407 0 0 0-32.12559-44.156688z" fill="#93b5cf"></path></svg>
-                    UP &copy;Copyright
-                        <script>
-                            var date = new Date();
-                            document.write("" + date.getFullYear());
-                        </script>
-                        | Powered by <a href="https://coding.net" target="_blank">Coding.net</a>
-            </div>
-            <div id="update" style="display:none;">
-                on
-            </div>
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
+
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
+
+        });
+    });
+</script>
+
             
-                <div id="version" style="display:none;">
-                    1.5.0
-                </div>
+
+    <div class="archives-container main-container">
+        <ul class="timeline">
+            
+                <li>
+                    <h3 class="year">
+                        2020
+                    </h3>
+                    <ul class="year-wrapper">
+                        
+                            
+                                <li>
+                                    <span class="date">2020-01-09</span>
+                                    <a class="title" href="https://liuup.github.io/post/6-qdialog">
+                                        <span>6. QDialog</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2020-01-09</span>
+                                    <a class="title" href="https://liuup.github.io/post/5-add-resources">
+                                        <span>5. Add resources</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2020-01-09</span>
+                                    <a class="title" href="https://liuup.github.io/post/4-status">
+                                        <span>4. Status</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2020-01-09</span>
+                                    <a class="title" href="https://liuup.github.io/post/3menu">
+                                        <span>3.Menu</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2020-01-09</span>
+                                    <a class="title" href="https://liuup.github.io/post/2-xin-hao-yu-cao">
+                                        <span>2. 信号与槽</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2020-01-09</span>
+                                    <a class="title" href="https://liuup.github.io/post/1-button-de-chuang-jian">
+                                        <span>1. Button的创建</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2020-01-09</span>
+                                    <a class="title" href="https://liuup.github.io/post/cmakelists_md">
+                                        <span>CMakeLists_md</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2020-01-09</span>
+                                    <a class="title" href="https://liuup.github.io/post/qt-opencv-pro-pei-zhi">
+                                        <span>qt opencv .pro配置</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2020-01-09</span>
+                                    <a class="title" href="https://liuup.github.io/post/tasksjson">
+                                        <span>tasks.json</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2020-01-09</span>
+                                    <a class="title" href="https://liuup.github.io/post/settingsjson">
+                                        <span>settings.json</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2020-01-09</span>
+                                    <a class="title" href="https://liuup.github.io/post/launchjson">
+                                        <span>launch.json</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2020-01-09</span>
+                                    <a class="title" href="https://liuup.github.io/post/mo-ming-qi-miao-de-yi-xie-si-lu">
+                                        <span>莫名其妙的一些思路</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2020-01-09</span>
+                                    <a class="title" href="https://liuup.github.io/post/rm-vision-kai-yuan-zong-jie">
+                                        <span>RM VISION 开源总结</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2020-01-09</span>
+                                    <a class="title" href="https://liuup.github.io/post/yolov3-tiny-shi-xian-zhuang-jia-ban-shi-bie">
+                                        <span>YOLOv3-tiny实现装甲板识别</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2020-01-09</span>
+                                    <a class="title" href="https://liuup.github.io/post/chu-xian-de-yi-xie-ying-wen-dan-ci">
+                                        <span>出现的一些英文单词</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2020-01-09</span>
+                                    <a class="title" href="https://liuup.github.io/post/ubuntu-1804-sources">
+                                        <span>Ubuntu 18.04 sources</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2020-01-09</span>
+                                    <a class="title" href="https://liuup.github.io/post/python-shu-ju-jie-gou">
+                                        <span>python数据结构</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2020-01-09</span>
+                                    <a class="title" href="https://liuup.github.io/post/nvidia-jetson-tx2-notes">
+                                        <span>NVIDIA Jetson TX2 Notes </span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2020-01-09</span>
+                                    <a class="title" href="https://liuup.github.io/post/2lian-xu-cun-chu-shu-zu-de-suan-fa-yan-shi">
+                                        <span>2.连续存储数组的算法演示</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2020-01-09</span>
+                                    <a class="title" href="https://liuup.github.io/post/1mallochan-shu-dong-tai-fen-pei-nei-cun-gai-shu">
+                                        <span>1.malloc()函数动态分配内存概述</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2020-01-09</span>
+                                    <a class="title" href="https://liuup.github.io/post/c-huo-qu-cpu-zui-da-xian-cheng">
+                                        <span>C++  获取CPU最大线程</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2020-01-09</span>
+                                    <a class="title" href="https://liuup.github.io/post/c-int-lei-xing-zhuan-string">
+                                        <span>C++ int类型转string</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2020-01-09</span>
+                                    <a class="title" href="https://liuup.github.io/post/static_cast-and-unit-explanation">
+                                        <span>static_cast and unit explanation</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2020-01-09</span>
+                                    <a class="title" href="https://liuup.github.io/post/mou-pao-pai-xu-dai-ma-yan-shi">
+                                        <span>冒泡排序代码演示</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2020-01-09</span>
+                                    <a class="title" href="https://liuup.github.io/post/mardown-ce-shi-wen-zhang">
+                                        <span>Mardown测试文章</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                    
+                    </ul>
+
+                </li>
                 
-        </footer>
-        
-                <script>
-                    hitokoto();
-                    getStar();
-                    hljs.initHighlighting();
-                    console.clear();
-                    CheckVersion();
-                    console.log("\n %c \u26a1Theme:Chic Author's Blog:https://blog.itjoker.cn  Write By ITJoker  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;", );
-                </script>
+                <li>
+                    <h3 class="year">
+                        2018
+                    </h3>
+                    <ul class="year-wrapper">
+                        
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                <li>
+                                    <span class="date">2018-12-12</span>
+                                    <a class="title" href="https://liuup.github.io/post/hello-gridea">
+                                        <span>Hello Gridea</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                    </ul>
+
+                </li>
+                
+        </ul>
+    </div>
+
+                
+
+                    <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
+  <a class="rss" href="https://liuup.github.io//atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
     </div>
 </body>
+
 </html>
