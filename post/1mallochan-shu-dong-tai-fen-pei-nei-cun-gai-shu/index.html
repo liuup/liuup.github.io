@@ -146,7 +146,7 @@
                 <article class="post-wrap">
                     <header class="post-header">
                         <h1 class="post-title">
-                            C++  获取CPU最大线程
+                            1.malloc()函数动态分配内存概述
                         </h1>
                         <!--en-->
                         <div class="post-meta en">
@@ -161,7 +161,7 @@
                             <span class="post-category">
                                 Category:
                                 
-                                <a href="https://liuup.github.io/tag/omjs2khAU">C++</a>
+                                <a href="https://liuup.github.io/tag/QlEooH6b7">C数据结构</a>
                                 
                             </span>
                             
@@ -179,16 +179,42 @@
                             <span class="post-category">
                                 &#x5206;&#x7C7B;:
                                 
-                                <a href="https://liuup.github.io/tag/omjs2khAU">C++</a>
+                                <a href="https://liuup.github.io/tag/QlEooH6b7">C数据结构</a>
                                 
                             </span>
                             
                         </div>
                     </header>
                     <div class="post-content">
-                        <pre><code>#include &lt;thread&gt;
+                        <p>malloc()默认返回值是void *</p>
+<h2 id="创建并释放">创建并释放</h2>
+<pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;malloc.h&gt;
 
-cout &lt;&lt; std::thread::hardware_concurrency() &lt;&lt; endl;
+int main()
+{
+	// molloc()动态内存
+
+	int len;
+	printf(&quot;please input the len:&quot;);
+	scanf(&quot;%d&quot;, &amp;len);
+
+	int *pArr = (int *)malloc(sizeof(int) * len);	// pArr是地址
+
+	*pArr = 10;	// 类似于pArr[0] = 10
+	pArr[1] = 2;
+	pArr[2] = 3;
+
+	printf(&quot;%d\n&quot;, *(pArr++));	// pArr[0]
+	printf(&quot;%d\n&quot;, *(pArr++));
+	printf(&quot;%d\n&quot;, *(pArr++));
+    
+    free(pArr); // 把pArr代表的动态分配的内存释放
+    
+    
+	return 0;
+}
 </code></pre>
 
                     </div>
@@ -201,7 +227,7 @@ cout &lt;&lt; std::thread::hardware_concurrency() &lt;&lt; endl;
 
                         <p class="copyright-item">
                             <span>Permalink:</span>
-                            <span><a href="https://liuup.github.io/post/c-huo-qu-cpu-zui-da-xian-cheng">https://liuup.github.io/post/c-huo-qu-cpu-zui-da-xian-cheng</a></span>
+                            <span><a href="https://liuup.github.io/post/1mallochan-shu-dong-tai-fen-pei-nei-cun-gai-shu">https://liuup.github.io/post/1mallochan-shu-dong-tai-fen-pei-nei-cun-gai-shu</a></span>
                         </p>
 
                         <p class="copyright-item">
@@ -218,7 +244,7 @@ cout &lt;&lt; std::thread::hardware_concurrency() &lt;&lt; endl;
 
                         <p class="copyright-item">
                             <span>&#x6C38;&#x4E45;&#x94FE;&#x63A5;:</span>
-                            <span><a href="https://liuup.github.io/post/c-huo-qu-cpu-zui-da-xian-cheng">https://liuup.github.io/post/c-huo-qu-cpu-zui-da-xian-cheng</a></span>
+                            <span><a href="https://liuup.github.io/post/1mallochan-shu-dong-tai-fen-pei-nei-cun-gai-shu">https://liuup.github.io/post/1mallochan-shu-dong-tai-fen-pei-nei-cun-gai-shu</a></span>
                         </p>
 
                         <p class="copyright-item">
@@ -233,7 +259,7 @@ cout &lt;&lt; std::thread::hardware_concurrency() &lt;&lt; endl;
                             <span class="tag">
                                 
                                 
-                                <a href="https://liuup.github.io/tag/omjs2khAU"># C++</a>
+                                <a href="https://liuup.github.io/tag/QlEooH6b7"># C数据结构</a>
                                 
                                 
                             </span>
@@ -251,7 +277,7 @@ cout &lt;&lt; std::thread::hardware_concurrency() &lt;&lt; endl;
                             <span class="tag">
                                 
                                 
-                                <a href="https://liuup.github.io/tag/omjs2khAU"># C++</a>
+                                <a href="https://liuup.github.io/tag/QlEooH6b7"># C数据结构</a>
                                 
                                 
                             </span>
@@ -265,13 +291,13 @@ cout &lt;&lt; std::thread::hardware_concurrency() &lt;&lt; endl;
                     </section>
                     <section class="post-nav">
                         
-                        <a class="prev" rel="prev" href="https://liuup.github.io/post/1mallochan-shu-dong-tai-fen-pei-nei-cun-gai-shu">
-                            1.malloc()函数动态分配内存概述
+                        <a class="prev" rel="prev" href="https://liuup.github.io/post/2lian-xu-cun-chu-shu-zu-de-suan-fa-yan-shi">
+                            2.连续存储数组的算法演示
                         </a>
                         
                         
-                        <a class="next" rel="next" href="https://liuup.github.io/post/c-int-lei-xing-zhuan-string">
-                            C++ int类型转string
+                        <a class="next" rel="next" href="https://liuup.github.io/post/c-huo-qu-cpu-zui-da-xian-cheng">
+                            C++  获取CPU最大线程
                         </a>
                         
                     </section>

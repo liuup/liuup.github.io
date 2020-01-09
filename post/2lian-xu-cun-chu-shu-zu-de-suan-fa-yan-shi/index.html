@@ -146,7 +146,7 @@
                 <article class="post-wrap">
                     <header class="post-header">
                         <h1 class="post-title">
-                            C++  获取CPU最大线程
+                            2.连续存储数组的算法演示
                         </h1>
                         <!--en-->
                         <div class="post-meta en">
@@ -161,7 +161,7 @@
                             <span class="post-category">
                                 Category:
                                 
-                                <a href="https://liuup.github.io/tag/omjs2khAU">C++</a>
+                                <a href="https://liuup.github.io/tag/QlEooH6b7">C数据结构</a>
                                 
                             </span>
                             
@@ -179,16 +179,209 @@
                             <span class="post-category">
                                 &#x5206;&#x7C7B;:
                                 
-                                <a href="https://liuup.github.io/tag/omjs2khAU">C++</a>
+                                <a href="https://liuup.github.io/tag/QlEooH6b7">C数据结构</a>
                                 
                             </span>
                             
                         </div>
                     </header>
                     <div class="post-content">
-                        <pre><code>#include &lt;thread&gt;
+                        <pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;malloc.h&gt;
 
-cout &lt;&lt; std::thread::hardware_concurrency() &lt;&lt; endl;
+struct Arr
+{
+	int *pBase;	// 存储的是数组第一个元素的地址
+	int len;	// 数组所能容纳的最大元素的地址
+	int cnt;	// 当前数组有效元素的个数
+};
+
+void init_arr(struct Arr * pArr, int length);	
+bool append_arr(struct Arr * pArr, int val);
+bool insert_arr(struct Arr * pArr, int pos, int val);	// pos的值从1开始
+bool delete_arr(struct Arr * pArr, int pos);
+int get();
+bool is_empty(struct Arr * pArr);
+bool is_full(struct Arr * pArr);
+void sort_arr(struct Arr * pArr);
+void show_arr(struct Arr * pArr);
+void inversion_arr();
+
+
+int main()
+{
+	struct Arr arr;
+	init_arr(&amp;arr, 9);
+	append_arr(&amp;arr, 1);
+	append_arr(&amp;arr, 2);
+	append_arr(&amp;arr, 9);
+	append_arr(&amp;arr, 4);
+	append_arr(&amp;arr, 5);
+	append_arr(&amp;arr, 6);
+	//append_arr(&amp;arr, 7);
+	//append_arr(&amp;arr, 8);
+	//insert_arr(&amp;arr, 0, 88);
+
+	//delete_arr(&amp;arr, 2);
+	sort_arr(&amp;arr);
+	show_arr(&amp;arr);
+
+
+
+
+	printf(&quot;\n\n\n\n&quot;);
+	return 0;
+}
+
+
+// @brief 数组初始化
+// @param 结构体的地址
+// @param 数组的长度
+void init_arr(struct Arr * pArr, int length)
+{
+	pArr-&gt;pBase = (int *)malloc(sizeof(int) * length);
+	if(pArr-&gt;pBase == NULL)
+	{
+		printf(&quot;动态内存分配失败\n&quot;);
+		exit(-1);	// 终止整个程序
+	}
+	
+	printf(&quot;动态内存分配成功!\n&quot;);
+	pArr-&gt;len = length;
+	pArr-&gt;cnt = 0;
+
+	return ;
+}
+
+
+// @brief 判度是否已满
+//
+//
+bool is_full(struct Arr * pArr)
+{
+	return pArr-&gt;cnt == pArr-&gt;len ? true : false;
+}
+
+// @brief 追加元素
+//
+//
+bool append_arr(struct Arr * pArr, int val)
+{
+	// 数组为满的判断
+	if(is_full(pArr))
+	{
+		printf(&quot;数组已满!\n&quot;);
+		exit(-1);
+	}
+
+	// 不满时追加 
+	pArr-&gt;pBase[pArr-&gt;cnt] = val;
+	(pArr-&gt;cnt)++;
+	return true;
+}
+
+
+// @brief 插入元素
+//
+//
+bool insert_arr(struct Arr * pArr, int pos, int val)
+{
+	// 判断下标合法性
+	if(pos &lt; 0)
+	{
+		printf(&quot;插入元素的下标非法!\n&quot;);
+		exit(-1);
+	}
+
+	// 先对元素进行移动,后面的元素先移动
+	(pArr-&gt;cnt)++;
+	for(int i = pArr-&gt;cnt - 1; i &gt;= pos; i--)
+	{
+		pArr-&gt;pBase[i] = pArr-&gt;pBase[i - 1];
+	}
+	// 元素赋值
+	pArr-&gt;pBase[pos] = val;
+
+	return true;
+}
+
+
+// @brief 删除特定位置的数值
+//
+//
+bool delete_arr(struct Arr * pArr, int pos)
+{
+	if(pos &lt; 0)
+	{
+		printf(&quot;删除的元素下标有误!\n&quot;);
+		exit(-1);
+	}
+
+	for(int i = pos; i &lt; pArr-&gt;cnt; i++)
+	{
+		pArr-&gt;pBase[i] = pArr-&gt;pBase[i + 1];
+	}
+	(pArr-&gt;cnt)--;
+
+	return true;
+}
+
+
+
+
+// @brief 判断数组是否为空
+//
+//
+bool is_empty(struct Arr * pArr)
+{
+	return pArr-&gt;cnt == 0 ? true : false;	// 使用三元运算符
+}
+
+
+// @brief 对数组排序
+//
+//
+void sort_arr(struct Arr * pArr)
+{
+	int temp;
+	for(int i = 0; i &lt; pArr-&gt;cnt - 1; i++)
+	{
+		for(int j = 0; j &lt; pArr-&gt;cnt - i - 1; j++)
+		{
+			if(pArr-&gt;pBase[j] &gt; pArr-&gt;pBase[j + 1])
+			{
+				temp = pArr-&gt;pBase[j];
+				pArr-&gt;pBase[j] = pArr-&gt;pBase[j + 1];
+				pArr-&gt;pBase[j + 1] = temp;
+			}
+		}
+	}
+}
+
+
+
+
+// @brief 输出数组的元素
+//
+//
+void show_arr(struct Arr * pArr)
+{
+	if(is_empty(pArr) == true)
+	{
+		printf(&quot;数组为空!\n&quot;);
+		exit(-1);
+	}
+
+	for(int i = 0; i &lt; pArr-&gt;cnt; i++)
+	{
+		printf(&quot;%d &quot;, pArr-&gt;pBase[i]);
+	}
+}
+
+
+
+
 </code></pre>
 
                     </div>
@@ -201,7 +394,7 @@ cout &lt;&lt; std::thread::hardware_concurrency() &lt;&lt; endl;
 
                         <p class="copyright-item">
                             <span>Permalink:</span>
-                            <span><a href="https://liuup.github.io/post/c-huo-qu-cpu-zui-da-xian-cheng">https://liuup.github.io/post/c-huo-qu-cpu-zui-da-xian-cheng</a></span>
+                            <span><a href="https://liuup.github.io/post/2lian-xu-cun-chu-shu-zu-de-suan-fa-yan-shi">https://liuup.github.io/post/2lian-xu-cun-chu-shu-zu-de-suan-fa-yan-shi</a></span>
                         </p>
 
                         <p class="copyright-item">
@@ -218,7 +411,7 @@ cout &lt;&lt; std::thread::hardware_concurrency() &lt;&lt; endl;
 
                         <p class="copyright-item">
                             <span>&#x6C38;&#x4E45;&#x94FE;&#x63A5;:</span>
-                            <span><a href="https://liuup.github.io/post/c-huo-qu-cpu-zui-da-xian-cheng">https://liuup.github.io/post/c-huo-qu-cpu-zui-da-xian-cheng</a></span>
+                            <span><a href="https://liuup.github.io/post/2lian-xu-cun-chu-shu-zu-de-suan-fa-yan-shi">https://liuup.github.io/post/2lian-xu-cun-chu-shu-zu-de-suan-fa-yan-shi</a></span>
                         </p>
 
                         <p class="copyright-item">
@@ -233,7 +426,7 @@ cout &lt;&lt; std::thread::hardware_concurrency() &lt;&lt; endl;
                             <span class="tag">
                                 
                                 
-                                <a href="https://liuup.github.io/tag/omjs2khAU"># C++</a>
+                                <a href="https://liuup.github.io/tag/QlEooH6b7"># C数据结构</a>
                                 
                                 
                             </span>
@@ -251,7 +444,7 @@ cout &lt;&lt; std::thread::hardware_concurrency() &lt;&lt; endl;
                             <span class="tag">
                                 
                                 
-                                <a href="https://liuup.github.io/tag/omjs2khAU"># C++</a>
+                                <a href="https://liuup.github.io/tag/QlEooH6b7"># C数据结构</a>
                                 
                                 
                             </span>
@@ -265,13 +458,9 @@ cout &lt;&lt; std::thread::hardware_concurrency() &lt;&lt; endl;
                     </section>
                     <section class="post-nav">
                         
-                        <a class="prev" rel="prev" href="https://liuup.github.io/post/1mallochan-shu-dong-tai-fen-pei-nei-cun-gai-shu">
+                        
+                        <a class="next" rel="next" href="https://liuup.github.io/post/1mallochan-shu-dong-tai-fen-pei-nei-cun-gai-shu">
                             1.malloc()函数动态分配内存概述
-                        </a>
-                        
-                        
-                        <a class="next" rel="next" href="https://liuup.github.io/post/c-int-lei-xing-zhuan-string">
-                            C++ int类型转string
                         </a>
                         
                     </section>

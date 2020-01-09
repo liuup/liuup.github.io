@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://liuup.github.io/</id>
     <title>UP</title>
-    <updated>2020-01-09T12:13:38.861Z</updated>
+    <updated>2020-01-09T12:17:17.347Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://liuup.github.io/"/>
     <link rel="self" href="https://liuup.github.io/atom.xml"/>
@@ -10,6 +10,249 @@
     <logo>https://liuup.github.io/images/avatar.png</logo>
     <icon>https://liuup.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, UP</rights>
+    <entry>
+        <title type="html"><![CDATA[2.连续存储数组的算法演示]]></title>
+        <id>https://liuup.github.io/post/2lian-xu-cun-chu-shu-zu-de-suan-fa-yan-shi</id>
+        <link href="https://liuup.github.io/post/2lian-xu-cun-chu-shu-zu-de-suan-fa-yan-shi">
+        </link>
+        <updated>2020-01-09T12:16:46.000Z</updated>
+        <content type="html"><![CDATA[<pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;malloc.h&gt;
+
+struct Arr
+{
+	int *pBase;	// 存储的是数组第一个元素的地址
+	int len;	// 数组所能容纳的最大元素的地址
+	int cnt;	// 当前数组有效元素的个数
+};
+
+void init_arr(struct Arr * pArr, int length);	
+bool append_arr(struct Arr * pArr, int val);
+bool insert_arr(struct Arr * pArr, int pos, int val);	// pos的值从1开始
+bool delete_arr(struct Arr * pArr, int pos);
+int get();
+bool is_empty(struct Arr * pArr);
+bool is_full(struct Arr * pArr);
+void sort_arr(struct Arr * pArr);
+void show_arr(struct Arr * pArr);
+void inversion_arr();
+
+
+int main()
+{
+	struct Arr arr;
+	init_arr(&amp;arr, 9);
+	append_arr(&amp;arr, 1);
+	append_arr(&amp;arr, 2);
+	append_arr(&amp;arr, 9);
+	append_arr(&amp;arr, 4);
+	append_arr(&amp;arr, 5);
+	append_arr(&amp;arr, 6);
+	//append_arr(&amp;arr, 7);
+	//append_arr(&amp;arr, 8);
+	//insert_arr(&amp;arr, 0, 88);
+
+	//delete_arr(&amp;arr, 2);
+	sort_arr(&amp;arr);
+	show_arr(&amp;arr);
+
+
+
+
+	printf(&quot;\n\n\n\n&quot;);
+	return 0;
+}
+
+
+// @brief 数组初始化
+// @param 结构体的地址
+// @param 数组的长度
+void init_arr(struct Arr * pArr, int length)
+{
+	pArr-&gt;pBase = (int *)malloc(sizeof(int) * length);
+	if(pArr-&gt;pBase == NULL)
+	{
+		printf(&quot;动态内存分配失败\n&quot;);
+		exit(-1);	// 终止整个程序
+	}
+	
+	printf(&quot;动态内存分配成功!\n&quot;);
+	pArr-&gt;len = length;
+	pArr-&gt;cnt = 0;
+
+	return ;
+}
+
+
+// @brief 判度是否已满
+//
+//
+bool is_full(struct Arr * pArr)
+{
+	return pArr-&gt;cnt == pArr-&gt;len ? true : false;
+}
+
+// @brief 追加元素
+//
+//
+bool append_arr(struct Arr * pArr, int val)
+{
+	// 数组为满的判断
+	if(is_full(pArr))
+	{
+		printf(&quot;数组已满!\n&quot;);
+		exit(-1);
+	}
+
+	// 不满时追加 
+	pArr-&gt;pBase[pArr-&gt;cnt] = val;
+	(pArr-&gt;cnt)++;
+	return true;
+}
+
+
+// @brief 插入元素
+//
+//
+bool insert_arr(struct Arr * pArr, int pos, int val)
+{
+	// 判断下标合法性
+	if(pos &lt; 0)
+	{
+		printf(&quot;插入元素的下标非法!\n&quot;);
+		exit(-1);
+	}
+
+	// 先对元素进行移动,后面的元素先移动
+	(pArr-&gt;cnt)++;
+	for(int i = pArr-&gt;cnt - 1; i &gt;= pos; i--)
+	{
+		pArr-&gt;pBase[i] = pArr-&gt;pBase[i - 1];
+	}
+	// 元素赋值
+	pArr-&gt;pBase[pos] = val;
+
+	return true;
+}
+
+
+// @brief 删除特定位置的数值
+//
+//
+bool delete_arr(struct Arr * pArr, int pos)
+{
+	if(pos &lt; 0)
+	{
+		printf(&quot;删除的元素下标有误!\n&quot;);
+		exit(-1);
+	}
+
+	for(int i = pos; i &lt; pArr-&gt;cnt; i++)
+	{
+		pArr-&gt;pBase[i] = pArr-&gt;pBase[i + 1];
+	}
+	(pArr-&gt;cnt)--;
+
+	return true;
+}
+
+
+
+
+// @brief 判断数组是否为空
+//
+//
+bool is_empty(struct Arr * pArr)
+{
+	return pArr-&gt;cnt == 0 ? true : false;	// 使用三元运算符
+}
+
+
+// @brief 对数组排序
+//
+//
+void sort_arr(struct Arr * pArr)
+{
+	int temp;
+	for(int i = 0; i &lt; pArr-&gt;cnt - 1; i++)
+	{
+		for(int j = 0; j &lt; pArr-&gt;cnt - i - 1; j++)
+		{
+			if(pArr-&gt;pBase[j] &gt; pArr-&gt;pBase[j + 1])
+			{
+				temp = pArr-&gt;pBase[j];
+				pArr-&gt;pBase[j] = pArr-&gt;pBase[j + 1];
+				pArr-&gt;pBase[j + 1] = temp;
+			}
+		}
+	}
+}
+
+
+
+
+// @brief 输出数组的元素
+//
+//
+void show_arr(struct Arr * pArr)
+{
+	if(is_empty(pArr) == true)
+	{
+		printf(&quot;数组为空!\n&quot;);
+		exit(-1);
+	}
+
+	for(int i = 0; i &lt; pArr-&gt;cnt; i++)
+	{
+		printf(&quot;%d &quot;, pArr-&gt;pBase[i]);
+	}
+}
+
+
+
+
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[1.malloc()函数动态分配内存概述]]></title>
+        <id>https://liuup.github.io/post/1mallochan-shu-dong-tai-fen-pei-nei-cun-gai-shu</id>
+        <link href="https://liuup.github.io/post/1mallochan-shu-dong-tai-fen-pei-nei-cun-gai-shu">
+        </link>
+        <updated>2020-01-09T12:16:08.000Z</updated>
+        <content type="html"><![CDATA[<p>malloc()默认返回值是void *</p>
+<h2 id="创建并释放">创建并释放</h2>
+<pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;malloc.h&gt;
+
+int main()
+{
+	// molloc()动态内存
+
+	int len;
+	printf(&quot;please input the len:&quot;);
+	scanf(&quot;%d&quot;, &amp;len);
+
+	int *pArr = (int *)malloc(sizeof(int) * len);	// pArr是地址
+
+	*pArr = 10;	// 类似于pArr[0] = 10
+	pArr[1] = 2;
+	pArr[2] = 3;
+
+	printf(&quot;%d\n&quot;, *(pArr++));	// pArr[0]
+	printf(&quot;%d\n&quot;, *(pArr++));
+	printf(&quot;%d\n&quot;, *(pArr++));
+    
+    free(pArr); // 把pArr代表的动态分配的内存释放
+    
+    
+	return 0;
+}
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[C++  获取CPU最大线程]]></title>
         <id>https://liuup.github.io/post/c-huo-qu-cpu-zui-da-xian-cheng</id>
