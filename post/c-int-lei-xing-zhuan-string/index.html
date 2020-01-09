@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8" />
 <title>
@@ -40,7 +39,6 @@
 </script>
 
 </head>
-
 <body>
     <div class="wrapper">
         <header>
@@ -143,50 +141,157 @@
 
     }
 </script>
-            <div class="main">
-                <div class="container">
-                    <div class="intro">
-                        <div class="avatar">
-                            <a href="https://liuup.github.io/"><img src="https://liuup.github.io//images/avatar.png?v=1578571651106"></a>
-                        </div>
-                        <div class="nickname">
-                            UP
-                        </div>
-                        <div class="description">
-                            UP&#39;s Blog
-                        </div>
-                        <div class="links">
+        <div class="main">
+            <div class="container">
+                <article class="post-wrap">
+                    <header class="post-header">
+                        <h1 class="post-title">
+                            c++ int类型转string
+                        </h1>
+                        <!--en-->
+                        <div class="post-meta en">
+                            Author:
+                            <a itemprop="author" rel="author" href="/">
+                                UP
+                            </a>
+                            <span class="post-time">
+                                Date: <a href="#">2020-01-09</a>
+                            </span>
                             
+                            <span class="post-category">
+                                Category:
                                 
-                                        
+                                <a href="https://liuup.github.io/tag/omjs2khAU">C++</a>
                                 
-                                        
-                                
-                                        
-                                
-                                    <a class="link-item" href="https://github.com/liuup" title="github"><i class="fa fa-github"></i></a>
-                                    
-                                        
-                                
-                                        
-                                
-                                        
-                                
-                                        
-                                
-                                    <a class="link-item" href="https://weibo.com/u/1627921701" title="weibo"><i class="fa fa-weibo"></i></a>
-                                    
-                                        
-                                
-                                        
-                                
-                                        
+                            </span>
+                            
                         </div>
-                    </div>
-                </div>
+                        <!--zh-->
+                        <div class="post-meta zh">
+                            &#x4F5C;&#x8005;:
+                            <a itemprop="author" rel="author" href="/">
+                                UP
+                            </a>
+                            <span class="post-time">
+                                &#x65E5;&#x671F;: <a href="#">2020-01-09</a>
+                            </span>
+                            
+                            <span class="post-category">
+                                &#x5206;&#x7C7B;:
+                                
+                                <a href="https://liuup.github.io/tag/omjs2khAU">C++</a>
+                                
+                            </span>
+                            
+                        </div>
+                    </header>
+                    <div class="post-content">
+                        <p>好像c++和c的强制类型转换不太一样，在此记录一下</p>
+<pre><code>#include &lt;string.h&gt;
 
+string to_string (int val);
+string to_string (long val);
+string to_string (long long val);
+string to_string (unsigned val);
+string to_string (unsigned long val);
+string to_string (unsigned long long val);
+string to_string (float val);
+string to_string (double val);
+string to_string (long double val);
+</code></pre>
+<p>Reference</p>
+<blockquote>
+<p><a href="https://www.cnblogs.com/johngu/p/7878029.html">C++数值类型与string的相互转换</a></p>
+</blockquote>
+
+                    </div>
+                    <section class="post-copyright en">
+                        <!--en-->
+                        <p class="copyright-item">
+                            <span>Author:</span>
+                            <span>UP</span>
+                        </p>
+
+                        <p class="copyright-item">
+                            <span>Permalink:</span>
+                            <span><a href="https://liuup.github.io/post/c-int-lei-xing-zhuan-string">https://liuup.github.io/post/c-int-lei-xing-zhuan-string</a></span>
+                        </p>
+
+                        <p class="copyright-item">
+                            <span>License:</span>
+                            <span>MIT License</span>
+                        </p>
+                    </section>
+                    <section class="post-copyright zh">
+                        <!--zh-->
+                        <p class="copyright-item ">
+                            <span>&#x4F5C;&#x8005;:</span>
+                            <span>UP</span>
+                        </p>
+
+                        <p class="copyright-item">
+                            <span>&#x6C38;&#x4E45;&#x94FE;&#x63A5;:</span>
+                            <span><a href="https://liuup.github.io/post/c-int-lei-xing-zhuan-string">https://liuup.github.io/post/c-int-lei-xing-zhuan-string</a></span>
+                        </p>
+
+                        <p class="copyright-item">
+                            <span>&#x534F;&#x8BAE;:</span>
+                            <span>MIT License</span>
+                        </p>
+                    </section>
+                    <!--en-->
+                    <section class="post-tags en">
+                        <div>
+                            <span>Tag(s):</span>
+                            <span class="tag">
+                                
+                                
+                                <a href="https://liuup.github.io/tag/omjs2khAU"># C++</a>
+                                
+                                
+                            </span>
+                        </div>
+                        <div>
+                            <a href="javascript:window.history.back();">back</a>
+                            <span>&dot;</span>
+                            <a href="#">home</a>
+                        </div>
+                    </section>
+                    <!--zh-->
+                    <section class="post-tags zh">
+                        <div>
+                            <span>&#x6807;&#x7B7E;:</span>
+                            <span class="tag">
+                                
+                                
+                                <a href="https://liuup.github.io/tag/omjs2khAU"># C++</a>
+                                
+                                
+                            </span>
+                        </div>
+                        <div>
+                            <a href="javascript:window.history.back();">
+                                &#x8FD4;&#x56DE;</a>
+                            <span>&dot;</span>
+                            <a href="#">&#x4E3B;&#x9875;</a>
+                        </div>
+                    </section>
+                    <section class="post-nav">
+                        
+                        
+                        <a class="next" rel="next" href="https://liuup.github.io/post/static_cast-and-unit-explanation">
+                            static_cast and unit explanation
+                        </a>
+                        
+                    </section>
+                </article>
             </div>
             
+        </div>
+    </div>
+    </div>
+    </div>
+    
         <footer id="footer" class="footer">
 
             <div class="copyright">
