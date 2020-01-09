@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://liuup.github.io/</id>
     <title>UP</title>
-    <updated>2020-01-09T12:17:17.347Z</updated>
+    <updated>2020-01-09T12:19:53.578Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://liuup.github.io/"/>
     <link rel="self" href="https://liuup.github.io/atom.xml"/>
@@ -10,6 +10,185 @@
     <logo>https://liuup.github.io/images/avatar.png</logo>
     <icon>https://liuup.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, UP</rights>
+    <entry>
+        <title type="html"><![CDATA[NVIDIA Jetson TX2 Notes ]]></title>
+        <id>https://liuup.github.io/post/nvidia-jetson-tx2-notes</id>
+        <link href="https://liuup.github.io/post/nvidia-jetson-tx2-notes">
+        </link>
+        <updated>2020-01-09T12:18:55.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="nvidia-jetson-tx2-notes">NVIDIA Jetson TX2 Notes</h1>
+<p>NVIDIA Jetson TX2 不论在各个方面对于一个新手来说都是一个天坑，而且坑是一个接着一个，我在此记录一些我在配置TX2时遇到的问题，并提出可靠的解决方案。</p>
+<p>host：</p>
+<blockquote>
+<p>System:Ubuntu 18.04 Lts<br>
+Processor:Intel® Core™ i5-8300H CPU @ 2.30GHz × 8<br>
+Graphics:GeForce GTX 1050 Ti/PCIe/SSE2</p>
+</blockquote>
+<p>Jetson TX2:</p>
+<blockquote>
+<p>System:Ubuntu 18.04 Lts<br>
+Processor:ARMv8 Processor rev 3(v8l) × 4<br>
+Graphics:NVIDIA Tegra X2(nvgpu)/integrated</p>
+</blockquote>
+<p>自己主机和TX2配置相差很大，但是刚开始自己并没有意识到这个问题，在更新sources.list时和安装vscode时才意识到这个问题。</p>
+<p>TX2的Ubuntu18.04Lts系统是NVIDIA魔改版，用的unity桌面，在界面上会有些不一样。</p>
+<h2 id="1乱七八糟的资料与百科">1.乱七八糟的资料与百科</h2>
+<p>1.Google镜像站，免翻墙在中国用google的最佳食用方式，Ubuntu改个hosts就行</p>
+<blockquote>
+<p><a href="gg.chn.moe">Google镜像站</a></p>
+</blockquote>
+<p>2.Jetson TX2 的全英百科，感觉还算全</p>
+<blockquote>
+<p><a href="https://elinux.org/Jetson_TX2">Jetson TX2 on elinux</a></p>
+</blockquote>
+<p>3.NVIDIA Jetson TX2 Official</p>
+<blockquote>
+<p><a href="https://www.nvidia.cn/autonomous-machines/embedded-systems/jetson-tx2/">NVDIA Jetson TX2</a></p>
+</blockquote>
+<p>4.TX2接口一览<br>
+<img src="https://img.oschina.net/itags/05081aeb1454f7b6d66dc355ea4f53b54059bde2.png" alt="TX2各种接口" loading="lazy"></p>
+<h2 id="2关于刷机">2.关于刷机</h2>
+<p>自己的host主机已经安装了NVIDIA SDKManger,将TX2进入恢复模式(同时长按POWER和RECOVERY键两秒后,按一下RESET键,再松开RECOVERY键),在host Terminal上输入<code>lsusb</code>,如果显示出<code>NVIDIA Corp</code>就证明基本连接成功.</p>
+<h3 id="21-可能遇到的问题">2.1 可能遇到的问题</h3>
+<h4 id="211-step-4-flash时提示没连接上">2.1.1 STEP 4 flash时提示没连接上</h4>
+<p>将进入RECOVERY模式的TX2从host上拔下,直接在host上点刷机(当然,这肯定刷不进去),出来个提示框,第一个模式会让输入TX2的账号和密码,第二个模式是全自动.此时再将TX2连入host,点继续就能成功刷机</p>
+<h4 id="212-刷机过程中提示时间过长超出预期">2.1.2 刷机过程中提示时间过长,超出预期</h4>
+<p><s>点继续就行了</s><br>
+<strong>更换数据线,请尽量使用官方数据线,使用质量可靠的数据线能够显著增加数据传输速度</strong></p>
+<blockquote>
+<ol>
+<li><a href="https://devtalk.nvidia.com/default/topic/1062832/jetson-agx-xavier/flash-jetson-os-fails-on-jetson-agx-xavier-stuck-at-99-8-/1">NVIDIA上的关于flash卡99.8%的讨论</a></li>
+<li>值得注意的是,<strong>数据线</strong>和<strong>充电线</strong>并不太一样</li>
+</ol>
+</blockquote>
+<h4 id="213-更换数据线后仍提示检测不到tx2">2.1.3 更换数据线后仍提示检测不到TX2</h4>
+<p>将TX2彻底关机,将数据线从host上拔出,将电源线拔出,重新连接数据线和电源线,再次进入恢复模式,重新连接数据线和电源线,再次在host上SDKManger中检测</p>
+<h2 id="3关于配置">3.关于配置</h2>
+<p>1.这个地方不注意连sudo apt-get update<br>
+都更新不了，为了降低功耗，TX2的CPU架构是arm64(aarch64)，可以通过以下代码查看CPU架构</p>
+<pre><code>~$uname -a
+或者
+~$dpkg --print-architecture
+</code></pre>
+<p>2.由于CPU架构的不同，在后面更新sources.list时要做出一些改变</p>
+<h2 id="4sources">4.Sources</h2>
+<p>为了加快各个软件的更新下载速度,需要将更新源换成国内<br>
+arm ubuntu开发板的apt库和普通ubuntu的库是不一样的，arm用的是ubuntu-ports库。</p>
+<p>先获取root权限，再执行</p>
+<pre><code>~$gedit /etc/apt/sources.list
+</code></pre>
+<p>修改source，在此给出Ubuntu 18.04 Lts USTC的源，值得注意的是，arm64的源和普通PC的不一样，要将ubuntu改成ubuntu-ports才能更新</p>
+<pre><code>deb http://mirrors.ustc.edu.cn/ubuntu-ports/ bionic-updates main restricted universe multiverse 
+deb-src http://mirrors.ustc.edu.cn/ubuntu-ports/ bionic-updates main restricted universe multiverse 
+deb http://mirrors.ustc.edu.cn/ubuntu-ports/ bionic-security main restricted universe multiverse 
+deb-src http://mirrors.ustc.edu.cn/ubuntu-ports/ bionic-security main restricted universe multiverse 
+deb http://mirrors.ustc.edu.cn/ubuntu-ports/ bionic-backports main restricted universe multiverse 
+deb-src http://mirrors.ustc.edu.cn/ubuntu-ports/ bionic-backports main restricted universe multiverse 
+deb http://mirrors.ustc.edu.cn/ubuntu-ports/ bionic main universe restricted 
+deb-src http://mirrors.ustc.edu.cn/ubuntu-ports/ bionic main universe restricted
+</code></pre>
+<p>更新源</p>
+<pre><code>~$sudo apt-get update
+</code></pre>
+<p>更新之后可能会报GPG Error，我列出Error如下</p>
+<pre><code>~$GPG error: https://packagecloud.io/headmelted/codebuilds/debian stretch InRelease: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 0CC3FD642696BFC8
+</code></pre>
+<p>解决方案：这里要将公钥改成上面给出的公钥</p>
+<pre><code>~$apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0CC3FD642696BFC8
+</code></pre>
+<p>如果出现下列结果，说明Error已经消失了</p>
+<pre><code>~$Executing: /tmp/apt-key-gpghome.ZnhRCRjnAd/gpg.1.sh --recv-keys --keyserver keyserver.ubuntu.com 0CC3FD642696BFC8
+～$gpg: key 8D9940AE59B46979: public key &quot;https://packagecloud.io/headmelted/code-oss (https://packagecloud.io/docs#gpg_signing) &lt;support@packagecloud.io&gt;&quot; imported
+~$gpg: Total number processed: 1
+~$gpg:               imported: 1
+
+</code></pre>
+<p>然后再更新一下源和软件，这就意味着可以正常从库下载软件了</p>
+<pre><code>~$sudo apt-get update
+~$sudo apt-get upgrade
+</code></pre>
+<h2 id="5vscode">5.VSCODE</h2>
+<p>紧接着就安装宇宙最强IDE：vscode</p>
+<p>我看了好久的Microsoft官方文档，发现官方根本就不支持在linux arm64上面运行，在google上搜索，看到nvidia论坛里也有人问怎么安装vscode。继续以关键词arm64 vscode搜索，发现有人发了如何在树莓派上安装vscode的教程</p>
+<p>直接在终端运行，便可以安装vscode</p>
+<pre><code>~$sudo apt-get install code-oss
+</code></pre>
+<p>再安装中文包及各种插件，但是会发现<strong>c++插件不支持arm64</strong><br>
+插件会提示</p>
+<pre><code>Architecture arm64 is not supported;
+
+&gt;&gt; 来源:C/C++(拓展)
+</code></pre>
+<p>但是能在vscode里用cmake编译，所以个人认为vscode在tx2上并不太好用,推荐安装qt</p>
+<h2 id="6opencv">6.OpenCV</h2>
+<p>刷机后，TX2自带的是3.3.1，将其刷成3.4.5<br>
+刚开始用的16.04Lts arm64源，一直导致好多包安装不了，按照我上面写的换成18.04的源就行</p>
+<p>Refenrences：</p>
+<blockquote>
+<p>1.<a href="https://www.jianshu.com/p/f646448da265">环境配置-Ubuntu 16.04安装opencv3.4.3 - 简书</a><br>
+2.<a href="https://blog.csdn.net/hjxu2016/article/details/82390434">ubuntu下安装opencv3.4.2 - CSDN</a><br>
+3.<a href="https://github.com/opencv/opencv">opencv - github</a><br>
+4.<a href="https://github.com/opencv/opencv_contrib">opencv_toncrib - github</a></p>
+</blockquote>
+<p>可能出现的问题:</p>
+<ol>
+<li>提示<code>boostdesc_bgm.i</code>缺少</li>
+</ol>
+<blockquote>
+<p>1.1 <a href="https://blog.csdn.net/u011736771/article/details/85960300">编译OpenCV以及openc_contrib提示缺少boostdesc_bgm.i文件出错的解决 - CSDN</a><br>
+1.2 <a href="https://github.com/opencv/opencv_contrib/issues/1301">atal error: boostdesc_bgm.i: No such file or directory  - Github</a></p>
+</blockquote>
+<ol start="2">
+<li>提示各种文件路径不对的</li>
+</ol>
+<blockquote>
+<p>直接进入提示错误的文件修改opencv的源代码</p>
+</blockquote>
+<p>在终端使用命令检验是否安装到位</p>
+<pre><code>~$pkg-config --modversion opencv
+~$3.4.5
+</code></pre>
+<p><strong>使用g++编译的方法：</strong></p>
+<pre><code>~$g++ main.cpp -o main.out `pkg-config opencv --cflags --libs`
+</code></pre>
+<h2 id="7调用摄像头">7.调用摄像头</h2>
+<h3 id="71调用板载摄像头">7.1调用板载摄像头</h3>
+<p>终端运行</p>
+<pre><code>nvgstcapture-1.0 --cus-prev-res=1920*1080
+</code></pre>
+<p><s>但是我还没搞懂怎么通过opencv来调用板载摄像头</s></p>
+<p>分辨率可调：</p>
+<blockquote>
+<p>640 * 480<br>
+1280 * 720<br>
+1920 * 1080<br>
+2104 * 1560<br>
+2592 * 1944<br>
+2616 * 1472<br>
+3840 * 2160<br>
+3896 * 2192<br>
+4208 * 3120<br>
+5632 * 3168<br>
+5632 * 4224</p>
+</blockquote>
+<p>使用q + 回车退出摄像头</p>
+<h3 id="72调用usb摄像头">7.2调用usb摄像头</h3>
+<p>如果想使用usb接口的摄像头，需要将VideoCapture中数值改为1，因为板载摄像头默认是0</p>
+<pre><code>VideoCapture capture(1);
+</code></pre>
+<h2 id="8qt-creator">8.qt creator</h2>
+<blockquote>
+<p>因为vscode在tx2上不太好用，所以需要换个IDE，幸好qt的配置并不难</p>
+</blockquote>
+<p>直接终端运行</p>
+<pre><code>~$sudo apt-get install qt5-default qtcreator -y
+</code></pre>
+<p>Reference：</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/jiangchao3392/article/details/73822655">NVIDIA Jetson TX2 安装qt - CSDN</a></p>
+</blockquote>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[2.连续存储数组的算法演示]]></title>
         <id>https://liuup.github.io/post/2lian-xu-cun-chu-shu-zu-de-suan-fa-yan-shi</id>
