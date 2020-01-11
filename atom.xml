@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://liuup.github.io/</id>
     <title>UP</title>
-    <updated>2020-01-11T04:35:36.564Z</updated>
+    <updated>2020-01-11T04:51:04.859Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://liuup.github.io/"/>
     <link rel="self" href="https://liuup.github.io/atom.xml"/>
@@ -10,6 +10,19 @@
     <logo>https://liuup.github.io/images/avatar.png</logo>
     <icon>https://liuup.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, UP</rights>
+    <entry>
+        <title type="html"><![CDATA[卸载opencv]]></title>
+        <id>https://liuup.github.io/post/xie-zai-opencv</id>
+        <link href="https://liuup.github.io/post/xie-zai-opencv">
+        </link>
+        <updated>2020-01-11T04:47:38.000Z</updated>
+        <content type="html"><![CDATA[<pre><code>cd  build
+sudo make uninstall
+sudo rm * -rf
+sudo rm -r /usr/local/include/opencv2 /usr/local/include/opencv /usr/include/opencv /usr/include/opencv2 /usr/local/share/opencv /usr/local/share/OpenCV /usr/share/opencv /usr/share/OpenCV /usr/local/bin/opencv* /usr/local/lib/libopencv*
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[绘制R字母的中心点，并存储在传入的参数中]]></title>
         <id>https://liuup.github.io/post/hui-zhi-r-zi-mu-de-zhong-xin-dian-bing-cun-chu-zai-chuan-ru-de-can-shu-zhong</id>
@@ -509,50 +522,6 @@ int main()
 
 
 	waitKey(0);
-}
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[寻找两个轮廓中的每个轮廓最大面积函数]]></title>
-        <id>https://liuup.github.io/post/xun-zhao-liang-ge-lun-kuo-zhong-de-mei-ge-lun-kuo-zui-da-mian-ji-han-shu</id>
-        <link href="https://liuup.github.io/post/xun-zhao-liang-ge-lun-kuo-zhong-de-mei-ge-lun-kuo-zui-da-mian-ji-han-shu">
-        </link>
-        <updated>2020-01-11T04:25:08.000Z</updated>
-        <content type="html"><![CDATA[<pre><code>void FindContourArea(vector&lt;vector&lt;Point&gt;&gt; contours)
-{
-	static int ContoursAreaArray[2] = { 0 };//存储轮廓面积的数组
-
-	switch (contours.size())
-	{
-	case 1:
-		if (contourArea(contours[0]) &gt; ContoursAreaArray[0])
-			ContoursAreaArray[0] = contourArea(contours[0]);
-		break;
-	case 2:
-		if (contourArea(contours[0]) &gt; contourArea(contours[1]))
-		{
-			if (contourArea(contours[0]) &gt; ContoursAreaArray[1])
-				ContoursAreaArray[1] = contourArea(contours[0]);
-			
-			if (contourArea(contours[1]) &gt; ContoursAreaArray[0])
-				ContoursAreaArray[0] = contourArea(contours[1]);
-		}
-		if (contourArea(contours[0]) &lt; contourArea(contours[1]))
-		{
-			if (contourArea(contours[0]) &gt; ContoursAreaArray[0])
-				ContoursAreaArray[0] = contourArea(contours[0]);
-
-			if (contourArea(contours[1]) &gt; ContoursAreaArray[1])
-				ContoursAreaArray[1] = contourArea(contours[1]);
-		}
-		break;
-	default:
-		cout &lt;&lt; &quot;这里是别的情况&quot; &lt;&lt; endl;
-		break;
-	}
-
-	cout &lt;&lt; ContoursAreaArray[0] &lt;&lt; &quot; &quot; &lt;&lt; ContoursAreaArray[1] &lt;&lt; endl;
 }
 </code></pre>
 ]]></content>
