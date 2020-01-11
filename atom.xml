@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://liuup.github.io/</id>
     <title>UP</title>
-    <updated>2020-01-11T04:51:04.859Z</updated>
+    <updated>2020-01-11T04:53:38.751Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://liuup.github.io/"/>
     <link rel="self" href="https://liuup.github.io/atom.xml"/>
@@ -21,6 +21,8 @@ sudo make uninstall
 sudo rm * -rf
 sudo rm -r /usr/local/include/opencv2 /usr/local/include/opencv /usr/include/opencv /usr/include/opencv2 /usr/local/share/opencv /usr/local/share/OpenCV /usr/share/opencv /usr/share/OpenCV /usr/local/bin/opencv* /usr/local/lib/libopencv*
 </code></pre>
+<h2 id="references">References</h2>
+<p><a href="https://blog.csdn.net/Jhonny_yang/article/details/100744647">ubuntu --重装opencv :opencv4+cuda10+contrib</a></p>
 ]]></content>
     </entry>
     <entry>
