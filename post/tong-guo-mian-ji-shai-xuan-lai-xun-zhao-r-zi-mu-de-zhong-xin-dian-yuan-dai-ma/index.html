@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>通过面积筛选来寻找R字母的中心点【源代码】 | UP</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://liuup.github.io//favicon.ico?v=1578717204022">
+<link rel="stylesheet" href="https://liuup.github.io//styles/main.css">
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="#include &lt;iostream&gt; 
+#include &lt;cmath&gt;
+//#include &lt;thread&gt;
+
+#include &lt;opencv2/core/core.hpp&gt; 
+#in..." />
+    <meta name="keywords" content="" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://liuup.github.io/">
+        <img src="https://liuup.github.io//images/avatar.png?v=1578717204022" class="site-logo">
+        <h1 class="site-title">UP</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/liuup" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://weibo.com/u/1627921701" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      这是一个博客,也是一个发牢骚的地方,而且不希望被太多人知道...
+    </div>
+    <div class="site-footer">
+      Made with <a href="https://github.com/liuup" target="_blank">UP</a> | <a class="rss" href="https://liuup.github.io//atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">通过面积筛选来寻找R字母的中心点【源代码】</h2>
+            <div class="post-date">2020-01-11</div>
+            
+            <div class="post-content" v-pre>
+              <pre><code>#include &lt;iostream&gt; 
+#include &lt;cmath&gt;
+//#include &lt;thread&gt;
+
+#include &lt;opencv2/core/core.hpp&gt; 
+#include &lt;opencv2/highgui/highgui.hpp&gt; 
+#include &lt;opencv2/imgproc.hpp&gt;
+
+// R字母轮廓的最大和最小面积
+#define R_AREA_MAX 220
+#define R_AREA_MIN 200
+
+
+using namespace std;
+using namespace cv;
+
+// brief 创建一个甲板的数据类，存储甲板的各种信息
+class ArmorData
+{
+public:
+	Point2f Rcenter;		// 字母R的中心点
+	//Point2f ArmorCenter;	// 装甲板的中心点(好吧，并没有什么用，通过旋转矩形就可以直接获得中心点)
+	Rect bounding_rect;		// 装甲板的外接矩形
+	RotatedRect rRect;		// 装甲板的旋转矩形
+	int quadrant;			// 装甲板所在象限，如果以R字母为原点，和笛卡尔坐标系的象限表示一样
+	Point2f predictPoint;	// 装甲板的打击预测点
+
+};
+
+
+
+// brief 获得两个点之间的距离
+// param point_1 线的第一个点
+// param point_2 线的另一个点
+// return 返回两个点的距离
+double pointsDistance(Point2f point_1, Point2f point_2)
+{
+	return sqrt(pow(point_1.x - point_2.x, 2) + pow(point_1.y - point_2.y, 2));
+}
+
+
+// brief 寻找两个轮廓的面积
+// param 轮廓点的矩阵
+void findTwoContoursArea(vector&lt;vector&lt;Point&gt;&gt; contours)
+{
+	static int ContoursAreaArray[2] = { 0 };//存储轮廓面积的数组
+
+	switch (contours.size())
+	{
+	case 1:
+		if (contourArea(contours[0]) &gt; ContoursAreaArray[0])
+			ContoursAreaArray[0] = contourArea(contours[0]);
+		break;
+	case 2:
+		if (contourArea(contours[0]) &gt; contourArea(contours[1]))
+		{
+			if (contourArea(contours[0]) &gt; ContoursAreaArray[1])
+				ContoursAreaArray[1] = contourArea(contours[0]);
+			
+			if (contourArea(contours[1]) &gt; ContoursAreaArray[0])
+				ContoursAreaArray[0] = contourArea(contours[1]);
+		}
+		if (contourArea(contours[0]) &lt; contourArea(contours[1]))
+		{
+			if (contourArea(contours[0]) &gt; ContoursAreaArray[0])
+				ContoursAreaArray[0] = contourArea(contours[0]);
+
+			if (contourArea(contours[1]) &gt; ContoursAreaArray[1])
+				ContoursAreaArray[1] = contourArea(contours[1]);
+		}
+		break;
+	default:
+		cout &lt;&lt; &quot;这里是别的情况&quot; &lt;&lt; endl;
+		break;
+	}
+
+	cout &lt;&lt; ContoursAreaArray[0] &lt;&lt; &quot; &quot; &lt;&lt; ContoursAreaArray[1] &lt;&lt; endl;
+}
+
+
+// birief 绘制R字母的中心点，并把中心坐标存储在第三个参数中
+// param InputArray 输入的图像，也就是要检测的图像
+// param OutputArray 输出的图像，也就是R字母要绘制在哪个图像上
+// parameter Rcenter 存储R字母坐标的点
+void drawRcenter(Mat InputArray, Mat &amp;OutputArray, Point2f &amp;Rcenter, int radius, Scalar color, int thickness)
+{
+	vector&lt;vector&lt;Point&gt;&gt; contours;
+	vector&lt;Vec4i&gt; hierarchy;
+
+	findContours(InputArray, contours, hierarchy, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE);
+	//cout &lt;&lt; contours.size() &lt;&lt; endl;
+	//drawContours(OutputArray, contours, -1, Scalar(0, 255, 0), 1);
+
+	for (size_t i = 0; i &lt; contours.size(); ++i)
+	{
+		//cout &lt;&lt; contourArea(contours[i]) &lt;&lt; endl;
+		if (contourArea(contours[i]) &gt; R_AREA_MIN &amp;&amp; contourArea(contours[i]) &lt; R_AREA_MAX)
+		{
+			//cout &lt;&lt; contourArea(contours[i]) &lt;&lt; endl &lt;&lt; endl;
+
+			//cout &lt;&lt; contours[i].size() &lt;&lt; endl;
+			cout &lt;&lt; arcLength(contours[i],true) &lt;&lt; endl;
+
+
+
+			RotatedRect rRect = minAreaRect(contours[i]);
+			Rcenter = rRect.center;
+			// 绘制R字母中心点
+			circle(OutputArray, Rcenter, radius, color, thickness);
+		}
+	}
+}
+
+
+// brief 绘制旋转矩形
+// param frame 直线绘制的图像
+// param rRect 旋转矩形
+// param color 矩形的颜色
+// param thickness 矩形线条的线宽
+void drawRotatedRect(Mat frame, RotatedRect rRect, Scalar color, int thickness = 1)
+{
+	//创建存储旋转矩形顶点的数组
+	Point2f vertices[4];
+	//存储顶点
+	rRect.points(vertices);
+	//绘制旋转矩形
+	for (int j = 0; j &lt; 4; ++j)
+		line(frame, vertices[j], vertices[(j + 1) % 4], color, thickness);
+}
+
+
+// brief 绘制预测点
+// param InputArray 绘制的图层
+// param Armor 装甲板对象
+void predictPoint(Mat InputArray, ArmorData Armor)
+{
+	double delta_x = Armor.rRect.center.x - Armor.Rcenter.x;
+	double delta_y = Armor.rRect.center.y - Armor.Rcenter.y;
+
+	Armor.predictPoint.x = delta_x * cos(-CV_PI / 7.8) + delta_y * sin(-CV_PI / 7.8) + Armor.Rcenter.x;
+	Armor.predictPoint.y = -delta_x * sin(-CV_PI / 7.8) + delta_y * cos(-CV_PI / 7.8) + Armor.Rcenter.y;
+
+	// 绘制预测点
+	circle(InputArray, Armor.predictPoint, 3, Scalar(100, 255, 100), 1);
+	// 绘制R字母到预测点的连线
+	line(InputArray, Armor.Rcenter, Armor.predictPoint, Scalar(80, 200, 10), 1);
+
+}
+
+
+int main()
+{
+	VideoCapture capture(&quot;RH.avi&quot;);		// 获取图像
+	Mat frame;
+	Mat outImage;
+	
+	ArmorData Armor;	// 实例化一个装甲板
+
+	while (true)
+	{
+		//获取帧
+		capture &gt;&gt; frame;
+
+		vector&lt;Mat&gt; imgChannels;
+		split(frame, imgChannels);
+		Mat outImage = imgChannels.at(2) - imgChannels.at(0);
+		threshold(outImage, outImage, 100, 255, CV_THRESH_BINARY);
+		
+		dilate(outImage, outImage, getStructuringElement(MORPH_RECT, Size(3, 3), Point(-1, -1)), Point(-1, -1), 2);
+		erode(outImage, outImage, getStructuringElement(MORPH_RECT, Size(3, 3), Point(-1, -1)), Point(-1, -1), 2);
+		imshow(&quot;1&quot;, outImage);
+
+		//绘制R字母的中心点并存储
+		drawRcenter(outImage, frame, Armor.Rcenter, 3, Scalar(255, 0, 0), 2);
+
+		//漫水处理
+		floodFill(outImage, Point(0, 0), Scalar(255));
+		//图像反色
+		bitwise_not(outImage, outImage);
+		
+		//膨胀腐蚀
+		dilate(outImage, outImage, getStructuringElement(MORPH_RECT, Size(3, 3), Point(-1, -1)), Point(-1, -1), 8);
+		erode(outImage, outImage, getStructuringElement(MORPH_RECT, Size(3, 3), Point(-1, -1)), Point(-1, -1), 2);
+
+		//发现轮廓
+		vector&lt;vector&lt;Point&gt;&gt; contours;
+		vector&lt;Vec4i&gt; hierarchy;
+		findContours(outImage, contours, hierarchy, RETR_TREE, CHAIN_APPROX_SIMPLE);
+
+		if (contours.size() == 0)
+		{
+			cout &lt;&lt; &quot;没有轮廓！&quot; &lt;&lt; endl;
+			continue;
+		}
+
+		for (int i = 0; i &lt; contours.size(); ++i)
+		{
+			//FindTwoContoursArea(contours);
+
+			//根据轮廓面积来进行筛选
+			if (contourArea(contours[i]) &lt; 3000)
+			{
+				//外接矩形
+				Armor.bounding_rect = boundingRect(contours[i]);
+				//外接旋转矩形
+				Armor.rRect = minAreaRect(contours[i]);
+
+			
+				// 打印矩形的角度
+				//cout &lt;&lt; Armor.rRect.angle &lt;&lt; endl;
+
+				
+				//打印外接矩形和旋转矩形的坐标，分析是否相同
+				//cout &lt;&lt; &quot;旋转矩形的中心点：&quot; &lt;&lt; &quot;(&quot; &lt;&lt; rRect.center &lt;&lt; &quot;)\n&quot; &lt;&lt; endl;
+				
+				// NOTE:分析可得，通过旋转矩形的属性来找中心点,精度比较高
+
+				//Point armorcenter(Armor.bounding_rect.x + Armor.bounding_rect.height / 2, Armor.bounding_rect.y + Armor.bounding_rect.width / 2);
+				//cout &lt;&lt; armorcenter &lt;&lt; endl;
+				cout &lt;&lt; Armor.Rcenter &lt;&lt; endl &lt;&lt; endl;
+
+
+				// 根据旋转矩形的属性找旋转矩形所在的象限
+				if (Armor.rRect.center.x &gt;= Armor.Rcenter.x &amp;&amp; Armor.rRect.center.y &lt; Armor.Rcenter.y)
+				{
+					Armor.quadrant = 1;
+				}
+				if (Armor.rRect.center.x &lt; Armor.Rcenter.x &amp;&amp; Armor.rRect.center.y &lt;= Armor.Rcenter.y)
+				{
+					Armor.quadrant = 2;
+				}
+				if (Armor.rRect.center.x &lt;= Armor.Rcenter.x &amp;&amp; Armor.rRect.center.y &gt; Armor.Rcenter.y)
+				{
+					Armor.quadrant = 3;
+				}
+				if (Armor.rRect.center.x &gt; Armor.Rcenter.x &amp;&amp; Armor.rRect.center.y &gt;= Armor.Rcenter.y)
+				{
+					Armor.quadrant = 4;
+				}
+
+				// 对打击点进行预测
+				predictPoint(frame, Armor);
+
+				// 绘制R字母到装甲板的直线
+				line(frame, Armor.Rcenter, Armor.rRect.center, Scalar(80, 200, 10), 1);
+				// 绘制最大的装甲板外接圆
+				circle(frame, Armor.Rcenter, pointsDistance(Armor.rRect.center, Armor.Rcenter), Scalar(255, 10, 100), 1);
+				// 绘制旋转矩形
+				drawRotatedRect(frame, Armor.rRect, Scalar(0, 255, 0), 1);
+				// 绘制轮廓
+				// drawContours(frame, contours, i, Scalar(0, 200, 0), 2); 
+				// 绘制外接矩形
+				// rectangle(frame, bounding_rect, Scalar(151, 255, 255), 2);
+				// 绘制装甲板中心点
+				circle(frame, Armor.rRect.center, 3, Scalar(100, 255, 100), 1);
+			}
+		}
+
+
+
+
+
+
+		//imshow(&quot;out&quot;, frame);
+
+		waitKey(10);
+	}
+
+
+
+
+
+	waitKey(0);
+}
+</code></pre>
+
+            </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://liuup.github.io/post/xun-zhao-liang-ge-lun-kuo-zhong-de-mei-ge-lun-kuo-zui-da-mian-ji-han-shu">
+                  <h3 class="post-title">
+                    寻找两个轮廓中的每个轮廓最大面积函数
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+
+
+  </body>
+</html>

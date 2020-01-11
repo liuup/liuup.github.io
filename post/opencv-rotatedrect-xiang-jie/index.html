@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>openCV RotatedRect points、angle、width、height详解 | UP</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://liuup.github.io//favicon.ico?v=1578717204022">
+<link rel="stylesheet" href="https://liuup.github.io//styles/main.css">
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="opencv里对RotatedRect的定义，中文是翻译。
+class CV_EXPORTS RotatedRect
+{
+public:
+    //! default constructor
+    // 默认构造函数
+    Rotat..." />
+    <meta name="keywords" content="" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://liuup.github.io/">
+        <img src="https://liuup.github.io//images/avatar.png?v=1578717204022" class="site-logo">
+        <h1 class="site-title">UP</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/liuup" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://weibo.com/u/1627921701" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      这是一个博客,也是一个发牢骚的地方,而且不希望被太多人知道...
+    </div>
+    <div class="site-footer">
+      Made with <a href="https://github.com/liuup" target="_blank">UP</a> | <a class="rss" href="https://liuup.github.io//atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">openCV RotatedRect points、angle、width、height详解</h2>
+            <div class="post-date">2020-01-11</div>
+            
+            <div class="post-content" v-pre>
+              <p>opencv里对RotatedRect的定义，中文是翻译。</p>
+<pre><code>class CV_EXPORTS RotatedRect
+{
+public:
+    //! default constructor
+    // 默认构造函数
+    RotatedRect();
+    
+    /** full constructor
+    // 完整构造函数
+    @param center The rectangle mass center.
+           center 矩形的中心点
+    @param size Width and height of the rectangle.
+           size 矩形的宽度和高度
+    @param angle The rotation angle in a clockwise direction. When the angle is 0, 90, 180, 270 etc.,
+           angle 顺时针方向的旋转角度
+    the rectangle becomes an up-right rectangle.
+    矩形变成了右上的矩形
+    */
+    RotatedRect(const Point2f&amp; center, const Size2f&amp; size, float angle);
+    
+    /**
+    Any 3 end points of the RotatedRect. They must be given in order (either clockwise or
+    anticlockwise).
+    RotatedRect的任意3个端点。它们必须按顺序给出(顺时针或逆时针)
+     */
+    RotatedRect(const Point2f&amp; point1, const Point2f&amp; point2, const Point2f&amp; point3);
+
+    /** returns 4 vertices of the rectangle
+        返回矩形的4个顶点
+    @param pts The points array for storing rectangle vertices. The order is bottomLeft, topLeft, topRight, bottomRight.
+           pts 存储矩形顶点的数组，顺序是左下，左上，右上，右下
+    */
+    void points(Point2f pts[]) const;
+    
+    //! returns the minimal up-right integer rectangle containing the rotated rectangle
+    //  返回一个包含旋转矩形的最小直立矩形，长宽都是整型
+    Rect boundingRect() const;
+    
+    //! returns the minimal (exact) floating point rectangle containing the rotated rectangle, not intended for use with images
+    
+    Rect_&lt;float&gt; boundingRect2f() const;
+    
+    //! returns the rectangle mass center
+    Point2f center;
+    
+    //! returns width and height of the rectangle
+    Size2f size;
+    
+    //! returns the rotation angle. When the angle is 0, 90, 180, 270 etc., the rectangle becomes an up-right rectangle.
+    float angle;
+};
+</code></pre>
+<p>deference<br>
+<a href="https://blog.csdn.net/mailzst1/article/details/83141632">Opencv RotatedRect类详解  - CSDN</a></p>
+
+            </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://liuup.github.io/post/zhi-xian-rao-dian-xuan-zhuan">
+                  <h3 class="post-title">
+                    直线绕点旋转
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+
+
+  </body>
+</html>

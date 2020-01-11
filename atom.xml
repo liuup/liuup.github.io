@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://liuup.github.io/</id>
     <title>UP</title>
-    <updated>2020-01-11T03:47:36.021Z</updated>
+    <updated>2020-01-11T04:33:30.025Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://liuup.github.io/"/>
     <link rel="self" href="https://liuup.github.io/atom.xml"/>
@@ -11,284 +11,548 @@
     <icon>https://liuup.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, UP</rights>
     <entry>
-        <title type="html"><![CDATA[6. QDialog]]></title>
-        <id>https://liuup.github.io/post/6-qdialog</id>
-        <link href="https://liuup.github.io/post/6-qdialog">
+        <title type="html"><![CDATA[绘制R字母的中心点，并存储在传入的参数中]]></title>
+        <id>https://liuup.github.io/post/hui-zhi-r-zi-mu-de-zhong-xin-dian-bing-cun-chu-zai-chuan-ru-de-can-shu-zhong</id>
+        <link href="https://liuup.github.io/post/hui-zhi-r-zi-mu-de-zhong-xin-dian-bing-cun-chu-zai-chuan-ru-de-can-shu-zhong">
         </link>
-        <updated>2020-01-09T12:35:28.000Z</updated>
-        <content type="html"><![CDATA[<p>对话框</p>
-<pre><code>// 点击新建按钮,弹出一个对话框
-connect(ui-&gt;actionNew, &amp;QAction::triggered, this, [=](){
-    // 对话框 分离
-    // 模态对话框(不可以对其他窗口进行操作)
-    // 非模态对话框(可以对其他窗口进行操作)
+        <updated>2020-01-11T04:33:11.000Z</updated>
+        <content type="html"><![CDATA[<pre><code>// birief 绘制R字母的中心点，并把中心坐标存储在第三个参数中
+// param InputArray 输入的图像，也就是要检测的图像
+// param OutputArray 输出的图像，也就是R字母要绘制在哪个图像上
+// parameter Rcenter 存储R字母坐标的点
+void drawRcenter(Mat InputArray, Mat &amp;OutputArray, Point2f &amp;Rcenter)
+{
+	vector&lt;vector&lt;Point&gt;&gt; contours;
+	vector&lt;Vec4i&gt; hierarchy;
 
-    // 模态
-    QDialog newWin(this);
-    newWin.resize(200, 100);
-    newWin.exec();
-    cout &lt;&lt; &quot;模态弹出&quot; &lt;&lt; endl;
-
-    // 非模态对话框
-    QDialog * newWin2 = new QDialog(this);
-    newWin2-&gt;resize(200, 150);
-    newWin2-&gt;show();
-    // 为了防止内存泄漏,需要移除对象
-    newWin2-&gt;setAttribute(Qt::WA_DeleteOnClose);    // 55号属性
-
-    
-    cout &lt;&lt; &quot;非模态对话框&quot; &lt;&lt; endl;
-
-
-
-});
-
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[5. Add resources]]></title>
-        <id>https://liuup.github.io/post/5-add-resources</id>
-        <link href="https://liuup.github.io/post/5-add-resources">
-        </link>
-        <updated>2020-01-09T12:35:02.000Z</updated>
-        <content type="html"><![CDATA[<pre><code>// 资源文件
-
-// 将文件拷贝到项目下
-
-// 右键文件,添加新文件,QT resources file
-
-// Open in editer 
-
-// 通过ui可以找到所有的控件
-ui-&gt;actionNew-&gt;setIcon(QIcon(&quot;:/icons/edit.png&quot;));
-ui-&gt;actionExit-&gt;setIcon(QIcon(&quot;:/icons/edit.png&quot;));
-
-
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[4. Status]]></title>
-        <id>https://liuup.github.io/post/4-status</id>
-        <link href="https://liuup.github.io/post/4-status">
-        </link>
-        <updated>2020-01-09T12:34:00.000Z</updated>
-        <content type="html"><![CDATA[<pre><code>#include &lt;QStatusBar&gt;
-#include &lt;Qlabel&gt;
-
-// 状态栏,最多一个
-QStatusBar * stBar = statusBar();
-setStatusBar(stBar);
-QLabel * label = new QLabel(&quot;提示信息&quot;, this);
-stBar-&gt;addWidget(label);
-
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[3.Menu]]></title>
-        <id>https://liuup.github.io/post/3menu</id>
-        <link href="https://liuup.github.io/post/3menu">
-        </link>
-        <updated>2020-01-09T12:33:36.000Z</updated>
-        <content type="html"><![CDATA[<pre><code>#include &lt;QMenu&gt;
-
-QMenuBar * bar = menuBar();
-setMenuBar(bar);
-// 创建菜单
-QMenu * fileMenu = bar-&gt;addMenu(&quot;File&quot;);
-QMenu * editMenu = bar-&gt;addMenu(&quot;Edit&quot;);
-QMenu * helpMenu = bar-&gt;addMenu(&quot;Help&quot;);
-
-// 创建菜单项
-fileMenu-&gt;addAction(&quot;New file&quot;);
-fileMenu-&gt;addAction(&quot;NULL&quot;);
-fileMenu-&gt;addSeparator();
-QAction *file_exit = fileMenu-&gt;addAction(&quot;Exit&quot;);
-connect(file_exit, &amp;QAction::triggered, this, &amp;MainWindow::close);
-
-QAction *help_about = helpMenu-&gt;addAction(&quot;About&quot;);
-connect(help_about, &amp;QAction::triggered, this, &amp;MainWindow::HelpAboutFunc);
-
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[2. 信号与槽]]></title>
-        <id>https://liuup.github.io/post/2-xin-hao-yu-cao</id>
-        <link href="https://liuup.github.io/post/2-xin-hao-yu-cao">
-        </link>
-        <updated>2020-01-09T12:33:01.000Z</updated>
-        <content type="html"><![CDATA[<p>将老师和学生创建到对象树上面</p>
-<pre><code>// 创建老师和学生对象
-    this-&gt;teacher = new Teacher(this);
-    this-&gt;student = new Student(this);
-</code></pre>
-<p>连接函数：connect()<br>
-params:<br>
-param1: 信号的发送者<br>
-param2: 发送的信号<br>
-param3: 信号的接受者<br>
-param4: 处理的槽函数</p>
-<p>松散耦合<br>
-实现点击按钮关闭窗口的案例</p>
-<pre><code>connect(btn2, &amp;QPushButton::clicked, this, &amp;MainWindow::close);
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[1. Button的创建]]></title>
-        <id>https://liuup.github.io/post/1-button-de-chuang-jian</id>
-        <link href="https://liuup.github.io/post/1-button-de-chuang-jian">
-        </link>
-        <updated>2020-01-09T12:32:31.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="1-button的创建">1. Button的创建</h1>
-<pre><code>#include &lt;QPushButton&gt;  // 引入头文件
-
-// 第一种方式
-
-// 创建一个按钮
-QPushButton * btn = new QPushButton;
-btn-&gt;show();    // 以顶层方式弹出窗口控件，也就是游离于主窗口之外
-// 让btn对象依赖在MainWindow窗口中
-btn-&gt;setParent(this);
-
-// 显示文本
-btn-&gt;setText(&quot;set&quot;);
-
-
-// 第二种方式
-
-// 创建第二个按钮，按照控件的大小创建窗口
-QPushButton * btn2 = new QPushButton(&quot;the first&quot;, this);
-// 移动btn2按钮
-btn2-&gt;move(50, 0);
-
-// 重置主窗口大小
-resize(400, 300);
-
-// 设置固定的主窗口大小
-setFixedSize(400, 300);
-
-
-//设置主窗口标题
-setWindowTitle(&quot;第一个窗口&quot;);
-
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[CMakeLists_md]]></title>
-        <id>https://liuup.github.io/post/cmakelists_md</id>
-        <link href="https://liuup.github.io/post/cmakelists_md">
-        </link>
-        <updated>2020-01-09T12:31:23.000Z</updated>
-        <content type="html"><![CDATA[<pre><code>cmake_minimum_required(VERSION 2.8)
-PROJECT(main)
-find_package(OpenCV 3.4.5)
-set(CMAKE_C_FLAGS &quot;${CMAKE_C_FLAGS} -std=c++11 -march=native&quot;)
-set(CMAKE_CXX_FLAGS &quot;${CMAKE_CXX_FLAGS} -std=c++11 -march=native&quot;)
-include_directories(${OpenCV_INCLUDE_DIRS})
-ADD_EXECUTABLE(main /home/liuup/Desktop/cpp_test/main.cpp
-                    
-)
-target_link_libraries(main ${OpenCV_LIBS})
-find_package(Threads)
-target_link_libraries(main ${CMAKE_THREAD_LIBS_INIT})
-find_package(X11 REQUIRED)
-include_directories(${X11_INLUCDE_DIR})
-target_link_libraries(main ${X11_LIBRARIES})
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[qt opencv .pro配置]]></title>
-        <id>https://liuup.github.io/post/qt-opencv-pro-pei-zhi</id>
-        <link href="https://liuup.github.io/post/qt-opencv-pro-pei-zhi">
-        </link>
-        <updated>2020-01-09T12:30:42.000Z</updated>
-        <content type="html"><![CDATA[<p>在.pro文件中加入以下代码：</p>
-<pre><code>INCLUDEPATH += /usr/local/include
-INCLUDEPATH += /usr/local/include/opencv
-INCLUDEPATH += /usr/local/include/opencv2
-INCLUDEPATH += /usr/local/include/opencv2/core
-INCLUDEPATH += /usr/local/include/opencv2/highgui
-INCLUDEPATH += /usr/local/include/opencv2/imgproc
-INCLUDEPATH += /usr/local/include/opencv2/flann
-INCLUDEPATH += /usr/local/include/opencv2/photo
-INCLUDEPATH += /usr/local/include/opencv2/video
-INCLUDEPATH += /usr/local/include/opencv2/features2d
-INCLUDEPATH += /usr/local/include/opencv2/objdetect
-INCLUDEPATH += /usr/local/include/opencv2/calib3d
-INCLUDEPATH += /usr/local/include/opencv2/ml
-INCLUDEPATH += /usr/local/include/opencv2/contrib
-LIBS += `pkg-config opencv --cflags --libs`
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[tasks.json]]></title>
-        <id>https://liuup.github.io/post/tasksjson</id>
-        <link href="https://liuup.github.io/post/tasksjson">
-        </link>
-        <updated>2020-01-09T12:30:01.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="tasksjson">tasks.json</h1>
-<pre><code>{
-// 有关 tasks.json 格式的文档，请参见
-    // https://go.microsoft.com/fwlink/?LinkId=733558
-    &quot;version&quot;: &quot;2.0.0&quot;,
-    &quot;tasks&quot;: [
-        {
-            &quot;type&quot;: &quot;shell&quot;,
-            &quot;label&quot;: &quot;cpp build active file&quot;,
-            &quot;command&quot;: &quot;/usr/bin/cpp&quot;,
-            &quot;args&quot;: [
-                &quot;-g&quot;,
-                &quot;${file}&quot;,
-                &quot;-o&quot;,
-                &quot;${fileDirname}/${fileBasenameNoExtension}&quot;
-            ],
-            &quot;options&quot;: {
-                &quot;cwd&quot;: &quot;/usr/bin&quot;
-            },
-            &quot;problemMatcher&quot;: [
-                &quot;$gcc&quot;
-            ],
-            &quot;group&quot;: &quot;build&quot;
-        },
-        {
-            &quot;type&quot;: &quot;shell&quot;,
-            &quot;label&quot;: &quot;g++ build active file&quot;,
-            &quot;command&quot;: &quot;/usr/bin/g++&quot;,
-            &quot;args&quot;: [
-                &quot;-g&quot;,
-                &quot;${file}&quot;,
-                &quot;-o&quot;,
-                &quot;${fileDirname}/${fileBasenameNoExtension}&quot;
-            ],
-            &quot;options&quot;: {
-                &quot;cwd&quot;: &quot;/usr/bin&quot;
-            },
-            &quot;problemMatcher&quot;: [
-                &quot;$gcc&quot;
-            ],
-            &quot;group&quot;: &quot;build&quot;
-        }
-    ]
+	findContours(InputArray, contours, hierarchy, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE);
+	//cout &lt;&lt; contours.size() &lt;&lt; endl;
+	for (size_t i = 0; i &lt; contours.size(); ++i)
+	{
+		if (contourArea(contours[i]) &gt; 180 &amp;&amp; contourArea(contours[i]) &lt; 200)
+		{
+			//cout &lt;&lt; contourArea(contours[i]) &lt;&lt; endl &lt;&lt; endl;
+			RotatedRect rRect = minAreaRect(contours[i]);
+			Rcenter = rRect.center;
+			circle(OutputArray, Rcenter, 3, Scalar(255, 0, 0), 2);
+		}
+	}
 }
 </code></pre>
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[settings.json]]></title>
-        <id>https://liuup.github.io/post/settingsjson</id>
-        <link href="https://liuup.github.io/post/settingsjson">
+        <title type="html"><![CDATA[Perspective-N-Point problem in camera pose estimation]]></title>
+        <id>https://liuup.github.io/post/perspective-n-point-problem-in-camera-pose-estimation</id>
+        <link href="https://liuup.github.io/post/perspective-n-point-problem-in-camera-pose-estimation">
         </link>
-        <updated>2020-01-09T12:29:37.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="settingsjson">settings.json</h1>
-<pre><code>{
-    &quot;cmake.configureOnOpen&quot;: true
+        <updated>2020-01-11T04:32:23.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="p3p">P3P</h2>
+<p><a href="https://www.cnblogs.com/mafuqiang/p/8302663.html">相机位姿求解——P3P问题</a></p>
+<blockquote>
+<p>这里面有余弦的求解方法</p>
+</blockquote>
+<h2 id="reference">Reference</h2>
+<p><a href="https://iopscience.iop.org/article/10.1088/1742-6596/1087/5/052009">A Review of Solutions for Perspective-n-Point Problem in Camera Pose<br>
+Estimation</a><br>
+<a href="https://blog.csdn.net/cocoaqin/article/details/77841261">PnP 单目相机位姿估计（一）：初识PnP问题</a></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[对于fitEllipse()的理解]]></title>
+        <id>https://liuup.github.io/post/dui-yu-fitellipsede-li-jie</id>
+        <link href="https://liuup.github.io/post/dui-yu-fitellipsede-li-jie">
+        </link>
+        <updated>2020-01-11T04:31:59.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="opencv-源代码">openCV 源代码</h2>
+<pre><code>/** @example samples/cpp/fitellipse.cpp
+An example using the fitEllipse technique
+*/
+
+/** @brief Fits an ellipse around a set of 2D points.
+
+The function calculates the ellipse that fits (in a least-squares sense) a set of 2D points best of
+all. It returns the rotated rectangle in which the ellipse is inscribed. The first algorithm described by @cite Fitzgibbon95
+is used. Developer should keep in mind that it is possible that the returned
+ellipse/rotatedRect data contains negative indices, due to the data points being close to the
+border of the containing Mat element.
+
+@param points Input 2D point set, stored in std::vector\&lt;\&gt; or Mat
+ */
+CV_EXPORTS_W RotatedRect fitEllipse( InputArray points );
+</code></pre>
+<p>需要注意的是他返回的是一个旋转矩形</p>
+<h2 id="拟合原理">拟合原理</h2>
+<p>想要拟合一个椭圆，必须满足点的个数至少为6个<br>
+OpenCV中的椭圆拟合事实上就是对Fitzgibbon提出的直接最小二乘拟合算法的实现，这是一种非迭代的椭圆拟合算法，可以参考论文：<a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.53.3587&amp;rep=rep1&amp;type=pdf">Direct least square fitting of ellipses</a>,它要求拟合的点至少为6个点。</p>
+<h2 id="返回值的注意点">返回值的注意点</h2>
+<p>返回的是一个旋转矩形，但是角度却是0-180的，而且是以最短的边为基准</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[rotatedRectingIntersectation()的理解]]></title>
+        <id>https://liuup.github.io/post/rotatedrectingintersectationde-li-jie</id>
+        <link href="https://liuup.github.io/post/rotatedrectingintersectationde-li-jie">
+        </link>
+        <updated>2020-01-11T04:31:39.000Z</updated>
+        <content type="html"><![CDATA[<p>需要在网页上搜索</p>
+<blockquote>
+<p>https://docs.opencv.org/3.1.0/d3/dc0/group__imgproc__shape.html#ga8740e7645628c59d238b0b22c2abe2d4</p>
+</blockquote>
+<p>关于函数返回值</p>
+<blockquote>
+<p>https://docs.opencv.org/3.1.0/d3/dc0/group__imgproc__shape.html#gaaf0eb9e10bd5adcbd446cd31fea2db68</p>
+</blockquote>
+<p><s>好像版本号不太对</s></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[void drawRotatedRect( /*param*/ )]]></title>
+        <id>https://liuup.github.io/post/void-drawrotatedrect-param</id>
+        <link href="https://liuup.github.io/post/void-drawrotatedrect-param">
+        </link>
+        <updated>2020-01-11T04:30:35.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="绘制旋转矩形的自定义函数">绘制旋转矩形的自定义函数</h1>
+<pre><code>// brief 绘制旋转矩形 by up
+// param frame 直线绘制的图像
+// param rRect 旋转矩形
+// param color 矩形的颜色
+// param thickness 矩形线条的线宽
+void drawRotatedRect(Mat frame, RotatedRect rRect, Scalar color, int thickness = 1)
+{
+	//创建存储旋转矩形顶点的数组
+	Point2f vertices[4];
+	//存储顶点
+	rRect.points(vertices);
+	//绘制旋转矩形
+	for (int j = 0; j &lt; 4; ++j)
+		line(frame, vertices[j], vertices[(j + 1) % 4], color, thickness);
+}
+</code></pre>
+<p>2019/10/2 13:53</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[openCV RotatedRect points、angle、width、height详解]]></title>
+        <id>https://liuup.github.io/post/opencv-rotatedrect-xiang-jie</id>
+        <link href="https://liuup.github.io/post/opencv-rotatedrect-xiang-jie">
+        </link>
+        <updated>2020-01-11T04:28:52.000Z</updated>
+        <content type="html"><![CDATA[<p>opencv里对RotatedRect的定义，中文是翻译。</p>
+<pre><code>class CV_EXPORTS RotatedRect
+{
+public:
+    //! default constructor
+    // 默认构造函数
+    RotatedRect();
+    
+    /** full constructor
+    // 完整构造函数
+    @param center The rectangle mass center.
+           center 矩形的中心点
+    @param size Width and height of the rectangle.
+           size 矩形的宽度和高度
+    @param angle The rotation angle in a clockwise direction. When the angle is 0, 90, 180, 270 etc.,
+           angle 顺时针方向的旋转角度
+    the rectangle becomes an up-right rectangle.
+    矩形变成了右上的矩形
+    */
+    RotatedRect(const Point2f&amp; center, const Size2f&amp; size, float angle);
+    
+    /**
+    Any 3 end points of the RotatedRect. They must be given in order (either clockwise or
+    anticlockwise).
+    RotatedRect的任意3个端点。它们必须按顺序给出(顺时针或逆时针)
+     */
+    RotatedRect(const Point2f&amp; point1, const Point2f&amp; point2, const Point2f&amp; point3);
+
+    /** returns 4 vertices of the rectangle
+        返回矩形的4个顶点
+    @param pts The points array for storing rectangle vertices. The order is bottomLeft, topLeft, topRight, bottomRight.
+           pts 存储矩形顶点的数组，顺序是左下，左上，右上，右下
+    */
+    void points(Point2f pts[]) const;
+    
+    //! returns the minimal up-right integer rectangle containing the rotated rectangle
+    //  返回一个包含旋转矩形的最小直立矩形，长宽都是整型
+    Rect boundingRect() const;
+    
+    //! returns the minimal (exact) floating point rectangle containing the rotated rectangle, not intended for use with images
+    
+    Rect_&lt;float&gt; boundingRect2f() const;
+    
+    //! returns the rectangle mass center
+    Point2f center;
+    
+    //! returns width and height of the rectangle
+    Size2f size;
+    
+    //! returns the rotation angle. When the angle is 0, 90, 180, 270 etc., the rectangle becomes an up-right rectangle.
+    float angle;
+};
+</code></pre>
+<p>deference<br>
+<a href="https://blog.csdn.net/mailzst1/article/details/83141632">Opencv RotatedRect类详解  - CSDN</a></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[直线绕点旋转]]></title>
+        <id>https://liuup.github.io/post/zhi-xian-rao-dian-xuan-zhuan</id>
+        <link href="https://liuup.github.io/post/zhi-xian-rao-dian-xuan-zhuan">
+        </link>
+        <updated>2020-01-11T04:28:06.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="直线绕点旋转">直线绕点旋转</h1>
+<figure data-type="image" tabindex="1"><img src="https://img-blog.csdnimg.cn/20190903211230929.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE0Mjc5Nw==,size_16,color_FFFFFF,t_70" alt="推导公式图解" loading="lazy"></figure>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[对opencv中findContours()参数的理解]]></title>
+        <id>https://liuup.github.io/post/dui-opencv-zhong-findcontourscan-shu-de-li-jie</id>
+        <link href="https://liuup.github.io/post/dui-opencv-zhong-findcontourscan-shu-de-li-jie">
+        </link>
+        <updated>2020-01-11T04:27:03.000Z</updated>
+        <content type="html"><![CDATA[<pre><code>// 函数原型
+void findContours(  InputOutputArray image, 
+                    OutputArrayOfArrays contours,
+                    OutputArray hierarchy, int mode,
+                    int method, 
+                    Point offset = Point());
+</code></pre>
+<ol>
+<li>
+<p>这里是中文的一些解释<br>
+<a href="https://blog.csdn.net/dcrmg/article/details/51987348">CSDN-findContours()参数详解</a></p>
+</li>
+<li>
+<p>利用示例进行参数解释，配图详细，部分英文，需要借助Google Translate<br>
+<a href="https://www.cnblogs.com/jsxyhelu/p/6579412.html">opencv使用findContours()进行二维码定位 - 博客园</a></p>
+</li>
+</ol>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[通过面积筛选来寻找R字母的中心点【源代码】]]></title>
+        <id>https://liuup.github.io/post/tong-guo-mian-ji-shai-xuan-lai-xun-zhao-r-zi-mu-de-zhong-xin-dian-yuan-dai-ma</id>
+        <link href="https://liuup.github.io/post/tong-guo-mian-ji-shai-xuan-lai-xun-zhao-r-zi-mu-de-zhong-xin-dian-yuan-dai-ma">
+        </link>
+        <updated>2020-01-11T04:26:06.000Z</updated>
+        <content type="html"><![CDATA[<pre><code>#include &lt;iostream&gt; 
+#include &lt;cmath&gt;
+//#include &lt;thread&gt;
+
+#include &lt;opencv2/core/core.hpp&gt; 
+#include &lt;opencv2/highgui/highgui.hpp&gt; 
+#include &lt;opencv2/imgproc.hpp&gt;
+
+// R字母轮廓的最大和最小面积
+#define R_AREA_MAX 220
+#define R_AREA_MIN 200
+
+
+using namespace std;
+using namespace cv;
+
+// brief 创建一个甲板的数据类，存储甲板的各种信息
+class ArmorData
+{
+public:
+	Point2f Rcenter;		// 字母R的中心点
+	//Point2f ArmorCenter;	// 装甲板的中心点(好吧，并没有什么用，通过旋转矩形就可以直接获得中心点)
+	Rect bounding_rect;		// 装甲板的外接矩形
+	RotatedRect rRect;		// 装甲板的旋转矩形
+	int quadrant;			// 装甲板所在象限，如果以R字母为原点，和笛卡尔坐标系的象限表示一样
+	Point2f predictPoint;	// 装甲板的打击预测点
+
+};
+
+
+
+// brief 获得两个点之间的距离
+// param point_1 线的第一个点
+// param point_2 线的另一个点
+// return 返回两个点的距离
+double pointsDistance(Point2f point_1, Point2f point_2)
+{
+	return sqrt(pow(point_1.x - point_2.x, 2) + pow(point_1.y - point_2.y, 2));
+}
+
+
+// brief 寻找两个轮廓的面积
+// param 轮廓点的矩阵
+void findTwoContoursArea(vector&lt;vector&lt;Point&gt;&gt; contours)
+{
+	static int ContoursAreaArray[2] = { 0 };//存储轮廓面积的数组
+
+	switch (contours.size())
+	{
+	case 1:
+		if (contourArea(contours[0]) &gt; ContoursAreaArray[0])
+			ContoursAreaArray[0] = contourArea(contours[0]);
+		break;
+	case 2:
+		if (contourArea(contours[0]) &gt; contourArea(contours[1]))
+		{
+			if (contourArea(contours[0]) &gt; ContoursAreaArray[1])
+				ContoursAreaArray[1] = contourArea(contours[0]);
+			
+			if (contourArea(contours[1]) &gt; ContoursAreaArray[0])
+				ContoursAreaArray[0] = contourArea(contours[1]);
+		}
+		if (contourArea(contours[0]) &lt; contourArea(contours[1]))
+		{
+			if (contourArea(contours[0]) &gt; ContoursAreaArray[0])
+				ContoursAreaArray[0] = contourArea(contours[0]);
+
+			if (contourArea(contours[1]) &gt; ContoursAreaArray[1])
+				ContoursAreaArray[1] = contourArea(contours[1]);
+		}
+		break;
+	default:
+		cout &lt;&lt; &quot;这里是别的情况&quot; &lt;&lt; endl;
+		break;
+	}
+
+	cout &lt;&lt; ContoursAreaArray[0] &lt;&lt; &quot; &quot; &lt;&lt; ContoursAreaArray[1] &lt;&lt; endl;
+}
+
+
+// birief 绘制R字母的中心点，并把中心坐标存储在第三个参数中
+// param InputArray 输入的图像，也就是要检测的图像
+// param OutputArray 输出的图像，也就是R字母要绘制在哪个图像上
+// parameter Rcenter 存储R字母坐标的点
+void drawRcenter(Mat InputArray, Mat &amp;OutputArray, Point2f &amp;Rcenter, int radius, Scalar color, int thickness)
+{
+	vector&lt;vector&lt;Point&gt;&gt; contours;
+	vector&lt;Vec4i&gt; hierarchy;
+
+	findContours(InputArray, contours, hierarchy, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE);
+	//cout &lt;&lt; contours.size() &lt;&lt; endl;
+	//drawContours(OutputArray, contours, -1, Scalar(0, 255, 0), 1);
+
+	for (size_t i = 0; i &lt; contours.size(); ++i)
+	{
+		//cout &lt;&lt; contourArea(contours[i]) &lt;&lt; endl;
+		if (contourArea(contours[i]) &gt; R_AREA_MIN &amp;&amp; contourArea(contours[i]) &lt; R_AREA_MAX)
+		{
+			//cout &lt;&lt; contourArea(contours[i]) &lt;&lt; endl &lt;&lt; endl;
+
+			//cout &lt;&lt; contours[i].size() &lt;&lt; endl;
+			cout &lt;&lt; arcLength(contours[i],true) &lt;&lt; endl;
+
+
+
+			RotatedRect rRect = minAreaRect(contours[i]);
+			Rcenter = rRect.center;
+			// 绘制R字母中心点
+			circle(OutputArray, Rcenter, radius, color, thickness);
+		}
+	}
+}
+
+
+// brief 绘制旋转矩形
+// param frame 直线绘制的图像
+// param rRect 旋转矩形
+// param color 矩形的颜色
+// param thickness 矩形线条的线宽
+void drawRotatedRect(Mat frame, RotatedRect rRect, Scalar color, int thickness = 1)
+{
+	//创建存储旋转矩形顶点的数组
+	Point2f vertices[4];
+	//存储顶点
+	rRect.points(vertices);
+	//绘制旋转矩形
+	for (int j = 0; j &lt; 4; ++j)
+		line(frame, vertices[j], vertices[(j + 1) % 4], color, thickness);
+}
+
+
+// brief 绘制预测点
+// param InputArray 绘制的图层
+// param Armor 装甲板对象
+void predictPoint(Mat InputArray, ArmorData Armor)
+{
+	double delta_x = Armor.rRect.center.x - Armor.Rcenter.x;
+	double delta_y = Armor.rRect.center.y - Armor.Rcenter.y;
+
+	Armor.predictPoint.x = delta_x * cos(-CV_PI / 7.8) + delta_y * sin(-CV_PI / 7.8) + Armor.Rcenter.x;
+	Armor.predictPoint.y = -delta_x * sin(-CV_PI / 7.8) + delta_y * cos(-CV_PI / 7.8) + Armor.Rcenter.y;
+
+	// 绘制预测点
+	circle(InputArray, Armor.predictPoint, 3, Scalar(100, 255, 100), 1);
+	// 绘制R字母到预测点的连线
+	line(InputArray, Armor.Rcenter, Armor.predictPoint, Scalar(80, 200, 10), 1);
+
+}
+
+
+int main()
+{
+	VideoCapture capture(&quot;RH.avi&quot;);		// 获取图像
+	Mat frame;
+	Mat outImage;
+	
+	ArmorData Armor;	// 实例化一个装甲板
+
+	while (true)
+	{
+		//获取帧
+		capture &gt;&gt; frame;
+
+		vector&lt;Mat&gt; imgChannels;
+		split(frame, imgChannels);
+		Mat outImage = imgChannels.at(2) - imgChannels.at(0);
+		threshold(outImage, outImage, 100, 255, CV_THRESH_BINARY);
+		
+		dilate(outImage, outImage, getStructuringElement(MORPH_RECT, Size(3, 3), Point(-1, -1)), Point(-1, -1), 2);
+		erode(outImage, outImage, getStructuringElement(MORPH_RECT, Size(3, 3), Point(-1, -1)), Point(-1, -1), 2);
+		imshow(&quot;1&quot;, outImage);
+
+		//绘制R字母的中心点并存储
+		drawRcenter(outImage, frame, Armor.Rcenter, 3, Scalar(255, 0, 0), 2);
+
+		//漫水处理
+		floodFill(outImage, Point(0, 0), Scalar(255));
+		//图像反色
+		bitwise_not(outImage, outImage);
+		
+		//膨胀腐蚀
+		dilate(outImage, outImage, getStructuringElement(MORPH_RECT, Size(3, 3), Point(-1, -1)), Point(-1, -1), 8);
+		erode(outImage, outImage, getStructuringElement(MORPH_RECT, Size(3, 3), Point(-1, -1)), Point(-1, -1), 2);
+
+		//发现轮廓
+		vector&lt;vector&lt;Point&gt;&gt; contours;
+		vector&lt;Vec4i&gt; hierarchy;
+		findContours(outImage, contours, hierarchy, RETR_TREE, CHAIN_APPROX_SIMPLE);
+
+		if (contours.size() == 0)
+		{
+			cout &lt;&lt; &quot;没有轮廓！&quot; &lt;&lt; endl;
+			continue;
+		}
+
+		for (int i = 0; i &lt; contours.size(); ++i)
+		{
+			//FindTwoContoursArea(contours);
+
+			//根据轮廓面积来进行筛选
+			if (contourArea(contours[i]) &lt; 3000)
+			{
+				//外接矩形
+				Armor.bounding_rect = boundingRect(contours[i]);
+				//外接旋转矩形
+				Armor.rRect = minAreaRect(contours[i]);
+
+			
+				// 打印矩形的角度
+				//cout &lt;&lt; Armor.rRect.angle &lt;&lt; endl;
+
+				
+				//打印外接矩形和旋转矩形的坐标，分析是否相同
+				//cout &lt;&lt; &quot;旋转矩形的中心点：&quot; &lt;&lt; &quot;(&quot; &lt;&lt; rRect.center &lt;&lt; &quot;)\n&quot; &lt;&lt; endl;
+				
+				// NOTE:分析可得，通过旋转矩形的属性来找中心点,精度比较高
+
+				//Point armorcenter(Armor.bounding_rect.x + Armor.bounding_rect.height / 2, Armor.bounding_rect.y + Armor.bounding_rect.width / 2);
+				//cout &lt;&lt; armorcenter &lt;&lt; endl;
+				cout &lt;&lt; Armor.Rcenter &lt;&lt; endl &lt;&lt; endl;
+
+
+				// 根据旋转矩形的属性找旋转矩形所在的象限
+				if (Armor.rRect.center.x &gt;= Armor.Rcenter.x &amp;&amp; Armor.rRect.center.y &lt; Armor.Rcenter.y)
+				{
+					Armor.quadrant = 1;
+				}
+				if (Armor.rRect.center.x &lt; Armor.Rcenter.x &amp;&amp; Armor.rRect.center.y &lt;= Armor.Rcenter.y)
+				{
+					Armor.quadrant = 2;
+				}
+				if (Armor.rRect.center.x &lt;= Armor.Rcenter.x &amp;&amp; Armor.rRect.center.y &gt; Armor.Rcenter.y)
+				{
+					Armor.quadrant = 3;
+				}
+				if (Armor.rRect.center.x &gt; Armor.Rcenter.x &amp;&amp; Armor.rRect.center.y &gt;= Armor.Rcenter.y)
+				{
+					Armor.quadrant = 4;
+				}
+
+				// 对打击点进行预测
+				predictPoint(frame, Armor);
+
+				// 绘制R字母到装甲板的直线
+				line(frame, Armor.Rcenter, Armor.rRect.center, Scalar(80, 200, 10), 1);
+				// 绘制最大的装甲板外接圆
+				circle(frame, Armor.Rcenter, pointsDistance(Armor.rRect.center, Armor.Rcenter), Scalar(255, 10, 100), 1);
+				// 绘制旋转矩形
+				drawRotatedRect(frame, Armor.rRect, Scalar(0, 255, 0), 1);
+				// 绘制轮廓
+				// drawContours(frame, contours, i, Scalar(0, 200, 0), 2); 
+				// 绘制外接矩形
+				// rectangle(frame, bounding_rect, Scalar(151, 255, 255), 2);
+				// 绘制装甲板中心点
+				circle(frame, Armor.rRect.center, 3, Scalar(100, 255, 100), 1);
+			}
+		}
+
+
+
+
+
+
+		//imshow(&quot;out&quot;, frame);
+
+		waitKey(10);
+	}
+
+
+
+
+
+	waitKey(0);
+}
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[寻找两个轮廓中的每个轮廓最大面积函数]]></title>
+        <id>https://liuup.github.io/post/xun-zhao-liang-ge-lun-kuo-zhong-de-mei-ge-lun-kuo-zui-da-mian-ji-han-shu</id>
+        <link href="https://liuup.github.io/post/xun-zhao-liang-ge-lun-kuo-zhong-de-mei-ge-lun-kuo-zui-da-mian-ji-han-shu">
+        </link>
+        <updated>2020-01-11T04:25:08.000Z</updated>
+        <content type="html"><![CDATA[<pre><code>void FindContourArea(vector&lt;vector&lt;Point&gt;&gt; contours)
+{
+	static int ContoursAreaArray[2] = { 0 };//存储轮廓面积的数组
+
+	switch (contours.size())
+	{
+	case 1:
+		if (contourArea(contours[0]) &gt; ContoursAreaArray[0])
+			ContoursAreaArray[0] = contourArea(contours[0]);
+		break;
+	case 2:
+		if (contourArea(contours[0]) &gt; contourArea(contours[1]))
+		{
+			if (contourArea(contours[0]) &gt; ContoursAreaArray[1])
+				ContoursAreaArray[1] = contourArea(contours[0]);
+			
+			if (contourArea(contours[1]) &gt; ContoursAreaArray[0])
+				ContoursAreaArray[0] = contourArea(contours[1]);
+		}
+		if (contourArea(contours[0]) &lt; contourArea(contours[1]))
+		{
+			if (contourArea(contours[0]) &gt; ContoursAreaArray[0])
+				ContoursAreaArray[0] = contourArea(contours[0]);
+
+			if (contourArea(contours[1]) &gt; ContoursAreaArray[1])
+				ContoursAreaArray[1] = contourArea(contours[1]);
+		}
+		break;
+	default:
+		cout &lt;&lt; &quot;这里是别的情况&quot; &lt;&lt; endl;
+		break;
+	}
+
+	cout &lt;&lt; ContoursAreaArray[0] &lt;&lt; &quot; &quot; &lt;&lt; ContoursAreaArray[1] &lt;&lt; endl;
 }
 </code></pre>
 ]]></content>
