@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>static_cast and unit explanation | UP</title>
+<title>OpenCV4.2 + CUDA 测试代码cvtColor()  | UP</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -18,14 +18,12 @@
 
 
 
-    <meta name="description" content="static_cast
-一种强制类型转换
-uint
-定义在types.h中，表示无符号整型
-typedef unsigned int uint;
+    <meta name="description" content="#include &lt;iostream&gt;
 
-..." />
-    <meta name="keywords" content="C++" />
+#include &lt;opencv2/core.hpp&gt;
+#include &lt;opencv2/highgui.hpp&gt;
+#include &lt;opencv2/i..." />
+    <meta name="keywords" content="OpenCV" />
   </head>
   <body>
     <div id="app" class="main">
@@ -104,23 +102,72 @@ typedef unsigned int uint;
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">static_cast and unit explanation</h2>
-            <div class="post-date">2020-01-09</div>
+            <h2 class="post-title">OpenCV4.2 + CUDA 测试代码cvtColor() </h2>
+            <div class="post-date">2020-01-12</div>
             
             <div class="post-content" v-pre>
-              <h2 id="static_cast">static_cast</h2>
-<p>一种强制类型转换</p>
-<h2 id="uint">uint</h2>
-<p>定义在types.h中，表示无符号整型</p>
-<pre><code>typedef unsigned int uint;
+              <pre><code>#include &lt;iostream&gt;
+
+#include &lt;opencv2/core.hpp&gt;
+#include &lt;opencv2/highgui.hpp&gt;
+#include &lt;opencv2/imgproc.hpp&gt;
+#include &lt;opencv2/dnn.hpp&gt;
+#include &lt;opencv2/opencv.hpp&gt;
+#include &lt;opencv2/core/cuda.hpp&gt;
+
+using namespace std;
+using namespace cv;
+using namespace cv::cuda;
+
+int main()
+{
+	// cout &lt;&lt; getBuildInformation() &lt;&lt; endl;
+	
+
+	int num_devices = getCudaEnabledDeviceCount();
+	if(num_devices &lt;= 0)
+	{
+		cout &lt;&lt; &quot;There is no device.&quot; &lt;&lt; endl;
+		return -1;
+	}
+
+	int enable_device_id = -1;
+	for(int i = 0; i &lt; num_devices; i++)
+	{
+		DeviceInfo dev_info(i);
+		if(dev_info.isCompatible())
+		{
+			enable_device_id = i;
+		}
+	}
+
+	if(enable_device_id &lt; 0)
+	{
+		cout &lt;&lt; &quot;GPU module isn't built for GPU&quot; &lt;&lt; endl;
+		return -1;
+	}
+	setDevice(enable_device_id);
+
+	Mat src_image = imread(&quot;/home/sau/Pictures/dji-robomaster-s1-robot-4.jpg&quot;);
+	Mat dst_image;
+	cv::cuda::GpuMat d_src_img(src_image);
+	cv::cuda::GpuMat d_dst_img;
+	cv::cuda::cvtColor(d_src_img, d_dst_img, COLOR_BGR2GRAY);
+	d_dst_img.download(dst_image);
+	cv::imshow(&quot;test&quot;, dst_image);
+	
+	waitKey(0);
+	return 0;
+}
+
 </code></pre>
 
             </div>
             
               <div class="tag-container">
                 
-                  <a href="https://liuup.github.io/tag/omjs2khAU" class="tag">
-                    C++
+                  <a href="https://liuup.github.io/tag/u5wzbFsVb" class="tag">
+                    OpenCV
                   </a>
                 
               </div>
@@ -128,9 +175,9 @@ typedef unsigned int uint;
             
               <div class="next-post">
                 <div class="next">下一篇</div>
-                <a href="https://liuup.github.io/post/mou-pao-pai-xu-dai-ma-yan-shi">
+                <a href="https://liuup.github.io/post/xie-zai-opencv">
                   <h3 class="post-title">
-                    冒泡排序代码演示
+                    卸载opencv
                   </h3>
                 </a>
               </div>
