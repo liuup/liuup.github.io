@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://liuup.github.io/</id>
     <title>UP</title>
-    <updated>2020-01-12T13:14:21.998Z</updated>
+    <updated>2020-04-04T10:07:03.071Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://liuup.github.io/"/>
     <link rel="self" href="https://liuup.github.io/atom.xml"/>
@@ -10,6 +10,32 @@
     <logo>https://liuup.github.io/images/avatar.png</logo>
     <icon>https://liuup.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, UP</rights>
+    <entry>
+        <title type="html"><![CDATA[C++计时]]></title>
+        <id>https://liuup.github.io/post/cji-shi</id>
+        <link href="https://liuup.github.io/post/cji-shi">
+        </link>
+        <updated>2020-04-04T10:02:15.000Z</updated>
+        <content type="html"><![CDATA[<pre><code>#include &lt;chrono&gt;
+#include &lt;iostream&gt;
+
+int main()
+{
+    auto startTime = chrono::high_resolution_clock::now();
+
+    std::cout &lt;&lt; &quot;helloworld&quot; &lt;&lt; std::endl;
+
+    double seconds = chrono::duration&lt;double&gt; (chrono::high_resolutino_clock() - startTime).count();
+
+    std::cout &lt;&lt; seconds &lt;&lt; std::endl;
+
+    return 0;
+}
+</code></pre>
+<h2 id="reference">Reference</h2>
+<p><a href="https://zh.cppreference.com/w/cpp/chrono">日期和时间工具 - cppreference.com</a></p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[智能指针 现代C++]]></title>
         <id>https://liuup.github.io/post/zhi-neng-zhi-zhen-xian-dai-c</id>
@@ -285,16 +311,6 @@ public:
 </code></pre>
 <p>deference<br>
 <a href="https://blog.csdn.net/mailzst1/article/details/83141632">Opencv RotatedRect类详解  - CSDN</a></p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[直线绕点旋转]]></title>
-        <id>https://liuup.github.io/post/zhi-xian-rao-dian-xuan-zhuan</id>
-        <link href="https://liuup.github.io/post/zhi-xian-rao-dian-xuan-zhuan">
-        </link>
-        <updated>2020-01-11T04:28:06.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="直线绕点旋转">直线绕点旋转</h1>
-<figure data-type="image" tabindex="1"><img src="https://img-blog.csdnimg.cn/20190903211230929.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE0Mjc5Nw==,size_16,color_FFFFFF,t_70" alt="推导公式图解" loading="lazy"></figure>
 ]]></content>
     </entry>
 </feed>

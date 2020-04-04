@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>我的资源 | UP</title>
+<title>C++计时 | UP</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -18,7 +18,13 @@
 
 
 
-    <meta name="description" content="这是一个博客,也是一个发牢骚的地方,而且不希望被太多人知道...">
+    <meta name="description" content="#include &lt;chrono&gt;
+#include &lt;iostream&gt;
+
+int main()
+{
+    auto startTime = chrono::high_resolution_clock::now(..." />
+    <meta name="keywords" content="C++" />
   </head>
   <body>
     <div id="app" class="main">
@@ -96,28 +102,54 @@
 
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
-          <h2 class="current-tag">标签: 我的资源</h2>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://liuup.github.io/post/chu-xian-de-yi-xie-ying-wen-dan-ci">
-                  <h2 class="post-title">出现的一些英文单词</h2>
-                </a>
-                <div class="post-date">
-                  2020-01-09
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
+          <div class="post-detail">
+            <h2 class="post-title">C++计时</h2>
+            <div class="post-date">2020-04-04</div>
+            
+            <div class="post-content" v-pre>
+              <pre><code>#include &lt;chrono&gt;
+#include &lt;iostream&gt;
 
-          <div class="pagination-container">
-  
-  
-</div>
+int main()
+{
+    auto startTime = chrono::high_resolution_clock::now();
+
+    std::cout &lt;&lt; &quot;helloworld&quot; &lt;&lt; std::endl;
+
+    double seconds = chrono::duration&lt;double&gt; (chrono::high_resolutino_clock() - startTime).count();
+
+    std::cout &lt;&lt; seconds &lt;&lt; std::endl;
+
+    return 0;
+}
+</code></pre>
+<h2 id="reference">Reference</h2>
+<p><a href="https://zh.cppreference.com/w/cpp/chrono">日期和时间工具 - cppreference.com</a></p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://liuup.github.io/tag/omjs2khAU" class="tag">
+                    C++
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://liuup.github.io/post/zhi-neng-zhi-zhen-xian-dai-c">
+                  <h3 class="post-title">
+                    智能指针 现代C++
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
 
         </div>
       </div>
