@@ -24,7 +24,7 @@ Shang Liu is currently pursuing a master's degree at the University of `Chinese 
 
 Internship:
 
-- Momenta Inc.(Beijing, China), Mar 2023 — Aug 2023
+- Momenta Inc.(Beijing, China), Mar 2023 - Aug 2023
 - Hujiang EduTech Inc.(Shanghai, China), Jul 2022 - Aug 2022
 
 
