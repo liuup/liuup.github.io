@@ -1,7 +1,6 @@
 {
   "basics": {
     "name": "Shang Liu",
-    "label": "Student",
     "image": "",
     "email": "liushang221@mails.ucas.ac.cn",
     "url": "https://liuup.github.io"
@@ -11,7 +10,7 @@
       "institution": "University of Chinese Academy of Sciences",
       "location": "Beijing, China",
       "url": "https://www.ucas.ac.cn/",
-      "area": "Electronic Information",
+      "area": "Computer Technology",
       "studyType": "MSc",
       "startDate": "2022-09-01",
       "endDate": "2025-06-30"
