@@ -23,6 +23,7 @@ social: true # includes social icons at the bottom of the page
 
 Shang Liu is currently pursuing a master's degree at the [University of Chinese Academy of Sciences](https://www.ucas.ac.cn/), where he is under the guidance of [Prof. Zhenyu Yin](https://people.ucas.ac.cn/~0012420). Before that, he obtained his B.S. degree from [Shenyang Aerospace University](https://www.sau.edu.cn/) in 2022.
 
+Beyond the academic research, he loves hiking and long distance running.
 
 <!-- He is also the Github open-source project contributor of [ccf-deadlines](https://github.com/ccfddl/ccf-deadlines), which is dedicated to provide accurate deadlines for Chinese academic researchers. -->
 
@@ -38,7 +39,7 @@ Academic Services:
 
 Talks:
 
-- Research and Implementation of Surakarta Computer Game Algorithm. [http://computergames.caai.cn/info/news20200820.html](http://computergames.caai.cn/info/news20200820.html)
+- “Research and Implementation of Surakarta Computer Game Algorithm“. [http://computergames.caai.cn/info/news20200820.html](http://computergames.caai.cn/info/news20200820.html)
 
 
 <!-- Write your biography here. Tell the world about yourself. Link to your favorite [subreddit](http://reddit.com). You can put a picture in, too. The code is already in, just name your picture `prof_pic.jpg` and put it in the `img/` folder.
