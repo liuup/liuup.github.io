@@ -6,7 +6,7 @@ permalink: /
 
 profile:
   align: right
-  image: abel.jpeg
+  image: IMG_5725.jpg
   image_circular: false # crops the image to make it circular
   # more_info: >
   #   <p>555 your office number</p>
@@ -35,7 +35,7 @@ Internship:
 
 Academic Services:
 
-- Conference reviewer of ICONIP2024
+- Conference reviewer of ICONIP2024, IJCNN2025
 
 Talks:
 
