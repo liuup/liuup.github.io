@@ -2,7 +2,7 @@
   "basics": {
     "name": "Shang Liu",
     "image": "",
-    "email": "liushang221@mails.ucas.ac.cn",
+    "email": "shang.liu@louisville.edu",
     "url": "https://liuup.github.io"
   },
   "education": [
@@ -10,7 +10,7 @@
       "institution": "University of Chinese Academy of Sciences",
       "location": "Beijing, China",
       "url": "https://www.ucas.ac.cn/",
-      "area": "Computer Technology",
+      "area": "Computer Technology, supervised by Prof. Zhenyu Yin",
       "studyType": "MSc",
       "startDate": "2022-09-01",
       "endDate": "2025-06-30"
