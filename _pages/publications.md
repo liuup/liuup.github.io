@@ -11,7 +11,7 @@ nav_order: 2
 
 The full publications list could be find at [Google Scholar](https://scholar.google.com/citations?user=HhRMqR0AAAAJ).
 
-Name* is the corresponding author.
+Name\* is the corresponding author.
 
 <!-- Bibsearch Feature -->
 
