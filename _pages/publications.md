@@ -9,11 +9,11 @@ nav_order: 2
 
 <!-- _pages/publications.md -->
 
-<!-- Bibsearch Feature -->
-
 The full publications list could be find at [Google Scholar](https://scholar.google.com/citations?user=HhRMqR0AAAAJ).
 
 Name* is the corresponding author.
+
+<!-- Bibsearch Feature -->
 
 {% include bib_search.liquid %}
 
