@@ -18,7 +18,6 @@ selected_papers: false # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
 ---
 
-
 <!-- Shang Liu is currently pursuing a master's degree at the [University of Chinese Academy of Sciences](https://www.ucas.ac.cn/), where he is under the guidance of [Prof. Zhenyu Yin](https://people.ucas.ac.cn/~0012420). Before that, he obtained his B.S. degree from [Shenyang Aerospace University](https://www.sau.edu.cn/) in 2022. -->
 
 Shang Liu is a PhD student at the [University of Louisville](https://louisville.edu/), where he is under the guidance of [Dr. Zeyan Liu](https://liuzey.com/). Before that, he obtained his M.S and B.S. degrees from the [University of Chinese Academy of Sciences](https://www.ucas.ac.cn/) in 2025 and the [Shenyang Aerospace University](https://www.sau.edu.cn/) in 2022, respectively.
@@ -32,7 +31,6 @@ Internships:
 - Momenta Inc. (Beijing, China), Mar 2023 - Aug 2023
 - Hujiang EduTech Inc. (Shanghai, China), Jul 2022 - Aug 2022
 
-
 Academic Services:
 
 - Conference reviewer of ICONIP2024, IJCNN2025, ICONIP2025
@@ -40,7 +38,6 @@ Academic Services:
 Talks:
 
 - “Research and Implementation of Surakarta Computer Game Algorithm“. [http://computergames.caai.cn/info/news20200820.html](http://computergames.caai.cn/info/news20200820.html)
-
 
 <!-- Write your biography here. Tell the world about yourself. Link to your favorite [subreddit](http://reddit.com). You can put a picture in, too. The code is already in, just name your picture `prof_pic.jpg` and put it in the `img/` folder.
 

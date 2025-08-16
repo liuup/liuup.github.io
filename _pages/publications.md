@@ -15,8 +15,6 @@ The full publications list could be find at [Google Scholar](https://scholar.goo
 
 Name* is the corresponding author.
 
-
-
 <!-- {% include bib_search.liquid %} -->
 
 <div class="publications">
