@@ -1,6 +1,6 @@
 ---
 layout: about
-title: about
+title: About
 permalink: /
 # subtitle: <a href='#'>Affiliations</a>. Address. Contacts. Motto. Etc.
 
@@ -8,10 +8,10 @@ profile:
   align: right
   image: IMG_5725.jpg
   image_circular: false # crops the image to make it circular
-  # more_info: >
-  #   <p>555 your office number</p>
-  #   <p>123 your address street</p>
-  #   <p>Your City, State 12345</p>
+  more_info: >
+    <p>Room 237,</p>
+    <p>Duthie Center for Engineering,</p>
+    <p>Louisville, KY, US</p>
 
 news: true # includes a list of news items
 selected_papers: false # includes a list of papers marked as "selected={true}"
@@ -20,7 +20,7 @@ social: true # includes social icons at the bottom of the page
 
 <!-- Shang Liu is currently pursuing a master's degree at the [University of Chinese Academy of Sciences](https://www.ucas.ac.cn/), where he is under the guidance of [Prof. Zhenyu Yin](https://people.ucas.ac.cn/~0012420). Before that, he obtained his B.S. degree from [Shenyang Aerospace University](https://www.sau.edu.cn/) in 2022. -->
 
-Shang Liu is a PhD student at the [University of Louisville](https://louisville.edu/), where he is under the guidance of [Dr. Zeyan Liu](https://liuzey.com/). Before that, he obtained his M.S and B.S. degrees from the [University of Chinese Academy of Sciences](https://www.ucas.ac.cn/) in 2025 and the [Shenyang Aerospace University](https://www.sau.edu.cn/) in 2022, respectively.
+Shang Liu is a 1st year PhD student at the [University of Louisville](https://louisville.edu/), where he is under the guidance of [Dr. Zeyan Liu](https://liuzey.com/). Before that, he obtained his M.S and B.S. degrees from the [University of Chinese Academy of Sciences](https://www.ucas.ac.cn/) in 2025 and the [Shenyang Aerospace University](https://www.sau.edu.cn/) in 2022, respectively.
 
 Beyond the academic research, he loves long distance hiking and running.
 
