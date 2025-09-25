@@ -7,6 +7,15 @@
   },
   "education": [
     {
+      "institution": "University of Louisville",
+      "location": "Louisville, KY, USA",
+      "url": "https://louisville.edu/",
+      "area": "Computer Science and Engineering, supervised by Prof. Zeyan Liu",
+      "studyType": "PhD student",
+      "startDate": "2025-08-19",
+      "endDate": "Now"
+    },
+    {
       "institution": "University of Chinese Academy of Sciences",
       "location": "Beijing, China",
       "url": "https://www.ucas.ac.cn/",
