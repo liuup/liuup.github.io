@@ -33,7 +33,7 @@ Internships:
 
 Academic Services:
 
-- Conference reviewer of ICONIP2024, IJCNN2025, ICONIP2025
+- Conference reviewer of ICONIP2024, IJCNN2025, ICONIP2025, ICASSP2026
 
 Talks:
 
