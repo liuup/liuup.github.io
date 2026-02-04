@@ -31,7 +31,7 @@ Internships:
 Projects:
 
 - ccf-deadlines: An open-source website for tracking conference deadlines. [commits history](https://github.com/ccfddl/ccf-deadlines/commits/main/?author=liuup).
-- overleaf_vertical: Force Overleaf editor and preview to display top-bottom instead of side-by-side.  [project link](https://www.overleaf.com/latex/templates/vertical-document-template/jyvdgmnfncsq).
+- overleaf_vertical: Force Overleaf editor and preview to display top-bottom instead of side-by-side.  [project link](https://github.com/liuup/overleaf_vertical).
 
 Academic Services:
 
