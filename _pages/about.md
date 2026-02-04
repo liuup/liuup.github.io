@@ -9,7 +9,6 @@ profile:
   image: IMG_5725.jpg
   image_circular: false # crops the image to make it circular
   more_info: >
-    <p>Room 237,</p>
     <p>Duthie Center for Engineering,</p>
     <p>Louisville, KY, US</p>
 
@@ -20,16 +19,19 @@ social: true # includes social icons at the bottom of the page
 
 <!-- Shang Liu is currently pursuing a master's degree at the [University of Chinese Academy of Sciences](https://www.ucas.ac.cn/), where he is under the guidance of [Prof. Zhenyu Yin](https://people.ucas.ac.cn/~0012420). Before that, he obtained his B.S. degree from [Shenyang Aerospace University](https://www.sau.edu.cn/) in 2022. -->
 
-Shang Liu is a 1st year PhD student at the [University of Louisville](https://louisville.edu/), where he is under the guidance of [Dr. Zeyan Liu](https://liuzey.com/). Before that, he obtained his M.S and B.S. degrees from the [University of Chinese Academy of Sciences](https://www.ucas.ac.cn/) in 2025 and the [Shenyang Aerospace University](https://www.sau.edu.cn/) in 2022, respectively.
+Shang Liu is a PhD student at the [University of Louisville](https://louisville.edu/) from 25 fall, where he is under the guidance of [Dr. Zeyan Liu](https://liuzey.com/). Before that, he obtained his M.S and B.S. degrees from the [University of Chinese Academy of Sciences](https://www.ucas.ac.cn/) in 2025 and the [Shenyang Aerospace University](https://www.sau.edu.cn/) in 2022, respectively.
 
 Beyond the academic research, he loves long distance hiking and running.
-
-He is also the Github open-source project contributor of [ccf-deadlines](https://github.com/ccfddl/ccf-deadlines).
 
 Internships:
 
 - Momenta Inc. (Beijing, China), Mar 2023 - Aug 2023
 - Hujiang EduTech Inc. (Shanghai, China), Jul 2022 - Aug 2022
+
+Projects:
+
+- ccf-deadlines: An open-source website for tracking conference deadlines. [commits history](https://github.com/ccfddl/ccf-deadlines/commits/main/?author=liuup).
+- overleaf_vertical: Force Overleaf editor and preview to display top-bottom instead of side-by-side.  [project link](https://www.overleaf.com/latex/templates/vertical-document-template/jyvdgmnfncsq).
 
 Academic Services:
 
