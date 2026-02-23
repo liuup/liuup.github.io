@@ -30,8 +30,10 @@ Internships:
 
 Projects:
 
-- ccf-deadlines: An open-source website for tracking conference deadlines. [commits history](https://github.com/ccfddl/ccf-deadlines/commits/main/?author=liuup).
-- overleaf_vertical: Force Overleaf editor and preview to display top-bottom instead of side-by-side.  [project link](https://github.com/liuup/overleaf_vertical).
+- overleaf_vertical: Core Developer. Force Overleaf editor and preview to display top-bottom instead of side-by-side.  [project link](https://github.com/liuup/overleaf_vertical).
+- ccf-deadlines: Contributer. An open-source website for tracking conference deadlines. [commits history](https://github.com/ccfddl/ccf-deadlines/commits/main/?author=liuup).
+- CCFrank: Contributer. The webbrowser extension display the China Computer Federation recommended rank of international conferences and journals in the dblp, Google Scholar, Connected Papers, Semantic Scholar and Web of Science search results. [commits history](https://github.com/WenyanLiu/CCFrank4dblp/commits/master/?author=liuup).
+
 
 Academic Services:
 
