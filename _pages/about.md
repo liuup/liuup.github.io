@@ -33,7 +33,7 @@ Projects:
 - [overleaf_vertical](https://github.com/liuup/overleaf_vertical): Core Developer. Force Overleaf editor and preview to display top-bottom instead of side-by-side.
 - [ccf-deadlines](https://github.com/ccfddl/ccf-deadlines): Contributer. An open-source website for tracking conference deadlines. [commits history](https://github.com/ccfddl/ccf-deadlines/commits/main/?author=liuup).
 - [CCFrank](https://github.com/WenyanLiu/CCFrank4dblp): Contributer. The webbrowser extension display the China Computer Federation recommended rank of international conferences and journals in the dblp, Google Scholar, Connected Papers, Semantic Scholar and Web of Science search results. [commits history](https://github.com/WenyanLiu/CCFrank4dblp/commits/master/?author=liuup).
-
+- I also deployed and maintained the lab's GPU computing system with Docker and Portainer to ensure isolating everyone's development environment.
 
 Academic Services:
 
