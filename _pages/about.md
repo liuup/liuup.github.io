@@ -30,6 +30,7 @@ Internships:
 
 Projects:
 
+- [claude-code-analysis](https://github.com/liuup/claude-code-analysis): Core Developer. The source code analysis document of Claude Code agentic arch. It has achieved 2k+ stars.
 - [overleaf_vertical](https://github.com/liuup/overleaf_vertical): Core Developer. Force Overleaf editor and preview to display top-bottom instead of side-by-side.
 - [ccf-deadlines](https://github.com/ccfddl/ccf-deadlines): Contributer. An open-source website for tracking conference deadlines. [commits history](https://github.com/ccfddl/ccf-deadlines/commits/main/?author=liuup).
 - [CCFrank](https://github.com/WenyanLiu/CCFrank4dblp): Contributer. The webbrowser extension display the China Computer Federation recommended rank of international conferences and journals in the dblp, Google Scholar, Connected Papers, Semantic Scholar and Web of Science search results. [commits history](https://github.com/WenyanLiu/CCFrank4dblp/commits/master/?author=liuup).
@@ -37,7 +38,8 @@ Projects:
 
 Academic Services:
 
-- Conference reviewer of ICONIP2024, IJCNN2025, ICONIP2025, ICASSP2026, IJCNN2026
+- Program Committee: [DLS-2026](https://bds-sdu.github.io/DLS-2026/)
+- Conference reviewer: ICONIP2024, IJCNN2025, ICONIP2025, ICASSP2026, IJCNN2026
 
 Talks:
 
