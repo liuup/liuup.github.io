@@ -39,7 +39,7 @@ Projects:
 Academic Services:
 
 - Program Committee: [DLS-2026](https://bds-sdu.github.io/DLS-2026/)
-- Conference reviewer: ICONIP2024, IJCNN2025, ICONIP2025, ICASSP2026, IJCNN2026
+- Conference reviewer: ICONIP2024, IJCNN2025, ICONIP2025, ICASSP2026, IJCNN2026, ICONIP2026
 
 Talks:
 
