@@ -81,12 +81,13 @@ jobs:
           value: ${{ github.repository }}
       - name: Install ImageMagick 🖼️
         run: sudo apt-get update && sudo apt-get install -y imagemagick
-      - name: Install and Build 🔧
+      - name: Install Python deps 🐍
+        run: pip3 install --upgrade nbconvert
+      - name: Build site 🏗️
         run: |
-          pip3 install --upgrade nbconvert
           convert -version || echo "ImageMagick missing"
           export JEKYLL_ENV=production
-          bundle exec jekyll build
+          bundle exec jekyll build --profile
       - name: Purge unused CSS 🧹
         run: |
           npm install -g purgecss
