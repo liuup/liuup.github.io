@@ -1,0 +1,59 @@
+name: Regenerate responsive webp
+
+# WebP variants (-480/-800/-1400) are committed to assets/img/, so the deploy
+# workflow does not need ImageMagick. Run this manually after adding or
+# replacing an image under assets/img/.
+on:
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: "Short reason for the commit message (optional)"
+        required: false
+
+permissions:
+  contents: write
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v4
+
+      - name: Install ImageMagick 🖼️
+        run: |
+          sudo apt-get install -y --no-install-recommends imagemagick libmagickcore-6.q16-7-extra \
+            || (sudo apt-get update -qq && sudo apt-get install -y imagemagick)
+
+      - name: Check ImageMagick 🖼️
+        run: |
+          convert -version
+          convert -list format | grep -i webp
+
+      - name: Generate webp variants
+        run: |
+          set -euo pipefail
+          # Mirrors _config.yml -> imagemagick: -auto-orient -quality 85 at 480/800/1400
+          find assets/img -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.tiff' -o -iname '*.gif' \) -print0 |
+            while IFS= read -r -d '' img; do
+              base="${img%.*}"
+              for w in 480 800 1400; do
+                convert "$img" -auto-orient -quality 85 -resize "${w}>" "${base}-${w}.webp"
+                printf '  %s\n' "${base}-${w}.webp"
+              done
+            done
+
+      - name: Commit webp variants
+        env:
+          REASON: ${{ github.event.inputs.reason }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A assets/img
+          if git diff --cached --quiet; then
+            echo "No webp changes to commit"
+          else
+            git commit -m "chore: regenerate responsive webp${REASON:+ ($REASON)}"
+            git push
+          fi

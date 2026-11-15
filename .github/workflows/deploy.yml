@@ -79,16 +79,18 @@ jobs:
           valueFile: "_config.yml"
           propertyPath: "giscus.repo"
           value: ${{ github.repository }}
-      - name: Install ImageMagick 🖼️
-        run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y --no-install-recommends imagemagick libmagickcore-6.q16-7-extra
-      - name: Check ImageMagick 🖼️
-        run: |
-          convert -version
-          convert -list format | grep -i webp
       - name: Build site 🏗️
         run: bundle exec jekyll build --profile
+      - name: Verify responsive images 🔍
+        run: |
+          refs=$(grep -rhoE 'assets/[A-Za-z0-9_./-]+\.webp' _site --include='*.html' | sort -u)
+          if [ -z "$refs" ]; then echo "::error::no webp references found in output"; exit 1; fi
+          missing=0
+          for u in $refs; do
+            if [ ! -f "_site/$u" ]; then echo "::error::$u is referenced but missing (run the regenerate-webp workflow?)"; missing=1; fi
+          done
+          echo "checked $(echo "$refs" | wc -l) webp reference(s)"
+          exit $missing
       - name: Deploy 🚀
         if: github.event_name != 'pull_request'
         uses: JamesIves/github-pages-deploy-action@v4
