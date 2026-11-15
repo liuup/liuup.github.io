@@ -12,7 +12,7 @@ profile:
     <p>Duthie Center for Engineering,</p>
     <p>Louisville, KY, US</p>
 
-news: true # includes a list of news items
+news: false # includes a list of news items
 selected_papers: false # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
 ---
@@ -20,8 +20,6 @@ social: true # includes social icons at the bottom of the page
 <!-- Shang Liu is currently pursuing a master's degree at the [University of Chinese Academy of Sciences](https://www.ucas.ac.cn/), where he is under the guidance of [Prof. Zhenyu Yin](https://people.ucas.ac.cn/~0012420). Before that, he obtained his B.S. degree from [Shenyang Aerospace University](https://www.sau.edu.cn/) in 2022. -->
 
 Shang Liu is a PhD student at the [University of Louisville](https://louisville.edu/) from 25 fall, where he is under the guidance of [Dr. Zeyan Liu](https://liuzey.com/). Before that, he obtained his M.S and B.S. degrees from the [University of Chinese Academy of Sciences](https://www.ucas.ac.cn/) in 2025 and the [Shenyang Aerospace University](https://www.sau.edu.cn/) in 2022, respectively.
-
-Beyond the academic research, he loves long distance hiking and running.
 
 Internships:
 
