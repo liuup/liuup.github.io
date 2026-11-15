@@ -84,12 +84,12 @@ jobs:
         with:
           packages: imagemagick
           version: 1.0
-      - name: Build site 🏗️
+      - name: Check ImageMagick 🖼️
         run: |
           convert -version
-          convert -list format | grep -qi webp # fail fast if the WebP delegate is missing
-          export JEKYLL_ENV=production
-          bundle exec jekyll build --profile
+          convert -list format | grep -i webp
+      - name: Build site 🏗️
+        run: bundle exec jekyll build --profile
       - name: Deploy 🚀
         if: github.event_name != 'pull_request'
         uses: JamesIves/github-pages-deploy-action@v4
