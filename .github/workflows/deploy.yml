@@ -80,18 +80,16 @@ jobs:
           propertyPath: "giscus.repo"
           value: ${{ github.repository }}
       - name: Install ImageMagick 🖼️
-        run: sudo apt-get update && sudo apt-get install -y imagemagick
-      - name: Install Python deps 🐍
-        run: pip3 install --upgrade nbconvert
+        uses: awalsh128/cache-apt-pkgs-action@553a35bb8ebd9fcabcb1c9451aa4c98e1b4ca8a9 # v1.6.3
+        with:
+          packages: imagemagick
+          version: 1.0
       - name: Build site 🏗️
         run: |
-          convert -version || echo "ImageMagick missing"
+          convert -version
+          convert -list format | grep -qi webp # fail fast if the WebP delegate is missing
           export JEKYLL_ENV=production
           bundle exec jekyll build --profile
-      - name: Purge unused CSS 🧹
-        run: |
-          npm install -g purgecss
-          purgecss -c purgecss.config.js
       - name: Deploy 🚀
         if: github.event_name != 'pull_request'
         uses: JamesIves/github-pages-deploy-action@v4
